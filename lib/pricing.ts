@@ -15,7 +15,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 75000,
+    price: 90000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: 'Up to 200 pupils',
@@ -34,7 +34,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'growth',
     name: 'Growth',
-    price: 150000,
+    price: 165000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '201–500 pupils',
@@ -54,7 +54,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'professional',
     name: 'Professional',
-    price: 250000,
+    price: 265000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '501–1,000 pupils',
