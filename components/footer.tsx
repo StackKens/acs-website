@@ -1,0 +1,3 @@
+import Link from 'next/link'
+
+export default function Footer() { return <footer className="mx-auto flex max-w-[1180px] flex-col gap-5 border-t border-[#e6ecef] px-5 py-8 text-xs text-[#82919c] sm:flex-row sm:items-center sm:justify-between sm:px-8"><div><span className="font-medium text-[#526676]">ACS</span><span className="mx-2 text-[#c0cbd1]">·</span>Academic Cloud System</div><div className="flex gap-5"><Link href="/features">Features</Link><Link href="/pricing">Pricing</Link><Link href="/contact">Contact</Link></div><div>© 2026 ACS · A product by Vexel Labs</div></footer> }
