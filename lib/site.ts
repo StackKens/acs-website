@@ -3,3 +3,6 @@ export const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL ?? 'https://vexel-acs-platform.onrender.com'
 
 export const appLoginUrl = `${APP_URL.replace(/\/$/, '')}/login`
+
+/** Self-serve school signup lives in the app. */
+export const appSignupUrl = `${APP_URL.replace(/\/$/, '')}/signup`
