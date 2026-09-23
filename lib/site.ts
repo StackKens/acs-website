@@ -6,3 +6,6 @@ export const appLoginUrl = `${APP_URL.replace(/\/$/, '')}/login`
 
 /** Self-serve school signup lives in the app. */
 export const appSignupUrl = `${APP_URL.replace(/\/$/, '')}/signup`
+
+/** Public contact-form endpoint on the app. */
+export const appContactUrl = `${APP_URL.replace(/\/$/, '')}/api/contact`
