@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowRight, Check, Users, CalendarCheck2, BarChart3 } from 'lucide-react'
-import { CTA, capabilities } from './shared'
+import { CTA, coreCapabilities } from './shared'
 
 function Dashboard() {
   const navGroups = [
@@ -54,7 +54,7 @@ function PlatformOverview() {
       <p className="eyebrow">Platform overview</p>
       <p className="mt-2 text-sm text-[#71808d]">A clear view of the work that keeps a school moving.</p>
     </div>
-    <div className="grid overflow-hidden rounded-[10px] border border-[#d9e1e6] bg-white shadow-[0_24px_80px_rgba(21,43,60,.09)] sm:grid-cols-[1.1fr_.9fr]">
+    <div className="grid overflow-hidden rounded-md border border-[#d9e1e6] bg-white shadow-[0_4px_16px_rgba(21,43,60,0.05)] sm:grid-cols-[1.1fr_.9fr]">
       <div className="border-b border-[#e6ecef] p-5 sm:border-b-0 sm:border-r sm:p-8">
         <div className="flex items-center justify-between"><div><p className="text-xs font-semibold text-[#172638]">Good afternoon, Richard</p><p className="mt-1 text-[10px] text-[#8a98a4]">Term 2 · 2026</p></div><span className="rounded-full bg-[#edf3fb] px-2 py-1 text-[10px] text-[#315fc1]">Administrator</span></div>
         <div className="mt-8 grid grid-cols-2 gap-3"><div className="rounded-md bg-[#f5f8fb] p-4"><Users className="text-[#315fc1]" size={16}/><p className="mt-4 text-2xl font-semibold text-[#172638]">5</p><p className="mt-1 text-[10px] text-[#7a8996]">Pupils across classes</p></div><div className="rounded-md bg-[#f3faf7] p-4"><CalendarCheck2 className="text-[#13866d]" size={16}/><p className="mt-4 text-2xl font-semibold text-[#172638]">100%</p><p className="mt-1 text-[10px] text-[#7a8996]">Attendance recorded</p></div></div>
@@ -65,4 +65,70 @@ function PlatformOverview() {
   </div>
 }
 
-export default function HomePage() { return <><div className="border-b border-[#e8edef] bg-[#f4f7f8] px-5 py-2.5 text-center text-[11px] text-[#526b7b]">Launching ACS — <strong className="text-[#152b3c]">first 20 schools get 2 months free.</strong> <Link className="ml-1 underline underline-offset-4" href="/get-started">Claim your free trial</Link></div><section className="mx-auto max-w-[1180px] px-5 pb-20 pt-24 sm:px-8 sm:pb-28 sm:pt-32"><p className="eyebrow">Academic Cloud System</p><h1 className="mt-5 max-w-3xl text-[clamp(3.4rem,8vw,6.5rem)] font-semibold leading-[.92] tracking-[-.08em]">Manage your school. Simply.</h1><p className="mt-7 max-w-xl text-base leading-7 text-[#617281] sm:text-lg">ACS brings essential school management tools together in one connected platform.</p><div className="mt-8 flex flex-wrap items-center gap-5"><Link className="button-primary" href="/get-started">Start free trial <ArrowRight className="ml-2 inline" size={15}/></Link><Link className="text-sm font-medium text-[#516b7d]" href="/features">Explore features <ArrowRight className="ml-1 inline" size={15}/></Link></div><div className="mt-16 sm:mt-20"><PlatformOverview /></div></section><section className="border-y border-[#e9edef] bg-white"><div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-28"><p className="eyebrow">The platform</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.06em] sm:text-5xl">Everything your school needs. In one place.</h2><div className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">{capabilities.map(([title,text])=><div className="border-t border-[#dfe6ea] pt-4" key={title}><h3 className="text-[15px] font-medium text-[#263d4f]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#71808d]">{text}</p></div>)}</div></div></section><section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-28"><div className="grid gap-12 lg:grid-cols-2 lg:gap-24"><div><p className="eyebrow">Your school. Your workspace.</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.06em] sm:text-5xl">One platform. Every school has its own space.</h2><p className="mt-5 max-w-md text-[15px] leading-7 text-[#617281]">Each school operates in its own workspace with its own users, pupil records, and daily information.</p></div><div className="rounded-lg border border-[#dfe6ea] bg-[#f8fafb] p-8"><div className="mx-auto max-w-xs text-center"><div className="rounded-md border border-[#cad7df] bg-white px-5 py-4 text-sm font-medium shadow-sm">ACS platform</div><div className="mx-auto h-8 w-px bg-[#cdd9df]"/><div className="grid grid-cols-3 gap-2">{['School A','School B','School C'].map(s=><div className="rounded-md border border-[#dfe6ea] bg-white px-2 py-3 text-[11px] text-[#617281]" key={s}>{s}</div>)}</div></div></div></div></section><CTA/></> }
+export default function HomePage() { 
+  return (
+    <>
+      <div className="border-b border-[#e8edef] bg-[#f4f7f8] px-5 py-2.5 text-center text-[11px] text-[#526b7b]">
+        Launching ACS — <strong className="text-[#152b3c]">first 20 schools get 2 months free.</strong> <Link className="ml-1 underline underline-offset-4" href="/get-started">Claim your free trial</Link>
+      </div>
+
+      <section className="mx-auto max-w-[1180px] px-5 pb-20 pt-24 sm:px-8 sm:pb-28 sm:pt-32">
+        <p className="eyebrow">Academic Cloud System</p>
+        <h1 className="mt-5 max-w-3xl text-[clamp(3.4rem,8vw,6.5rem)] font-semibold leading-[.92] tracking-[-.08em]">Manage your school. Simply.</h1>
+        <p className="mt-7 max-w-xl text-base leading-7 text-[#617281] sm:text-lg">ACS brings essential school management tools together in one connected platform.</p>
+        <div className="mt-8 flex flex-wrap items-center gap-5">
+          <Link className="button-primary" href="/get-started">Start free trial <ArrowRight className="ml-2 inline" size={15}/></Link>
+          <Link className="text-sm font-medium text-[#516b7d]" href="/features">Explore features <ArrowRight className="ml-1 inline" size={15}/></Link>
+        </div>
+        <div className="mt-16 sm:mt-20"><PlatformOverview /></div>
+      </section>
+
+      <section className="border-y border-[#e9edef] bg-white">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-28">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow">The platform</p>
+              <h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.06em] sm:text-5xl">Everything your school needs. In one place.</h2>
+            </div>
+            <Link href="/features" className="text-sm font-semibold text-[#2c61cc] hover:underline">
+              See all feature details & previews <ArrowRight className="ml-1 inline" size={14} />
+            </Link>
+          </div>
+
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {coreCapabilities.map((item) => (
+              <div key={item.id} className="group border-t border-[#dfe6ea] pt-5 transition-colors hover:border-[#2c61cc]">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#7891a1]">{item.badge}</span>
+                <h3 className="mt-2 text-base font-semibold text-[#172638] group-hover:text-[#2c61cc] transition-colors">{item.title}</h3>
+                <p className="mt-2 text-xs leading-5 text-[#667787]">{item.tagline}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-28">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+          <div>
+            <p className="eyebrow">Your school. Your workspace.</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-.06em] sm:text-5xl">One platform. Every school has its own space.</h2>
+            <p className="mt-5 max-w-md text-[15px] leading-7 text-[#617281]">Each school operates in its own workspace with its own users, pupil records, and daily information.</p>
+          </div>
+          <div className="rounded-lg border border-[#dfe6ea] bg-[#f8fafb] p-8">
+            <div className="mx-auto max-w-xs text-center">
+              <div className="rounded-md border border-[#cad7df] bg-white px-5 py-4 text-sm font-medium shadow-sm">ACS platform</div>
+              <div className="mx-auto h-8 w-px bg-[#cdd9df]"/>
+              <div className="grid grid-cols-3 gap-2">
+                {['School A','School B','School C'].map(s => (
+                  <div className="rounded-md border border-[#dfe6ea] bg-white px-2 py-3 text-[11px] text-[#617281]" key={s}>{s}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CTA/>
+    </>
+  )
+}

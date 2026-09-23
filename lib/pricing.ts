@@ -21,13 +21,12 @@ export const pricingPlans: PricingPlan[] = [
     pupilLimit: 'Up to 200 pupils',
     description: 'Designed for smaller primary schools that need the essential tools for managing everyday school operations.',
     features: [
-      'Pupil management',
-      'Pupil records',
-      'Class management',
-      'Attendance management',
-      'Academic performance',
-      'Basic reports',
-      'Basic school administration'
+      'Pupil management & records',
+      'Class & stream management',
+      'Daily attendance roll call',
+      'Exams & performance tracking',
+      'Basic report summaries',
+      'Dedicated school workspace'
     ],
     cta: 'Get Started'
   },
@@ -38,15 +37,14 @@ export const pricingPlans: PricingPlan[] = [
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '201–500 pupils',
-    description: 'Designed for growing schools that need broader management and reporting capabilities.',
+    description: 'Designed for growing schools that need broader management, fee tracking, and reporting capabilities.',
     features: [
       'Everything in Starter',
-      'Teacher and staff management',
-      'Advanced reports',
-      'Parent features',
-      'Additional administration tools',
-      'Improved reporting and analytics',
-      'Expanded school management capabilities'
+      'Fees & payment tracking',
+      'Teacher & staff allocations',
+      'Official printable report cards',
+      'Parent contacts & records',
+      'Expanded term analytics'
     ],
     emphasis: true,
     cta: 'Get Started'
@@ -58,14 +56,13 @@ export const pricingPlans: PricingPlan[] = [
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '501–1,000 pupils',
-    description: 'Designed for larger schools that need advanced management, reporting and communication capabilities.',
+    description: 'Designed for larger schools that need advanced management, reporting, communication, and priority support.',
     features: [
       'Everything in Growth',
-      'Advanced analytics',
-      'Communication features',
-      'Finance features where available',
-      'Advanced administration',
-      'Priority support',
+      'Automated SMS notifications to parents',
+      'Advanced finance & ledger reporting',
+      'Role-based permissions & audit trails',
+      'Priority onboarding & technical support',
       'Higher operational limits'
     ],
     cta: 'Get Started'
@@ -133,7 +130,7 @@ export const billingSteps = [
 export const faqs = [
   {
     question: 'How much does ACS cost?',
-    answer: 'ACS pricing is based on your school\'s size. Starter plan is UGX 75,000 per term for up to 200 pupils, Growth is UGX 150,000 per term for 201-500 pupils, and Professional is UGX 250,000 per term for 501-1,000 pupils. For schools with more than 1,000 pupils, contact our team for a custom plan.'
+    answer: 'ACS pricing is based on your school\'s size. Starter plan is UGX 90,000 per term for up to 200 pupils, Growth is UGX 165,000 per term for 201–500 pupils, and Professional is UGX 265,000 per term for 501–1,000 pupils. For schools with more than 1,000 pupils, contact our team for a custom plan.'
   },
   {
     question: 'What does "per term" mean?',

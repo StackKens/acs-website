@@ -173,6 +173,7 @@
 @layer components {
   .nav-link { @apply text-[13px] text-[#647585] transition-colors hover:text-[#152b3c]; }
   .button-primary { @apply inline-flex items-center justify-center rounded-md bg-[#152b3c] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#274157] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7891a1]; }
+  .button-secondary { @apply inline-flex items-center justify-center rounded-md border border-[#cad7df] bg-white px-5 py-3 text-sm font-medium text-[#263d4f] transition-colors hover:bg-[#f1f5f8] hover:border-[#a8bdcb] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7891a1]; }
   .button-light { @apply inline-flex items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-medium text-[#152b3c] transition-colors hover:bg-[#edf3f5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white; }
   .form-input { @apply mt-2 min-h-11 w-full rounded-md border border-[#d9e2e7] bg-white px-3 py-2 text-sm text-[#263d4f] outline-none transition-colors placeholder:text-[#a4afb7] focus:border-[#7891a1] focus:ring-2 focus:ring-[#dce7ec]; }
 
