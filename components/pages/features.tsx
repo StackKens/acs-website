@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 // Realistic Interface Previews for each feature area
 //
@@ -92,7 +92,7 @@ function PupilRegistryPreview() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between border-t border-[#edf0f2] bg-[#f8f9fa] px-4 py-2.5 text-[11px] text-[#8a97a3]">
         <span>Showing 4 of 64 learners in Primary 5 East</span>
-        <span className="font-medium text-[#2c4a73]">Export CSV</span>
+        <span className="font-medium text-[#2c4a73]">Current class view</span>
       </div>
     </div>
   )
@@ -181,10 +181,7 @@ function FeesAccountsPreview() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between border-t border-[#edf0f2] bg-[#f8f9fa] px-4 py-2.5 text-[11px] text-[#8a97a3]">
         <span>Verified by Finance Office</span>
-        <div className="flex gap-3">
-          <span className="cursor-pointer font-medium text-[#2c4a73]">Print Slip</span>
-          <span className="cursor-pointer font-medium text-[#2c4a73]">Record Payment</span>
-        </div>
+        <span className="font-medium text-[#2c4a73]">Balance updated automatically</span>
       </div>
     </div>
   )
@@ -451,7 +448,7 @@ function ReportCardsPreview() {
         </p>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-[#edf0f2] pt-2 text-[11px]">
           <span className="font-medium text-[#1c2733]">Approved & Digitally Endorsed by Headteacher</span>
-          <span className="font-medium text-[#2c4a73]">Download PDF Form</span>
+          <span className="font-medium text-[#2c4a73]">PDF-ready report</span>
         </div>
       </div>
     </div>
@@ -531,7 +528,7 @@ function SMSCommunicationPreview() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between border-t border-[#edf0f2] bg-[#f8f9fa] px-4 py-2.5 text-[11px] text-[#8a97a3]">
         <span>Connected to national SMS gateway</span>
-        <span className="font-medium text-[#2c4a73]">Dispatch History →</span>
+        <span className="font-medium text-[#2c4a73]">Delivery reporting enabled</span>
       </div>
     </div>
   )
@@ -622,7 +619,7 @@ function StaffRolesPreview() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between border-t border-[#edf0f2] bg-[#f8f9fa] px-4 py-2.5 text-[11px] text-[#8a97a3]">
         <span>Granular role boundaries active</span>
-        <span className="font-medium text-[#2c4a73]">Manage Permissions</span>
+        <span className="font-medium text-[#2c4a73]">Role controls enabled</span>
       </div>
     </div>
   )
@@ -711,7 +708,7 @@ function MultiSchoolWorkspacesPreview() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between border-t border-[#edf0f2] bg-[#f8f9fa] px-4 py-2.5 text-[11px] text-[#8a97a3]">
         <span>Strict isolation: St. Mary&apos;s data never co-mingles with other schools</span>
-        <span className="font-medium text-[#2c4a73]">Audit Logs →</span>
+        <span className="font-medium text-[#2c4a73]">Audit trail enabled</span>
       </div>
     </div>
   )
@@ -751,7 +748,7 @@ const featuresList: FeatureRow[] = [
     id: 'fees-accounts',
     number: '02',
     category: 'Finance & Bursar',
-    title: 'Fees & Pupil Accounts',
+    title: 'Fees & Financial Management',
     lead: 'Clear fee structures, accurate student ledgers, and immediate payment receipts.',
     description:
       'Tracking school fees across hundreds of learners with partial payments is a critical operational task. ACS gives bursars and headteachers a double-entry ledger for every enrolled child. Define termly fee structures by class level, record bank slips, cash, and mobile transfers, and see outstanding balances instantly.',
@@ -767,7 +764,7 @@ const featuresList: FeatureRow[] = [
     id: 'attendance-tracking',
     number: '03',
     category: 'Daily Operations',
-    title: 'Attendance Tracking',
+    title: 'Digital Attendance & Roll Call',
     lead: 'Fast daily roll calls with real-time absentee and attendance monitoring.',
     description:
       'Paper roll-call books are slow to summarize and often leave administration unaware of chronic student absences. ACS allows teachers to mark morning and afternoon attendance in seconds from a phone, tablet, or classroom computer. The system automatically computes termly percentages and flags learners requiring pastoral attention.',
@@ -799,7 +796,7 @@ const featuresList: FeatureRow[] = [
     id: 'report-cards',
     number: '05',
     category: 'Official Reports',
-    title: 'Report Cards & Results',
+    title: 'Official Term Report Cards',
     lead: 'Compile and produce branded, error-free student report cards in minutes.',
     description:
       'Handwriting hundreds of termly report forms is one of the heaviest burdens on teaching staff. ACS synthesizes assessment scores, attendance figures, teacher comments, and headteacher remarks into branded, print-ready documents. Include your school crest, motto, grading scale, and fee clearance status with zero manual transcription.',
@@ -815,7 +812,7 @@ const featuresList: FeatureRow[] = [
     id: 'sms-communication',
     number: '06',
     category: 'Parent Engagement',
-    title: 'SMS Communication',
+    title: 'Parent Engagement & SMS Alerts',
     lead: 'Direct, verified SMS announcements and automated fee balance notices to guardians.',
     description:
       'Paper circulars sent home in student backpacks frequently go unread. ACS links carrier-grade SMS messaging directly to your school database. Broadcast urgent notices to specific streams or the entire school, and dispatch automated, personalized fee reminder notices displaying each child’s exact balance to accelerate fee collections.',
@@ -831,7 +828,7 @@ const featuresList: FeatureRow[] = [
     id: 'staff-roles',
     number: '07',
     category: 'Governance & Security',
-    title: 'Staff Roles & Permissions',
+    title: 'Staff & Teaching Allocations',
     lead: 'Role-based access control protecting pupil privacy and operational integrity.',
     description:
       'School records contain confidential personal, financial, and academic information. ACS enforces granular role-based permissions throughout the system. Subject teachers enter marks only for their allocated classes, bursars control fee ledgers without altering academic results, and headteachers maintain oversight through continuous audit logging.',
@@ -847,7 +844,7 @@ const featuresList: FeatureRow[] = [
     id: 'workspaces',
     number: '08',
     category: 'Cloud Architecture',
-    title: 'Multi-School Workspaces',
+    title: 'Dedicated School Workspaces',
     lead: 'Completely isolated tenant environments ensuring strict data privacy and reliability.',
     description:
       'Institutions must trust that their records remain private, never co-mingle with other schools, and are safely backed up against hardware failure. ACS operates on a strict multi-tenant cloud architecture where every school works in its own dedicated, encrypted workspace with automated daily backups.',
@@ -858,6 +855,41 @@ const featuresList: FeatureRow[] = [
       'Lightweight, responsive interface optimized for reliable mobile and desktop use'
     ],
     preview: <MultiSchoolWorkspacesPreview />
+  }
+]
+
+const platformAreas = [
+  {
+    id: 'learner-management',
+    number: '01',
+    title: 'Learner management',
+    modules: 'Registry · Attendance',
+    description: 'Keep pupil records, guardian contacts, and daily attendance current in one place.',
+    features: [featuresList[0], featuresList[2]]
+  },
+  {
+    id: 'academics-reporting',
+    number: '02',
+    title: 'Academics & reporting',
+    modules: 'Exams · Report cards',
+    description: 'Record results and prepare consistent term reports without manual compilation.',
+    features: [featuresList[3], featuresList[4]]
+  },
+  {
+    id: 'finance-communication',
+    number: '03',
+    title: 'Finance & communication',
+    modules: 'Fees · SMS updates',
+    description: 'Track school fees clearly and keep guardians informed with focused updates.',
+    features: [featuresList[1], featuresList[5]]
+  },
+  {
+    id: 'administration-security',
+    number: '04',
+    title: 'Administration & security',
+    modules: 'Access · Security',
+    description: 'Control staff access, protect records, and run each school in a secure workspace.',
+    features: [featuresList[6], featuresList[7]]
   }
 ]
 
@@ -883,94 +915,78 @@ export function FeaturesPage() {
         </div>
       </section>
 
-      {/* 2. Feature Overview Navigation / Index Section */}
-      <section className="border-t border-[#e9ecef] bg-[#f8f9fa]">
+      {/* 2. Concise platform overview */}
+      <section className="border-y border-[#e9ecef] bg-[#f8f9fa]">
         <div className="mx-auto max-w-[1180px] px-5 py-14 sm:px-8 sm:py-16">
           <div className="max-w-2xl">
-            <p className="eyebrow">Architecture</p>
+            <p className="eyebrow">Platform overview</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-3xl">
-              Eight core pillars of modern school administration.
+              Four essential areas. One connected workspace.
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#5b6b78]">
-              Built around the real-world operational cycle of the school term—from admissions and fee structures to daily roll calls, assessment compilation, and end-of-term reporting.
+              Bring pupil records, teaching, finance, and communication together in one clear operational flow.
             </p>
           </div>
 
-          {/* Quick jump anchor index */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {featuresList.map((feature) => (
+          <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            {platformAreas.map((area) => (
               <a
-                key={feature.id}
-                href={`#${feature.id}`}
-                className="group rounded border border-[#dfe3e7] bg-white p-4 transition-colors hover:border-[#b7c2cc]"
+                key={area.id}
+                href={`#${area.id}`}
+                className="group border-t border-[#cfd8de] pt-5 transition-colors hover:border-[#7891a1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7891a1]"
               >
                 <div className="flex items-center justify-between text-[#8a97a3]">
-                  <span className="text-[10px] font-semibold tracking-wider">{feature.number}</span>
-                  <span className="text-xs transition-transform group-hover:translate-x-0.5">↓</span>
+                  <span className="text-[10px] font-semibold tracking-wider">{area.number}</span>
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                 </div>
-                <h3 className="mt-2 text-sm font-semibold text-[#1c2733]">
-                  {feature.title}
-                </h3>
-                <p className="mt-1 text-xs text-[#5b6b78] line-clamp-2">
-                  {feature.lead}
-                </p>
+                <h3 className="mt-3 text-base font-semibold text-[#1c2733]">{area.title}</h3>
+                <p className="mt-2 text-xs leading-5 text-[#5b6b78]">{area.modules}</p>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Detailed Alternating Feature Rows */}
+      {/* 3. Four focused capability areas */}
       <section className="mx-auto max-w-[1180px] px-5 sm:px-8">
-        {featuresList.map((feature, index) => {
-          const isEven = index % 2 === 1
-          return (
-            <article
-              id={feature.id}
-              key={feature.id}
-              className="py-16 sm:py-20 lg:py-24 border-t border-[#e9ecef] first:border-t-0"
-            >
-              <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-                {/* Text Side */}
-                <div className={isEven ? 'lg:order-2' : 'lg:order-1'}>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#5b6b78]">
-                      {feature.number}
-                    </span>
-                    <span className="text-xs text-[#8a97a3]">/</span>
-                    <span className="eyebrow">{feature.category}</span>
-                  </div>
+        {platformAreas.map((area) => (
+          <article
+            id={area.id}
+            key={area.id}
+            className="scroll-mt-20 border-t border-[#e9ecef] py-16 first:border-t-0 sm:py-20 lg:py-24"
+          >
+            <div className="grid items-center gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">
+                  Platform area {area.number}
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-3xl">
+                  {area.title}
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-[#5b6b78] sm:text-[15px]">
+                  {area.description}
+                </p>
 
-                  <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-3xl lg:text-[2rem] lg:leading-[1.15]">
-                    {feature.title}
-                  </h2>
-
-                  <p className="mt-3 text-sm font-medium text-[#2c4a73] sm:text-[15px]">
-                    {feature.lead}
-                  </p>
-
-                  <p className="mt-4 text-sm leading-relaxed text-[#5b6b78] sm:text-[15px]">
-                    {feature.description}
-                  </p>
-
-                  <ul className="mt-6 space-y-2.5 border-t border-[#edf0f2] pt-5 text-xs text-[#3a4753] sm:text-sm">
-                    {feature.capabilities.map((point) => (
-                      <li key={point} className="flex items-start gap-2.5">
-                        <Check className="mt-0.5 size-4 shrink-0 text-[#1c2733]" aria-hidden="true" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Interface Preview Side */}
-                <div className={`min-w-0 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                  {feature.preview}
+                <div className="mt-8 divide-y divide-[#e6ecef] border-y border-[#e6ecef]">
+                  {area.features.map((feature) => (
+                    <div id={feature.id} key={feature.id} className="scroll-mt-24 py-4">
+                      <h3 className="text-sm font-semibold text-[#263d4f]">{feature.title}</h3>
+                      <p className="mt-1.5 text-xs leading-5 text-[#667787]">{feature.lead}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </article>
-          )
-        })}
+
+              <div
+                className="min-w-0"
+                role="img"
+                aria-label={`Representative ACS interface for ${area.title.toLowerCase()}`}
+              >
+                {area.features[0].preview}
+              </div>
+            </div>
+          </article>
+        ))}
       </section>
 
       {/* 4. Restrained CTA Section */}
@@ -981,17 +997,15 @@ export function FeaturesPage() {
               Ready to simplify your school management?
             </h2>
             <p className="mt-2 text-sm text-[#b4c2cc] sm:text-base">
-              The first 20 schools receive 2 months free. Set up your workspace in minutes.
+              The first 20 schools receive 2 months free.
+            </p>
+            <p className="mt-3 text-xs text-[#8fa3b1]">
+              Isolated workspaces · Role-based access · Daily backups
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link href="/get-started" className="button-light">
-              Start free trial
-            </Link>
-            <Link href="/contact" className="button-secondary border-[#405669] bg-transparent text-white hover:bg-[#1f374c] hover:border-[#526d83]">
-              Contact Us
-            </Link>
-          </div>
+          <Link href="/get-started" className="button-light shrink-0">
+            Start free trial <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
     </>
