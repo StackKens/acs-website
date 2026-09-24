@@ -216,8 +216,7 @@ export function FeaturesPage() {
                 key={feature.id}
                 className="scroll-mt-24 border-b border-r border-[#dfe6ea] bg-white p-6 sm:p-8 lg:p-10"
               >
-                <div className="flex items-center gap-3">
-                  <span className="h-px w-5 shrink-0 bg-[#cbd6dc]" aria-hidden="true" />
+                <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">
                     {feature.number} / {feature.category}
                   </p>
