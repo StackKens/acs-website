@@ -15,7 +15,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'starter',
     name: 'Starter',
-    price: 90000,
+    price: 150000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: 'Up to 200 pupils',
@@ -33,7 +33,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'growth',
     name: 'Growth',
-    price: 165000,
+    price: 250000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '201–500 pupils',
@@ -52,7 +52,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'professional',
     name: 'Professional',
-    price: 265000,
+    price: 400000,
     currency: 'UGX',
     billing: 'per term',
     pupilLimit: '501–1,000 pupils',
@@ -70,7 +70,7 @@ export const pricingPlans: PricingPlan[] = [
 ]
 
 export const largeSchoolsPlan = {
-  pupilLimit: '1,000+ pupils',
+  pupilLimit: '1,001+ pupils',
   description: 'Need ACS for a larger school? Contact our team to discuss a plan that fits your school\'s size and requirements.',
   cta: 'Talk to Us'
 }
@@ -130,7 +130,7 @@ export const billingSteps = [
 export const faqs = [
   {
     question: 'How much does ACS cost?',
-    answer: 'ACS pricing is based on your school\'s size. Starter plan is UGX 90,000 per term for up to 200 pupils, Growth is UGX 165,000 per term for 201–500 pupils, and Professional is UGX 265,000 per term for 501–1,000 pupils. For schools with more than 1,000 pupils, contact our team for a custom plan.'
+    answer: 'ACS pricing is based on your school\'s size. Starter plan is UGX 150,000 per term for up to 200 pupils, Growth is UGX 250,000 per term for 201–500 pupils, and Professional is UGX 400,000 per term for 501–1,000 pupils. For schools with more than 1,000 pupils, contact our team for a custom plan.'
   },
   {
     question: 'What does "per term" mean?',
