@@ -5,7 +5,7 @@ import { CTA, coreCapabilities } from './shared'
 export default function HomePage() {
   return (
     <>
-      <div className="border-b border-[#e8edef] bg-[#f4f7f8] px-5 py-2.5 text-center text-[11px] text-[#526b7b]">
+      <div className="border-y border-[#d6e1e7] bg-[#e7eff3] px-5 py-2.5 text-center text-[11px] text-[#425b6b]">
         Launching ACS — <strong className="text-[#152b3c]">first 20 schools get 2 months free.</strong> <Link className="ml-1 underline underline-offset-4" href="/get-started">Claim your free trial</Link>
       </div>
 
