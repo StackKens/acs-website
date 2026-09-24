@@ -101,6 +101,81 @@ const features: Feature[] = [
   }
 ]
 
+const workspaceItems = [
+  {
+    title: 'Pupil management',
+    text: 'Keep pupil information organized and accessible.'
+  },
+  {
+    title: 'Attendance',
+    text: 'Record and monitor attendance digitally.'
+  },
+  {
+    title: 'Academic performance',
+    text: 'Track progress with a consistent view of achievement.'
+  },
+  {
+    title: 'School administration',
+    text: 'See daily operations more clearly.'
+  },
+  {
+    title: 'Reports',
+    text: 'Access useful school information and reports.'
+  },
+  {
+    title: 'Separate workspaces',
+    text: 'Every school has its own organized environment.'
+  }
+]
+
+const audienceItems = [
+  {
+    title: 'For administrators',
+    text: 'Understand attendance, performance, school structure, and finance from a single dashboard. Keep important information within reach.'
+  },
+  {
+    title: 'For teachers',
+    text: 'Work with the pupil, class, and academic information you need without relying on scattered paper records or separate spreadsheets.'
+  },
+  {
+    title: 'For school teams',
+    text: 'Keep pupil accounts, fee information, reports, and day-to-day tasks organized as the school grows.'
+  }
+]
+
+const coreTools = [
+  {
+    number: '01',
+    title: 'Dashboard overview',
+    text: 'See pupil totals, attendance, needs attention, and academic context at a glance.'
+  },
+  {
+    number: '02',
+    title: 'Pupil records',
+    text: 'Keep profiles, class placement, and relevant pupil information together.'
+  },
+  {
+    number: '03',
+    title: 'Attendance tracking',
+    text: 'Record attendance digitally and review patterns across classes and terms.'
+  },
+  {
+    number: '04',
+    title: 'Academic structure',
+    text: 'Organize academic years, terms, streams, and subjects in one place.'
+  },
+  {
+    number: '05',
+    title: 'Finance and reporting',
+    text: 'Keep fee structures, pupil accounts, payments, and school reports easier to access.'
+  },
+  {
+    number: '06',
+    title: 'Multi-tenant workspaces',
+    text: 'Give each school its own secure environment, users, and operational context.'
+  }
+]
+
 export function FeaturesPage() {
   return (
     <>
@@ -141,11 +216,11 @@ export function FeaturesPage() {
                 key={feature.id}
                 className="scroll-mt-24 border-b border-r border-[#dfe6ea] bg-white p-6 sm:p-8 lg:p-10"
               >
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-5 shrink-0 bg-[#cbd6dc]" aria-hidden="true" />
                   <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">
                     {feature.number} / {feature.category}
                   </p>
-                  <span className="h-px w-8 bg-[#cbd6dc]" aria-hidden="true" />
                 </div>
                 <h2 className="mt-6 text-xl font-semibold tracking-[-0.03em] text-[#1c2733] sm:text-2xl">
                   {feature.title}
@@ -161,6 +236,81 @@ export function FeaturesPage() {
                 </ul>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white" aria-labelledby="connected-workspace-title">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+            <div>
+              <p className="eyebrow">A connected workspace</p>
+              <h2 id="connected-workspace-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
+                One clear view of school operations.
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
+                ACS brings the information your team uses every day into one calm, organized platform.
+              </p>
+
+              <div className="mt-10 border-y border-[#dfe6ea] py-6">
+                <p className="text-sm font-semibold text-[#263d4f]">Built for the daily workflow</p>
+                <p className="mt-2 text-sm leading-6 text-[#667787]">
+                  A practical system for every part of the school.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid border-l border-t border-[#dfe6ea] sm:grid-cols-2">
+              {workspaceItems.map((item) => (
+                <div key={item.title} className="border-b border-r border-[#dfe6ea] p-6 sm:p-7">
+                  <h3 className="text-sm font-semibold text-[#263d4f]">{item.title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[#667787]">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#dfe6ea] bg-[#f8fafb]" aria-labelledby="school-teams-title">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Built for your team</p>
+            <h2 id="school-teams-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
+              Clearer work for every role.
+            </h2>
+          </div>
+
+          <div className="mt-12 grid border-l border-t border-[#dfe6ea] lg:grid-cols-3">
+            {audienceItems.map((item) => (
+              <article key={item.title} className="border-b border-r border-[#dfe6ea] bg-white p-6 sm:p-8">
+                <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#263d4f]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#667787]">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white" aria-labelledby="core-tools-title">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
+            <div>
+              <p className="eyebrow">Core tools</p>
+              <h2 id="core-tools-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
+                Designed around the information schools already manage.
+              </h2>
+            </div>
+
+            <div className="grid border-l border-t border-[#dfe6ea] sm:grid-cols-2">
+              {coreTools.map((tool) => (
+                <article key={tool.number} className="border-b border-r border-[#dfe6ea] p-6 sm:p-7">
+                  <p className="text-[10px] font-semibold tracking-[0.14em] text-[#7891a1]">{tool.number}</p>
+                  <h3 className="mt-4 text-base font-semibold text-[#263d4f]">{tool.title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-[#667787]">{tool.text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -18,8 +18,6 @@ export const metadata: Metadata = {
     title: 'ACS — Modern School Management',
     description: 'Academic Cloud System. A simple, connected platform for managing your school.',
     siteName: 'ACS',
-    // Share previews (WhatsApp/Telegram/Twitter/Facebook) render this image —
-    // the rounded ACS mark, served from this site's own public/ folder.
     images: [{ url: '/acs-share.png', width: 512, height: 512, alt: 'ACS — Academics Cloud System' }],
   },
   twitter: {

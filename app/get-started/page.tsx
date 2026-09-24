@@ -3,7 +3,6 @@
 import { useEffect } from 'react'
 import { appSignupUrl } from '@/lib/site'
 
-/** Self-serve school signup lives in the app; this route hands off to it. */
 export default function Page() {
   useEffect(() => {
     window.location.replace(appSignupUrl)
