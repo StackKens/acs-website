@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://acs.vexellabs.com'),
+  metadataBase: new URL('https://acs-website.onrender.com'),
   title: {
     default: 'ACS — Modern School Management',
     template: '%s | ACS',
@@ -14,10 +14,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_UG',
-    url: 'https://acs.vexellabs.com',
+    url: 'https://acs-website.onrender.com',
     title: 'ACS — Modern School Management',
     description: 'Academic Cloud System. A simple, connected platform for managing your school.',
     siteName: 'ACS',
+    // Share previews (WhatsApp/Telegram/Twitter/Facebook) render this image —
+    // the rounded ACS mark, served from this site's own public/ folder.
+    images: [{ url: '/acs-share.png', width: 512, height: 512, alt: 'ACS — Academics Cloud System' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'ACS — Modern School Management',
+    description: 'Academic Cloud System. A simple, connected platform for managing your school.',
+    images: ['/acs-share.png'],
   },
 }
 
