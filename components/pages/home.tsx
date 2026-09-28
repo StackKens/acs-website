@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { CTA, coreCapabilities } from './shared'
+import { AIMockup } from './ai-mockup'
 
 export default function HomePage() {
   return (
@@ -39,6 +40,27 @@ export default function HomePage() {
                 <p className="mt-2 text-xs leading-5 text-[#667787]">{item.tagline}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#e9edef] bg-[#f8fafb]">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="eyebrow">Smarter support for teachers</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-.06em] sm:text-5xl">Intelligent academic assistance, built in.</h2>
+              <p className="mt-5 max-w-md text-[15px] leading-7 text-[#617281]">
+                From creating classroom exercises to preparing revision material, ACS gives teachers intelligent assistance designed around primary education.
+              </p>
+              <p className="mt-4 max-w-md text-[15px] leading-7 text-[#617281]">
+                AI-generated materials can be reviewed, edited and refined before they are used in the classroom.
+              </p>
+              <div className="mt-8">
+                <Link className="button-primary" href="/features">Explore ACS <ArrowRight className="ml-2 inline" size={15}/></Link>
+              </div>
+            </div>
+            <AIMockup />
           </div>
         </div>
       </section>

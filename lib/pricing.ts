@@ -26,7 +26,8 @@ export const pricingPlans: PricingPlan[] = [
       'Daily attendance roll call',
       'Exams & performance tracking',
       'Basic report summaries',
-      'Dedicated school workspace'
+      'Dedicated school workspace',
+      'AI-powered academic assistance'
     ],
     cta: 'Get Started'
   },
@@ -44,7 +45,8 @@ export const pricingPlans: PricingPlan[] = [
       'Teacher & staff allocations',
       'Official printable report cards',
       'Parent contacts & records',
-      'Expanded term analytics'
+      'Expanded term analytics',
+      'AI-powered academic assistance'
     ],
     emphasis: true,
     cta: 'Get Started'
@@ -63,7 +65,8 @@ export const pricingPlans: PricingPlan[] = [
       'Advanced finance & ledger reporting',
       'Role-based permissions & audit trails',
       'Priority onboarding & technical support',
-      'Higher operational limits'
+      'Higher operational limits',
+      'AI-powered academic assistance'
     ],
     cta: 'Get Started'
   }
@@ -155,5 +158,17 @@ export const faqs = [
   {
     question: 'Can we get help setting up our school?',
     answer: 'Yes. Our team will help you set up your school workspace and get started with ACS during onboarding.'
+  },
+  {
+    question: 'What can the ACS AI assistant help with?',
+    answer: 'The AI assistant helps teachers create exercises, quizzes, revision materials, lesson-support resources, explanations and marking guides for primary education. It is designed to assist with preparation and routine academic tasks.'
+  },
+  {
+    question: 'Does the AI replace teachers?',
+    answer: 'No. The AI is designed to assist teachers with preparation and routine academic tasks. Teachers remain in control of reviewing and using the generated material in the classroom.'
+  },
+  {
+    question: 'Which primary levels does the AI support?',
+    answer: 'The AI is designed to support academic work across Primary 1 to Primary 7, helping teachers adapt material to different class levels and difficulty requirements.'
   }
 ]

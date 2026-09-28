@@ -122,6 +122,20 @@ export const coreCapabilities: CapabilityItem[] = [
       'Fast cloud redundancy—no lost paper ledgers or corrupt spreadsheets',
       'Optimized for low-bandwidth environments on desktop and mobile'
     ]
+  },
+  {
+    id: 'ai',
+    title: 'Intelligent Academic Assistance',
+    badge: 'AI for Teachers',
+    category: 'Academics & Pupils',
+    tagline: 'Practical AI support for creating exercises, quizzes, revision materials and classroom resources.',
+    description: 'ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7. Teachers review and edit all generated material before classroom use.',
+    highlights: [
+      'Exercises, quizzes and revision questions',
+      'Lesson-support materials and marking guides',
+      'Designed for Primary 1 to Primary 7',
+      'Teacher-controlled: review and edit before use'
+    ]
   }
 ]
 

@@ -98,6 +98,17 @@ const features: Feature[] = [
       'Isolated school data with secure access',
       'Automated backups and responsive cloud access'
     ]
+  },
+  {
+    id: 'ai-assistance',
+    number: '09',
+    category: 'AI Assistance',
+    title: 'Intelligent Academic Assistance',
+    summary: 'Help teachers create exercises, quizzes, revision materials and classroom resources for primary education.',
+    highlights: [
+      'Designed for Primary 1 to Primary 7',
+      'Teacher-controlled: review and edit before use'
+    ]
   }
 ]
 
@@ -185,7 +196,7 @@ export function FeaturesPage() {
           One platform for the work that runs your school.
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-7 text-[#5b6b78] sm:text-lg">
-          Clear, practical tools for learner records, attendance, academics, finance, communication, and school administration.
+          Clear, practical tools for learner records, attendance, academics, finance, communication, and school administration — with intelligent assistance for teachers.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link href="/get-started" className="button-primary">
@@ -235,6 +246,43 @@ export function FeaturesPage() {
                 </ul>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[#dfe6ea] bg-[#f8fafb]" aria-labelledby="ai-assistance-title">
+        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <p className="eyebrow">Intelligent Academic Assistance</p>
+              <h2 id="ai-assistance-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
+                Practical AI support for teachers.
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
+                ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7.
+              </p>
+              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
+                AI-generated materials can be reviewed, edited and refined before they are used in the classroom.
+              </p>
+            </div>
+            <div className="grid content-center gap-4 sm:grid-cols-2">
+              <div className="border border-[#dfe6ea] bg-white p-5">
+                <p className="text-sm font-semibold text-[#263d4f]">Create</p>
+                <p className="mt-2 text-xs leading-5 text-[#667787]">Exercises, quizzes, revision activities and classroom materials.</p>
+              </div>
+              <div className="border border-[#dfe6ea] bg-white p-5">
+                <p className="text-sm font-semibold text-[#263d4f]">Understand</p>
+                <p className="mt-2 text-xs leading-5 text-[#667787]">Clear explanations of difficult academic concepts.</p>
+              </div>
+              <div className="border border-[#dfe6ea] bg-white p-5">
+                <p className="text-sm font-semibold text-[#263d4f]">Prepare</p>
+                <p className="mt-2 text-xs leading-5 text-[#667787]">Lesson-support material, marking guides and assessment resources.</p>
+              </div>
+              <div className="border border-[#dfe6ea] bg-white p-5">
+                <p className="text-sm font-semibold text-[#263d4f]">Adapt</p>
+                <p className="mt-2 text-xs leading-5 text-[#667787]">Adjust material to different primary levels and difficulty requirements.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
