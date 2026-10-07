@@ -1,4 +1,5 @@
 import { Sparkles, FileText, HelpCircle, BookOpen, GraduationCap } from 'lucide-react'
+import { ACSMark } from '@/components/acs-mark'
 
 const taskTypes = [
   { icon: FileText, label: 'Exercises' },
@@ -13,9 +14,7 @@ export function AIMockup() {
       <div className="ui-snippet">
         {/* Header */}
         <div className="flex items-center gap-2.5 border-b border-[#e6ecef] pb-4">
-          <span className="grid size-8 place-items-center rounded-lg bg-[#152b3c]">
-            <Sparkles className="size-4 text-white" />
-          </span>
+          <ACSMark size={32} className="shrink-0" title={null} />
           <div>
             <p className="text-sm font-semibold text-[#152b3c]">ACS AI Assistant</p>
             <p className="text-[11px] text-[#7891a1]">Academic support</p>
