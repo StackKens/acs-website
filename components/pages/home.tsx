@@ -243,10 +243,10 @@ export default function HomePage() {
           <div className="product-frame">
             <figure className="overflow-hidden rounded-xl border border-[#e0e7eb] bg-white">
               <Image
-                src="/images/classroom-teacher.jpg"
-                alt="A teacher leading a lesson in front of pupils seated at desks"
+                src="/images/classroom-hero.jpg"
+                alt="Ugandan schoolchildren learning together in a bright classroom"
                 width={1200}
-                height={747}
+                height={799}
                 priority
                 sizes="(max-width: 1024px) 100vw, 560px"
                 className="aspect-[16/10] w-full object-cover"
