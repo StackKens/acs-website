@@ -243,8 +243,8 @@ export default function HomePage() {
           <div className="product-frame">
             <figure className="overflow-hidden rounded-xl border border-[#e0e7eb] bg-white">
               <Image
-                src="/images/classroom-hero.jpg"
-                alt="Ugandan schoolchildren learning together in a bright classroom"
+                src="/images/classroom-pupils.jpg"
+                alt="Primary school pupils learning together in a bright classroom"
                 width={1200}
                 height={799}
                 priority
