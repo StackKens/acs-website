@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
+import { CTA } from '@/components/pages/inner'
 
 interface Feature {
   id: string
@@ -7,379 +8,186 @@ interface Feature {
   category: string
   title: string
   summary: string
-  highlights: [string, string]
+  highlights: string[]
 }
 
 const features: Feature[] = [
   {
-    id: 'pupil-registry',
+    id: 'ai-assistance',
     number: '01',
+    category: 'AI Assistance',
+    title: 'Intelligent Academic Assistance',
+    summary: 'ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7. Teachers review and edit all generated material before classroom use.',
+    highlights: [
+      'Exercises, quizzes and revision questions',
+      'Lesson-support materials and marking guides',
+      'Designed for Primary 1 to Primary 7',
+      'Teacher-controlled: review and edit before use'
+    ]
+  },
+  {
+    id: 'pupil-registry',
+    number: '02',
     category: 'Records',
     title: 'Pupil Registry & Profiles',
     summary: 'Keep every learner record accurate, searchable, and connected to the right guardian.',
     highlights: [
       'Admission, class, and guardian details in one profile',
-      'Promotion, transfer, and historical records'
+      'Promotion, transfer, and historical records',
+      'Fast search by name, admission number, or stream',
+      'Class & stream allocations with historical tracking'
     ]
   },
   {
     id: 'fees-accounts',
-    number: '02',
+    number: '03',
     category: 'Finance',
     title: 'Fees & Financial Management',
     summary: 'Manage term fees, record every payment, and see each pupil’s balance immediately.',
     highlights: [
       'Configurable fee structures by class and term',
-      'Partial payments, receipts, and defaulter follow-up'
+      'Partial payments with sequential, permanent receipts',
+      'Pupil statements and finance reports',
+      'Staff records with role-based access',
+      'An isolated, backed-up workspace per school'
     ]
   },
   {
     id: 'attendance-tracking',
-    number: '03',
+    number: '04',
     category: 'Daily Operations',
     title: 'Digital Attendance & Roll Call',
     summary: 'Record morning and afternoon attendance quickly, with clear term-level insight.',
     highlights: [
       'Fast roll calls on mobile and desktop',
-      'Absence flags and attendance trends'
+      'Absence flags and attendance trends',
+      'Ready-to-export summaries for Ministry and inspector visits'
     ]
   },
   {
     id: 'academic-performance',
-    number: '04',
+    number: '05',
     category: 'Academics',
     title: 'Exams & Academic Performance',
     summary: 'Enter assessment marks once and let ACS calculate totals, aggregates, and divisions.',
     highlights: [
       'BOT, MOT, and EOT assessment records',
-      'Class totals, averages, and performance comparisons'
+      'Class totals, averages, and performance comparisons',
+      'Standardized grading schemes and subject weighting',
+      'Automatic calculation of class totals, averages, and ranks'
     ]
   },
   {
     id: 'report-cards',
-    number: '05',
+    number: '06',
     category: 'Reporting',
     title: 'Official Term Report Cards',
     summary: 'Produce consistent, school-branded reports without copying marks and remarks by hand.',
     highlights: [
-      'Batch compilation for complete classes',
-      'Print-ready PDF reports with school details'
+      'One-click bulk compilation for entire streams or classes',
+      'School crest, motto, term dates, and fees balance display',
+      'Pre-populated teacher remarks and conduct ratings',
+      'Clean PDF generation ready for printing or WhatsApp/email sharing'
     ]
   },
   {
     id: 'sms-communication',
-    number: '06',
+    number: '07',
     category: 'Communication',
     title: 'Parent Engagement & SMS Alerts',
     summary: 'Send relevant announcements and personalized fee reminders to verified guardians.',
     highlights: [
       'Target messages by class, stream, or whole school',
-      'Delivery confirmation and personalized balances'
+      'Automated fee balance reminders to prevent late collections',
+      'Direct link between pupils and verified guardian phone numbers',
+      'Notice board for school events, visitation days, and closures'
     ]
   },
   {
     id: 'staff-roles',
-    number: '07',
+    number: '08',
     category: 'Administration',
     title: 'Staff & Teaching Allocations',
     summary: 'Give each staff member the access they need—and nothing they do not.',
     highlights: [
-      'Role-based access for teachers, bursars, and leaders',
-      'Teaching assignments and clear audit trails'
+      'Class teacher and subject instructor assignments',
+      'Role-based permissions (Headteachers, Bursars, Teachers)',
+      'Staff profile records and contact directory',
+      'Audit log tracking which staff member entered or edited records'
     ]
   },
   {
     id: 'workspaces',
-    number: '08',
+    number: '09',
     category: 'Security',
     title: 'Dedicated School Workspaces',
-    summary: 'Keep every school’s information private, separate, and protected.',
+    summary: 'Keep every school\'s information private, separate, and protected.',
     highlights: [
-      'Isolated school data with secure access',
-      'Automated backups and responsive cloud access'
+      'Complete multi-tenant isolation for every registered institution',
+      'Strict audit trails for all sensitive academic and financial records',
+      'Fast cloud redundancy—no lost paper ledgers or corrupt spreadsheets',
+      'Optimized for low-bandwidth environments on desktop and mobile'
     ]
-  },
-  {
-    id: 'ai-assistance',
-    number: '09',
-    category: 'AI Assistance',
-    title: 'Intelligent Academic Assistance',
-    summary: 'Help teachers create exercises, quizzes, revision materials and classroom resources for primary education.',
-    highlights: [
-      'Designed for Primary 1 to Primary 7',
-      'Teacher-controlled: review and edit before use'
-    ]
-  }
-]
-
-const workspaceItems = [
-  {
-    title: 'Pupil management',
-    text: 'Keep pupil information organized and accessible.'
-  },
-  {
-    title: 'Attendance',
-    text: 'Record and monitor attendance digitally.'
-  },
-  {
-    title: 'Academic performance',
-    text: 'Track progress with a consistent view of achievement.'
-  },
-  {
-    title: 'School administration',
-    text: 'See daily operations more clearly.'
-  },
-  {
-    title: 'Reports',
-    text: 'Access useful school information and reports.'
-  },
-  {
-    title: 'Separate workspaces',
-    text: 'Every school has its own organized environment.'
-  }
-]
-
-const audienceItems = [
-  {
-    title: 'For administrators',
-    text: 'Understand attendance, performance, school structure, and finance from a single dashboard. Keep important information within reach.'
-  },
-  {
-    title: 'For teachers',
-    text: 'Work with the pupil, class, and academic information you need without relying on scattered paper records or separate spreadsheets.'
-  },
-  {
-    title: 'For school teams',
-    text: 'Keep pupil accounts, fee information, reports, and day-to-day tasks organized as the school grows.'
-  }
-]
-
-const coreTools = [
-  {
-    number: '01',
-    title: 'Dashboard overview',
-    text: 'See pupil totals, attendance, needs attention, and academic context at a glance.'
-  },
-  {
-    number: '02',
-    title: 'Pupil records',
-    text: 'Keep profiles, class placement, and relevant pupil information together.'
-  },
-  {
-    number: '03',
-    title: 'Attendance tracking',
-    text: 'Record attendance digitally and review patterns across classes and terms.'
-  },
-  {
-    number: '04',
-    title: 'Academic structure',
-    text: 'Organize academic years, terms, streams, and subjects in one place.'
-  },
-  {
-    number: '05',
-    title: 'Finance and reporting',
-    text: 'Keep fee structures, pupil accounts, payments, and school reports easier to access.'
-  },
-  {
-    number: '06',
-    title: 'Multi-tenant workspaces',
-    text: 'Give each school its own secure environment, users, and operational context.'
   }
 ]
 
 export function FeaturesPage() {
   return (
     <>
-      <section className="mx-auto max-w-[1180px] px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
-        <p className="eyebrow">Product features</p>
-        <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.07em] text-[#152b3c] sm:text-6xl sm:leading-[0.98]">
+      <section aria-labelledby="page-title" className="mx-auto max-w-[1180px] px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
+        <h1
+          id="page-title"
+          className="mb-6 text-4xl font-semibold tracking-[-0.07em] text-[#152b3c] sm:text-6xl sm:leading-[0.98]"
+        >
           One platform for the work that runs your school.
         </h1>
-        <p className="mt-6 max-w-2xl text-base leading-7 text-[#5b6b78] sm:text-lg">
-          Clear, practical tools for learner records, attendance, academics, finance, communication, and school administration — with intelligent assistance for teachers.
+        <p className="text-base leading-7 text-[#5b6b78] sm:text-lg">
+          Clear, practical tools for learner records, attendance, academics, finance, communication,
+          and school administration — with intelligent assistance for teachers.
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <Link href="/get-started" className="button-primary">
-            Start free trial <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
-          </Link>
-          <Link href="/contact" className="button-secondary">
-            Talk to our team
-          </Link>
-        </div>
+        <CTA />
       </section>
 
-      <section className="border-y border-[#dfe6ea] bg-[#f8fafb]">
+      <section className="border-y border-[#e9edef]">
         <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Core capabilities</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
-              Built around the school term.
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
-              Everything essential, organized into focused tools your team can understand and use quickly.
-            </p>
-          </div>
-
-          <div className="mt-12 grid border-l border-t border-[#dfe6ea] sm:grid-cols-2">
-            {features.map((feature) => (
-              <article
-                id={feature.id}
-                key={feature.id}
-                className="scroll-mt-24 border-b border-r border-[#dfe6ea] bg-white p-6 sm:p-8 lg:p-10"
+          <ol className="mt-8 space-y-6 divide-y divide-border-border border-border-border">
+            {features.map((f) => (
+              <li
+                key={f.id}
+                className="border-b border-border border-border pb-8"
               >
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">
-                    {feature.number} / {feature.category}
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">{f.number}</p>
+                    <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#152b3c]">
+                      {f.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-[#617281]">
+                      {f.summary}
+                    </p>
+                  </div>
+                  <div className="mt-6 space-y-3">
+                    {f.highlights.map((h) => (
+                      <div
+                        key={h}
+                        className="flex items-start gap-3 text-sm leading-6 text-[#526676]"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[#2c61cc]"
+                        />
+                        {h}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h2 className="mt-6 text-xl font-semibold tracking-[-0.03em] text-[#1c2733] sm:text-2xl">
-                  {feature.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[#5b6b78]">{feature.summary}</p>
-                <ul className="mt-6 space-y-3 border-t border-[#e6ecef] pt-5 text-xs leading-5 text-[#526676]">
-                  {feature.highlights.map((highlight) => (
-                    <li key={highlight} className="flex items-start gap-2.5">
-                      <Check className="mt-0.5 size-4 shrink-0 text-[#315f79]" aria-hidden="true" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      <section className="border-y border-[#dfe6ea] bg-[#f8fafb]" aria-labelledby="ai-assistance-title">
-        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <p className="eyebrow">Intelligent Academic Assistance</p>
-              <h2 id="ai-assistance-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
-                Practical AI support for teachers.
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
-                ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7.
-              </p>
-              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
-                AI-generated materials can be reviewed, edited and refined before they are used in the classroom.
-              </p>
-            </div>
-            <div className="grid content-center gap-4 sm:grid-cols-2">
-              <div className="border border-[#dfe6ea] bg-white p-5">
-                <p className="text-sm font-semibold text-[#263d4f]">Create</p>
-                <p className="mt-2 text-xs leading-5 text-[#667787]">Exercises, quizzes, revision activities and classroom materials.</p>
-              </div>
-              <div className="border border-[#dfe6ea] bg-white p-5">
-                <p className="text-sm font-semibold text-[#263d4f]">Understand</p>
-                <p className="mt-2 text-xs leading-5 text-[#667787]">Clear explanations of difficult academic concepts.</p>
-              </div>
-              <div className="border border-[#dfe6ea] bg-white p-5">
-                <p className="text-sm font-semibold text-[#263d4f]">Prepare</p>
-                <p className="mt-2 text-xs leading-5 text-[#667787]">Lesson-support material, marking guides and assessment resources.</p>
-              </div>
-              <div className="border border-[#dfe6ea] bg-white p-5">
-                <p className="text-sm font-semibold text-[#263d4f]">Adapt</p>
-                <p className="mt-2 text-xs leading-5 text-[#667787]">Adjust material to different primary levels and difficulty requirements.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white" aria-labelledby="connected-workspace-title">
-        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
-            <div>
-              <p className="eyebrow">A connected workspace</p>
-              <h2 id="connected-workspace-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
-                One clear view of school operations.
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-[#5b6b78]">
-                ACS brings the information your team uses every day into one calm, organized platform.
-              </p>
-
-              <div className="mt-10 border-y border-[#dfe6ea] py-6">
-                <p className="text-sm font-semibold text-[#263d4f]">Built for the daily workflow</p>
-                <p className="mt-2 text-sm leading-6 text-[#667787]">
-                  A practical system for every part of the school.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid border-l border-t border-[#dfe6ea] sm:grid-cols-2">
-              {workspaceItems.map((item) => (
-                <div key={item.title} className="border-b border-r border-[#dfe6ea] p-6 sm:p-7">
-                  <h3 className="text-sm font-semibold text-[#263d4f]">{item.title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-[#667787]">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-[#dfe6ea] bg-[#f8fafb]" aria-labelledby="school-teams-title">
-        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
-          <div className="max-w-2xl">
-            <p className="eyebrow">Built for your team</p>
-            <h2 id="school-teams-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
-              Clearer work for every role.
-            </h2>
-          </div>
-
-          <div className="mt-12 grid border-l border-t border-[#dfe6ea] lg:grid-cols-3">
-            {audienceItems.map((item) => (
-              <article key={item.title} className="border-b border-r border-[#dfe6ea] bg-white p-6 sm:p-8">
-                <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#263d4f]">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#667787]">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white" aria-labelledby="core-tools-title">
-        <div className="mx-auto max-w-[1180px] px-5 py-20 sm:px-8 sm:py-24">
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <div>
-              <p className="eyebrow">Core tools</p>
-              <h2 id="core-tools-title" className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">
-                Designed around the information schools already manage.
-              </h2>
-            </div>
-
-            <div className="grid border-l border-t border-[#dfe6ea] sm:grid-cols-2">
-              {coreTools.map((tool) => (
-                <article key={tool.number} className="border-b border-r border-[#dfe6ea] p-6 sm:p-7">
-                  <p className="text-[10px] font-semibold tracking-[0.14em] text-[#7891a1]">{tool.number}</p>
-                  <h3 className="mt-4 text-base font-semibold text-[#263d4f]">{tool.title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-[#667787]">{tool.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#152b3c] text-white">
-        <div className="mx-auto flex max-w-[1180px] flex-col gap-6 px-5 py-16 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">
-              Ready to simplify your school management?
-            </h2>
-            <p className="mt-2 text-sm text-[#b4c2cc] sm:text-base">
-              The first 20 schools receive 2 months free.
-            </p>
-            <p className="mt-3 text-xs text-[#8fa3b1]">
-              Isolated workspaces · Role-based access · Daily backups
-            </p>
-          </div>
-          <Link href="/get-started" className="button-light shrink-0">
-            Start free trial <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
+      <CTA />
     </>
   )
 }
