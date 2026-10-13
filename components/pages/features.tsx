@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
-import { CTA } from '@/components/pages/inner'
 
 interface Feature {
   id: string
@@ -43,7 +42,7 @@ const features: Feature[] = [
     number: '03',
     category: 'Finance',
     title: 'Fees & Financial Management',
-    summary: 'Manage term fees, record every payment, and see each pupil’s balance immediately.',
+    summary: 'Manage term fees, record every payment, and see each pupil\'s balance immediately.',
     highlights: [
       'Configurable fee structures by class and term',
       'Partial payments with sequential, permanent receipts',
@@ -145,7 +144,21 @@ export function FeaturesPage() {
           Clear, practical tools for learner records, attendance, academics, finance, communication,
           and school administration — with intelligent assistance for teachers.
         </p>
-        <CTA />
+        <section className="border-y border-[#e9edef] bg-[#f8fafb] pt-8">
+          <div className="mx-auto max-w-[1180px] px-5 py-6">
+            <p className="text-sm text-[#647585]">
+              The first 20 schools receive 2 months free.
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-4">
+              <Link href="/get-started" className="button-primary">
+                Get Started <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
+              </Link>
+              <Link href="/contact" className="button-secondary">
+                Talk to our team
+              </Link>
+            </div>
+          </div>
+        </section>
       </section>
 
       <section className="border-y border-[#e9edef]">
@@ -186,8 +199,6 @@ export function FeaturesPage() {
           </ol>
         </div>
       </section>
-
-      <CTA />
     </>
   )
 }
