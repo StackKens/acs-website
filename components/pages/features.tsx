@@ -149,11 +149,11 @@ export function FeaturesPage() {
             <p className="text-sm text-[#647585]">
               The first 20 schools receive 2 months free.
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-4">
-              <Link href="/get-started" className="button-primary">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <Link href="/get-started" className="button-primary w-full sm:w-auto">
                 Get Started <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
               </Link>
-              <Link href="/contact" className="button-secondary">
+              <Link href="/contact" className="button-secondary w-full sm:w-auto">
                 Talk to our team
               </Link>
             </div>
@@ -163,14 +163,14 @@ export function FeaturesPage() {
 
       <section className="border-y border-[#e9edef]">
         <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
-          <ol className="mt-8 space-y-6 divide-y divide-border-border border-border-border">
+          <ol className="mt-8 space-y-6 divide-y divide-[#e9edef]">
             {features.map((f) => (
               <li
                 key={f.id}
-                className="border-b border-border border-border pb-8"
+                className="border-b border-[#e9edef] pb-8"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex-1 min-w-0">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+                  <div className="min-w-0 flex-1 sm:max-w-[55%]">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">{f.number}</p>
                     <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#152b3c]">
                       {f.title}
@@ -179,7 +179,7 @@ export function FeaturesPage() {
                       {f.summary}
                     </p>
                   </div>
-                  <div className="mt-6 space-y-3">
+                  <div className="min-w-0 flex-1 space-y-3 sm:mt-6">
                     {f.highlights.map((h) => (
                       <div
                         key={h}
@@ -187,7 +187,7 @@ export function FeaturesPage() {
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[#2c61cc]"
+                          className="mt-2 size-1.5 shrink-0 rounded-full bg-[#2c61cc]"
                         />
                         {h}
                       </div>
