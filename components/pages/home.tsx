@@ -363,7 +363,7 @@ export default function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <figure className="overflow-hidden rounded-xl border border-[#e0e7eb]">
               <Image
-                src="/images/classroom-teacher.jpg"
+                src="/images/classroom-hero.jpg"
                 alt="A teacher leading a lesson in front of pupils seated at desks"
                 width={1200}
                 height={747}
@@ -374,7 +374,7 @@ export default function HomePage() {
             </figure>
             <figure className="overflow-hidden rounded-xl border border-[#e0e7eb]">
               <Image
-                src="/images/pupil-focus.jpg"
+                src="/images/classroom-pupils.jpg"
                 alt="A young pupil concentrating on classwork at a shared table"
                 width={1200}
                 height={798}
