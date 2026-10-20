@@ -6,38 +6,9 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acs-website.onrender.com'),
-  title: {
-    default: 'ACS — Modern School Management',
-    template: '%s | ACS',
-  },
-  description: 'Academic Cloud System. A simple, connected platform for managing your school, with intelligent tools that help teachers and administrators work more effectively.',
-  openGraph: {
-    type: 'website',
-    locale: 'en_UG',
-    url: 'https://acs-website.onrender.com',
-    title: 'ACS — Modern School Management with AI Assistance',
-    description: 'Academic Cloud System. A simple, connected platform for managing your school, with intelligent tools that help teachers and administrators work more effectively.',
-    siteName: 'ACS',
-    images: [{ url: '/acs-share.png', width: 512, height: 512, alt: 'ACS — Academics Cloud System' }],
-  },
-  twitter: {
-    card: 'summary',
-    title: 'ACS — Modern School Management',
-    description: 'Academic Cloud System. A simple, connected platform for managing your school, with intelligent tools that help teachers and administrators work more effectively.',
-    images: ['/acs-share.png'],
-  },
+  title: { default: 'ACS — Your school. Better organized.', template: '%s | ACS' },
+  description: 'Academic Cloud System brings pupil records, attendance and academic results together for primary schools in Uganda.',
+  openGraph: { type: 'website', locale: 'en_UG', title: 'ACS — Your school. Better organized.', description: 'A practical school management platform for primary schools in Uganda.', siteName: 'ACS', images: [{ url: '/acs-share.png', width: 512, height: 512, alt: 'ACS Academic Cloud System' }] },
+  twitter: { card: 'summary', title: 'ACS — Your school. Better organized.', description: 'A practical school management platform for primary schools in Uganda.', images: ['/acs-share.png'] },
 }
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>
-        {children}
-      </body>
-    </html>
-  )
-}
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body className={`${inter.variable} antialiased`}>{children}</body></html> }
