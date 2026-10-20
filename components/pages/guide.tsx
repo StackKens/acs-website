@@ -365,16 +365,16 @@ export function GuidePage() {
         title="How ACS works, step by step."
         description="The guide ACS shows inside the platform — written for schools, teachers, parents and administrators. Every section describes what the system actually does."
       />
-      <section className="mx-auto max-w-[800px] px-5 pb-16 sm:px-8">
+      <section className="container-page max-w-[880px] pb-16">
         <nav
           aria-label="Guide sections"
-          className="flex flex-wrap gap-2 border-y border-[#dfe6ea] py-4"
+          className="flex flex-wrap gap-2 border-y border-line py-4"
         >
           {sections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="rounded-full border border-[#cad7df] bg-white px-3.5 py-1.5 text-[13px] font-medium text-[#526676] transition-colors hover:border-[#a8bdcb] hover:text-[#152b3c]"
+              className="rounded-[7px] border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-brand-ring hover:text-ink"
             >
               {section.title}
             </a>
@@ -385,25 +385,25 @@ export function GuidePage() {
             <article
               key={section.id}
               id={section.id}
-              className="scroll-mt-24 border border-[#dfe6ea] bg-white p-6 sm:p-8"
+              className="scroll-mt-24 rounded-[10px] border border-line bg-white p-6 sm:p-8"
             >
-              <h2 className="text-xl font-medium tracking-[-0.03em] text-[#263d4f]">{section.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-[#71808d]">{section.intro}</p>
-              <div className="mt-6 space-y-5 border-t border-[#e9edef] pt-5">
+              <h2 className="t-item text-ink">{section.title}</h2>
+              <p className="mt-3 text-[15px] leading-7 text-copy">{section.intro}</p>
+              <div className="mt-6 space-y-5 border-t border-line pt-5">
                 {section.points.map((point) => (
                   <div key={point.heading}>
-                    <h3 className="text-sm font-semibold text-[#263d4f]">{point.heading}</h3>
-                    <p className="mt-1.5 text-sm leading-7 text-[#71808d]">{point.body}</p>
+                    <h3 className="text-[15px] font-semibold text-ink">{point.heading}</h3>
+                    <p className="mt-1.5 text-[15px] leading-7 text-copy">{point.body}</p>
                   </div>
                 ))}
               </div>
             </article>
           ))}
         </div>
-        <p className="mt-8 text-sm leading-7 text-[#71808d]">
+        <p className="mt-8 text-[15px] leading-7 text-copy">
           Already using ACS? The same guide lives inside the app under <strong>Guide</strong> in
           your sidebar.{' '}
-          <Link href={appLoginUrl} className="font-medium text-[#152b3c] underline underline-offset-4">
+          <Link href={appLoginUrl} className="link-brand">
             Sign in
           </Link>{' '}
           to open it.

@@ -10,6 +10,11 @@ export interface CapabilityItem {
   highlights: string[]
 }
 
+/**
+ * Full capability catalogue. This is the richest verified description of
+ * the platform in the repository and is the source of truth for the
+ * /features page and the homepage capability groups.
+ */
 export const coreCapabilities: CapabilityItem[] = [
   {
     id: 'pupils',
@@ -17,7 +22,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Core Registry',
     category: 'Academics & Pupils',
     tagline: 'Organized, searchable student records from admission to graduation.',
-    description: 'Maintain central pupil profiles with admission numbers, class and stream allocations, date of birth, emergency contacts, and linked guardians—all accessible in seconds.',
+    description:
+      'Maintain central pupil profiles with admission numbers, class and stream allocations, date of birth, emergency contacts, and linked guardians—all accessible in seconds.',
     highlights: [
       'Fast search by name, admission number, or stream',
       'Class & stream allocations with historical tracking',
@@ -31,7 +37,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Bursar & Revenue',
     category: 'Finance & Administration',
     tagline: 'Clear fee structures, partial payment tracking, and zero ledger confusion.',
-    description: 'Configure fee structures per term and class level. Record cash, bank, and mobile payments, instantly generate receipts, and view real-time student balances without manual spreadsheets.',
+    description:
+      'Configure fee structures per term and class level. Record cash, bank, and mobile payments, instantly generate receipts, and view real-time student balances without manual spreadsheets.',
     highlights: [
       'Custom fee items per class and academic term',
       'Pupil ledger accounts with live outstanding balance',
@@ -45,7 +52,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Daily Roll Call',
     category: 'Academics & Pupils',
     tagline: 'Fast roll calls with real-time absentee and attendance monitoring.',
-    description: 'Teachers take morning and afternoon attendance in seconds from phones, tablets, or computers. Instantly spot chronic absenteeism before it impacts pupil performance.',
+    description:
+      'Teachers take morning and afternoon attendance in seconds from phones, tablets, or computers. Instantly spot chronic absenteeism before it impacts pupil performance.',
     highlights: [
       'One-tap roll call for morning and afternoon sessions',
       'Automated attendance percentages per pupil and class',
@@ -59,7 +67,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Academics & Grading',
     category: 'Academics & Pupils',
     tagline: 'Structured assessment recording with automated division ranking.',
-    description: 'Record Beginning of Term (BOT), Mid-Term (MOT), and End of Term (EOT) marks across all subjects. Automatically compile totals, averages, class positions, and division grades without errors.',
+    description:
+      'Record Beginning of Term (BOT), Mid-Term (MOT), and End of Term (EOT) marks across all subjects. Automatically compile totals, averages, class positions, and division grades without errors.',
     highlights: [
       'Standardized grading schemes and subject weighting',
       'Subject teacher mark entry with validation checks',
@@ -72,13 +81,14 @@ export const coreCapabilities: CapabilityItem[] = [
     title: 'Official Term Report Cards',
     badge: 'Report Forms',
     category: 'Communication & Records',
-    tagline: 'Compile and print beautiful, professional report cards in minutes.',
-    description: 'Save hundreds of hours of manual handwriting. ACS compiles marks, attendance records, class teacher remarks, and headteacher sign-offs into customized, branded report cards ready for print.',
+    tagline: 'Compile and print professional report cards in minutes.',
+    description:
+      'ACS compiles marks, attendance records, class teacher remarks, and headteacher sign-offs into customized, branded report cards ready for print.',
     highlights: [
       'One-click bulk compilation for entire streams or classes',
       'School crest, motto, term dates, and fees balance display',
       'Pre-populated teacher remarks and conduct ratings',
-      'Clean PDF generation ready for physical printing or WhatsApp/email sharing'
+      'Clean PDF generation ready for printing or sharing'
     ]
   },
   {
@@ -87,7 +97,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Communication',
     category: 'Communication & Records',
     tagline: 'Keep parents informed with instant SMS notices and updates.',
-    description: 'Send timely announcements, fee reminders, term opening dates, and emergency alerts straight to parents’ phones. Build stronger school-family partnerships with verified guardian contacts.',
+    description:
+      'Send timely announcements, fee reminders, term opening dates, and emergency alerts straight to parents’ phones. Build stronger school-family partnerships with verified guardian contacts.',
     highlights: [
       'Targeted SMS alerts by class, stream, or entire school',
       'Automated fee balance reminders to prevent late collections',
@@ -101,7 +112,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Administration',
     category: 'Finance & Administration',
     tagline: 'Streamlined staff directory, subject assignments, and permissions.',
-    description: 'Assign class teachers and subject instructors across streams. Control who can view fees, mark attendance, or enter marks with secure role-based access for school staff.',
+    description:
+      'Assign class teachers and subject instructors across streams. Control who can view fees, mark attendance, or enter marks with secure role-based access for school staff.',
     highlights: [
       'Class teacher and subject instructor assignments',
       'Role-based permissions (Headteachers, Bursars, Teachers)',
@@ -115,7 +127,8 @@ export const coreCapabilities: CapabilityItem[] = [
     badge: 'Security & Cloud',
     category: 'Finance & Administration',
     tagline: 'Your school’s data, strictly isolated, private, and continuously backed up.',
-    description: 'Every school operates in its own dedicated, protected environment. Student records, financial accounts, and academic results remain private, tamper-proof, and backed up in the cloud.',
+    description:
+      'Every school operates in its own dedicated, protected environment. Student records, financial accounts, and academic results remain private, tamper-proof, and backed up in the cloud.',
     highlights: [
       'Complete multi-tenant isolation for every registered institution',
       'Strict audit trails for all sensitive academic and financial records',
@@ -128,8 +141,9 @@ export const coreCapabilities: CapabilityItem[] = [
     title: 'Intelligent Academic Assistance',
     badge: 'AI for Teachers',
     category: 'Academics & Pupils',
-    tagline: 'Practical AI support for creating exercises, quizzes, revision materials and classroom resources.',
-    description: 'ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7. Teachers review and edit all generated material before classroom use.',
+    tagline: 'Practical AI support for creating exercises, quizzes and revision materials.',
+    description:
+      'ACS helps teachers create exercises, quizzes, revision questions, lesson-support materials, explanations and marking guides — designed around primary education from Primary 1 to Primary 7. Teachers review and edit all generated material before classroom use.',
     highlights: [
       'Exercises, quizzes and revision questions',
       'Lesson-support materials and marking guides',
@@ -139,27 +153,37 @@ export const coreCapabilities: CapabilityItem[] = [
   }
 ]
 
-export const capabilities: [string, string][] = coreCapabilities.map(c => [c.title, c.description])
+export const capabilities: [string, string][] = coreCapabilities.map((c) => [c.title, c.description])
 
-export function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+export function PageIntro({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string
+  title: string
+  description: string
+}) {
   return (
-    <section className="mx-auto max-w-[1180px] px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
+    <section className="container-page pb-12 pt-14 md:pb-16 md:pt-20">
       <p className="eyebrow">{eyebrow}</p>
-      <h1 className="mt-4 max-w-3xl text-5xl font-semibold leading-[.98] tracking-[-.07em] sm:text-7xl">{title}</h1>
-      <p className="mt-6 max-w-2xl text-base leading-7 text-[#617281] sm:text-lg">{description}</p>
+      <h1 className="t-display mt-4 max-w-3xl text-ink">{title}</h1>
+      <p className="t-body mt-6 max-w-2xl text-copy">{description}</p>
     </section>
   )
 }
 
 export function CTA() {
   return (
-    <section className="border-y border-[#e6ecef] bg-[#152b3c] text-white">
-      <div className="mx-auto flex max-w-[1180px] flex-col gap-6 px-5 py-16 sm:px-8 md:flex-row md:items-center md:justify-between">
+    <section className="border-t border-line bg-ink text-white">
+      <div className="container-page flex flex-col gap-8 py-14 md:flex-row md:items-center md:justify-between md:py-16">
         <div>
-          <h2 className="text-3xl font-semibold tracking-[-.05em]">Ready to simplify your school management?</h2>
-          <p className="mt-3 text-sm text-[#b4c2cc]">First 20 schools receive 2 months free.</p>
+          <h2 className="t-title text-white">Ready to simplify your school management?</h2>
+          <p className="t-body mt-3 text-white/75">The first 20 schools receive 2 months free.</p>
         </div>
-        <Link href="/get-started" className="button-light">Start free trial</Link>
+        <Link href="/get-started" className="btn-on-dark shrink-0">
+          Get Started
+        </Link>
       </div>
     </section>
   )

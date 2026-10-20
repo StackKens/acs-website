@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 
 /**
  * Homepage — single-column professional build (Figma Frame: Desktop 1440).
- * Matches inner routes: PageShell header + max-w-[1180px] sections + Footer.
+ * Matches inner routes: PageShell header + max-w-[1104px] sections + Footer.
  * No invented stats, testimonials, or product claims. All copy is
  * backend-verified (see guide.tsx, features.tsx, pricing lib).
  */
@@ -189,8 +189,8 @@ function SectionHead({ eyebrow, title, intro }: { eyebrow: string; title: string
   return (
     <div className="max-w-2xl">
       <p className="eyebrow">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#1c2733] sm:text-4xl">{title}</h2>
-      {intro && <p className="mt-4 text-sm leading-7 text-[#5b6b78] sm:text-[15px]">{intro}</p>}
+      <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl">{title}</h2>
+      {intro && <p className="mt-4 text-sm leading-7 text-copy sm:text-[15px]">{intro}</p>}
     </div>
   )
 }
@@ -199,40 +199,40 @@ export default function HomePage() {
   return (
     <main>
       {/* Announcement — Figma: top utility bar */}
-      <div className="border-b border-[#d6e1e7] bg-[#e7eff3] px-5 py-2.5 text-center text-[12px] leading-6 text-[#425b6b] sm:px-8">
-        Launching ACS — <strong className="font-semibold text-[#152b3c]">first 20 schools get 2 months free.</strong>{' '}
+      <div className="border-b border-line bg-brand-soft px-5 py-2.5 text-center text-[12px] leading-6 text-copy-soft sm:px-8">
+        Launching ACS — <strong className="font-semibold text-ink">first 20 schools get 2 months free.</strong>{' '}
         <Link className="underline underline-offset-4" href="/get-started">
           Claim your free trial
         </Link>
       </div>
 
       {/* Hero — Figma Frame HERO/1440: 2-col split, 1180 container */}
-      <section aria-labelledby="hero-title" className="mx-auto max-w-[1180px] px-5 pb-16 pt-14 sm:px-8 sm:pt-20">
+      <section aria-labelledby="hero-title" className="container-page pb-16 pt-14 sm:px-8 sm:pt-20">
         <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
           <div>
             <p className="eyebrow">Academic Cloud System</p>
             <h1
               id="hero-title"
-              className="mt-4 max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#152b3c] sm:text-6xl sm:leading-[0.98]"
+              className="mt-4 max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-ink sm:text-6xl sm:leading-[0.98]"
             >
               A better way to manage school life.
             </h1>
-            <p className="mt-6 max-w-lg text-base leading-7 text-[#5b6b78] sm:text-lg">
+            <p className="mt-6 max-w-lg text-base leading-7 text-copy sm:text-lg">
               Bring pupil records, attendance, results, fees and parent messages into one connected
               experience — helping administrators, teachers and parents stay organised and informed.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link className="button-primary" href="/get-started">
+              <Link className="btn-primary" href="/get-started">
                 Get Started <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
               </Link>
-              <Link className="button-secondary" href="/features">
+              <Link className="btn-secondary" href="/features">
                 Explore ACS
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-[#e9edef] pt-5 text-xs text-[#71808d]">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-line-soft pt-5 text-xs text-copy">
               {['Isolated school workspaces', 'Role-based access', 'Daily backups', 'Teacher-reviewed AI'].map((t) => (
                 <li key={t} className="flex items-center gap-2">
-                  <Check className="size-3.5 text-[#315f79]" aria-hidden="true" />
+                  <Check className="size-3.5 text-brand" aria-hidden="true" />
                   {t}
                 </li>
               ))}
@@ -241,7 +241,7 @@ export default function HomePage() {
 
           {/* Hero visual: real photo + workflow proof card, no fake dashboard numbers */}
           <div className="product-frame">
-            <figure className="overflow-hidden rounded-xl border border-[#e0e7eb] bg-white">
+            <figure className="overflow-hidden rounded-xl border border-line bg-white">
               <Image
                 src="/images/classroom-pupils.jpg"
                 alt="Primary school pupils learning together in a bright classroom"
@@ -251,15 +251,15 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 560px"
                 className="aspect-[16/10] w-full object-cover"
               />
-              <figcaption className="border-t border-[#e9edef] px-4 py-3 text-xs leading-6 text-[#71808d]">
+              <figcaption className="border-t border-line-soft px-4 py-3 text-xs leading-6 text-copy">
                 Built around the people who make schools work. Photos illustrative.
               </figcaption>
             </figure>
             <div className="ui-snippet mt-5" aria-label="How a term flows through ACS">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-copy">
                 A term in ACS
               </p>
-              <ol className="mt-3 space-y-2.5 text-sm leading-6 text-[#526676]">
+              <ol className="mt-3 space-y-2.5 text-sm leading-6 text-copy">
                 {[
                   'Enrol pupils, link guardians, set fee structures',
                   'Daily roll call — morning and afternoon',
@@ -267,7 +267,7 @@ export default function HomePage() {
                   'Sequential receipts, statements, released report cards',
                 ].map((s, i) => (
                   <li key={s} className="flex items-start gap-3">
-                    <span aria-hidden="true" className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#152b3c] text-[11px] font-semibold text-white">
+                    <span aria-hidden="true" className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-ink text-[11px] font-semibold text-white">
                       {i + 1}
                     </span>
                     {s}
@@ -280,20 +280,20 @@ export default function HomePage() {
       </section>
 
       {/* Problem */}
-      <section aria-labelledby="why-title" className="border-y border-[#e9edef]">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
+      <section aria-labelledby="why-title" className="border-y border-line-soft">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
           <SectionHead
             eyebrow="Why ACS"
             title="School paperwork was never the job."
             intro="Most schools don’t struggle for lack of effort — they struggle because essential information is fragmented, routine processes take too long, and keeping everyone informed is genuinely hard."
           />
-          <div className="mt-10 border-t border-[#dfe6ea]">
+          <div className="mt-10 border-t border-line">
             {problems.map((p) => (
-              <div key={p.n} className="grid gap-2 border-b border-[#e9edef] py-6 sm:grid-cols-[56px_1fr] sm:gap-6">
-                <p className="text-sm font-semibold text-[#7891a1]">{p.n}</p>
+              <div key={p.n} className="grid gap-2 border-b border-line-soft py-6 sm:grid-cols-[56px_1fr] sm:gap-6">
+                <p className="text-sm font-semibold text-copy">{p.n}</p>
                 <div>
-                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-[#263d4f]">{p.title}</h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-[#667787]">{p.body}</p>
+                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-ink-soft">{p.title}</h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-copy">{p.body}</p>
                 </div>
               </div>
             ))}
@@ -302,8 +302,8 @@ export default function HomePage() {
       </section>
 
       {/* Product — 3 disciplined panels, matches /features */}
-      <section aria-labelledby="product-title" className="border-b border-[#dfe6ea] bg-[#f8fafb]">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
+      <section aria-labelledby="product-title" className="border-b border-line bg-surface">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
           <SectionHead
             eyebrow="What ACS offers"
             title="Everything your school needs. Designed to work together."
@@ -311,26 +311,26 @@ export default function HomePage() {
           />
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {featureGroups.map((g) => (
-              <article key={g.n} className="flex flex-col border border-[#dfe6ea] bg-white p-6 sm:p-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">{g.n}</p>
-                <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-[#152b3c]">{g.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#617281]">{g.body}</p>
-                <ul className="mt-5 space-y-2.5 border-t border-[#e9edef] pt-5">
+              <article key={g.n} className="flex flex-col border border-line bg-white p-6 sm:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-copy">{g.n}</p>
+                <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-ink">{g.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-copy">{g.body}</p>
+                <ul className="mt-5 space-y-2.5 border-t border-line-soft pt-5">
                   {g.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-[#526676]">
-                      <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-[#2c61cc]" />
+                    <li key={item} className="flex items-start gap-2.5 text-sm leading-6 text-copy">
+                      <span aria-hidden="true" className="mt-[7px] size-1.5 shrink-0 rounded-full bg-brand" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-auto pt-5 text-[13px] text-[#71808d]">
-                  <span className="font-semibold text-[#526676]">Who benefits: </span>
+                <p className="mt-auto pt-5 text-[13px] text-copy">
+                  <span className="font-semibold text-copy">Who benefits: </span>
                   {g.who}
                 </p>
               </article>
             ))}
           </div>
-          <Link href="/features" className="mt-8 inline-flex items-center text-sm font-semibold text-[#2c61cc] hover:underline">
+          <Link href="/features" className="mt-8 inline-flex items-center text-sm font-semibold text-brand hover:underline">
             View all features in detail <ArrowUpRight className="ml-1 size-4" aria-hidden="true" />
           </Link>
         </div>
@@ -338,7 +338,7 @@ export default function HomePage() {
 
       {/* Roles — permission truth from user guide */}
       <section aria-labelledby="roles-title" className="bg-white">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
           <SectionHead
             eyebrow="Built for your team"
             title="Clearer work for every role."
@@ -346,13 +346,13 @@ export default function HomePage() {
           />
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {roles.map((r) => (
-              <article key={r.title} className="border border-[#dfe6ea] bg-[#fbfcfd] p-6 sm:p-8">
-                <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#263d4f]">{r.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#667787]">{r.body}</p>
-                <ul className="mt-5 space-y-2.5 border-t border-[#e9edef] pt-5 text-sm leading-6 text-[#526676]">
+              <article key={r.title} className="border border-line bg-surface-raised p-6 sm:p-8">
+                <h3 className="text-lg font-semibold tracking-[-0.02em] text-ink-soft">{r.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-copy">{r.body}</p>
+                <ul className="mt-5 space-y-2.5 border-t border-line-soft pt-5 text-sm leading-6 text-copy">
                   {r.items.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <span aria-hidden="true" className="text-[#2c61cc]">✓</span>
+                      <span aria-hidden="true" className="text-brand">✓</span>
                       {item}
                     </li>
                   ))}
@@ -361,7 +361,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <figure className="overflow-hidden rounded-xl border border-[#e0e7eb]">
+            <figure className="overflow-hidden rounded-xl border border-line">
               <Image
                 src="/images/classroom-hero.jpg"
                 alt="A teacher leading a lesson in front of pupils seated at desks"
@@ -372,7 +372,7 @@ export default function HomePage() {
                 className="aspect-[16/10] w-full object-cover"
               />
             </figure>
-            <figure className="overflow-hidden rounded-xl border border-[#e0e7eb]">
+            <figure className="overflow-hidden rounded-xl border border-line">
               <Image
                 src="/images/classroom-pupils.jpg"
                 alt="A young pupil concentrating on classwork at a shared table"
@@ -388,23 +388,23 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section aria-labelledby="how-title" className="border-y border-[#dfe6ea] bg-[#f8fafb]">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
+      <section aria-labelledby="how-title" className="border-y border-line bg-surface">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
           <SectionHead
             eyebrow="How it works"
             title="From signup to school day, in four steps."
             intro="Onboarding follows the real order schools use — and our team helps at each stage."
           />
-          <ol className="mt-10 grid gap-8 border-t border-[#dfe6ea] pt-8 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s) => (
               <li key={s.n}>
-                <p className="text-sm font-semibold text-[#7891a1]">{s.n}</p>
-                <h3 className="mt-3 text-[15px] font-semibold text-[#263d4f]">{s.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#667787]">{s.body}</p>
+                <p className="text-sm font-semibold text-copy">{s.n}</p>
+                <h3 className="mt-3 text-[15px] font-semibold text-ink-soft">{s.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-copy">{s.body}</p>
               </li>
             ))}
           </ol>
-          <Link href="/user-guide" className="mt-8 inline-flex items-center text-sm font-semibold text-[#2c61cc] hover:underline">
+          <Link href="/user-guide" className="mt-8 inline-flex items-center text-sm font-semibold text-brand hover:underline">
             Read the full user guide <ArrowUpRight className="ml-1 size-4" aria-hidden="true" />
           </Link>
         </div>
@@ -412,17 +412,17 @@ export default function HomePage() {
 
       {/* Difference */}
       <section aria-labelledby="diff-title" className="bg-white">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
           <SectionHead
             eyebrow="The ACS difference"
             title="Careful where it matters."
             intro="Small design decisions that protect trust in school records."
           />
-          <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-[#dfe6ea] bg-[#dfe6ea] sm:grid-cols-2">
+          <div className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-line bg-line sm:grid-cols-2">
             {differences.map((d) => (
-              <div key={d.title} className="bg-[#fbfcfd] p-6 sm:p-8">
-                <h3 className="text-[15px] font-semibold tracking-[-0.02em] text-[#263d4f]">{d.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#667787]">{d.body}</p>
+              <div key={d.title} className="bg-surface-raised p-6 sm:p-8">
+                <h3 className="text-[15px] font-semibold tracking-[-0.02em] text-ink-soft">{d.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-copy">{d.body}</p>
               </div>
             ))}
           </div>
@@ -430,26 +430,26 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section aria-labelledby="faq-title" className="border-t border-[#e9edef]">
-        <div className="mx-auto max-w-[800px] px-5 py-16 sm:px-8 sm:py-20">
+      <section aria-labelledby="faq-title" className="border-t border-line-soft">
+        <div className="container-page max-w-[880px] py-16 sm:px-8 sm:py-20">
           <SectionHead eyebrow="FAQ" title="Questions schools ask." intro="Answered from how the product actually works." />
-          <div className="mt-10 border-t border-[#dfe6ea]">
+          <div className="mt-10 border-t border-line">
             {faqs.map((item) => (
-              <details key={item.q} className="group border-b border-[#dfe6ea]">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-[#263d4f] hover:text-[#152b3c] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7891a1] [&::-webkit-details-marker]:hidden">
+              <details key={item.q} className="group border-b border-line">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-ink-soft hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7891a1] [&::-webkit-details-marker]:hidden">
                   {item.q}
-                  <span aria-hidden="true" className="text-xl font-normal text-[#7891a1] group-open:hidden">+</span>
-                  <span aria-hidden="true" className="hidden text-xl font-normal text-[#7891a1] group-open:inline">−</span>
+                  <span aria-hidden="true" className="text-xl font-normal text-copy group-open:hidden">+</span>
+                  <span aria-hidden="true" className="hidden text-xl font-normal text-copy group-open:inline">−</span>
                 </summary>
-                <p className="max-w-2xl pb-6 pr-8 text-sm leading-7 text-[#667787]">{item.a}</p>
+                <p className="max-w-2xl pb-6 pr-8 text-sm leading-7 text-copy">{item.a}</p>
               </details>
             ))}
           </div>
           <div className="mt-8 flex flex-wrap gap-6 text-sm">
-            <Link href="/pricing" className="font-semibold text-[#2c61cc] hover:underline">
+            <Link href="/pricing" className="font-semibold text-brand hover:underline">
               See pricing
             </Link>
-            <Link href="/contact" className="font-semibold text-[#2c61cc] hover:underline">
+            <Link href="/contact" className="font-semibold text-brand hover:underline">
               Talk to our team
             </Link>
           </div>
@@ -458,24 +458,24 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section aria-labelledby="cta-title" className="bg-[#152b3c] text-white">
-        <div className="mx-auto flex max-w-[1180px] flex-col gap-6 px-5 py-16 sm:px-8 md:flex-row md:items-center md:justify-between">
+      <section aria-labelledby="cta-title" className="bg-ink text-white">
+        <div className="mx-auto flex max-w-[1104px] flex-col gap-6 py-16 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="eyebrow !text-[#9fb4c2]">Get started</p>
+            <p className="eyebrow !text-white/70">Get started</p>
             <h2 id="cta-title" className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-[-0.04em] sm:text-4xl">
               Make school work feel simpler.
             </h2>
-            <p className="mt-3 max-w-md text-[15px] leading-7 text-[#b4c2cc]">
+            <p className="mt-3 max-w-md text-[15px] leading-7 text-white/75">
               Join with your school’s records, attendance, results and fees in one connected workspace
               — with help from our team along the way.
             </p>
-            <p className="mt-4 text-xs text-[#8fa3b1]">First 20 schools receive 2 months free · Call +256 755 038100</p>
+            <p className="mt-4 text-xs text-white/70">First 20 schools receive 2 months free · Call +256 755 038100</p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-4">
-            <Link href="/get-started" className="button-light">
+            <Link href="/get-started" className="btn-on-dark">
               Get Started <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
             </Link>
-            <Link href="/contact" className="text-sm font-medium text-[#cdd9e1] underline underline-offset-4 hover:text-white">
+            <Link href="/contact" className="text-sm font-medium text-white/85 underline underline-offset-4 hover:text-white">
               Talk to our team
             </Link>
           </div>

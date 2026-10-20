@@ -133,27 +133,27 @@ const features: Feature[] = [
 export function FeaturesPage() {
   return (
     <>
-      <section aria-labelledby="page-title" className="mx-auto max-w-[1180px] px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
+      <section aria-labelledby="page-title" className="container-page pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-24">
         <h1
           id="page-title"
-          className="mb-6 text-4xl font-semibold tracking-[-0.07em] text-[#152b3c] sm:text-6xl sm:leading-[0.98]"
+          className="mb-6 text-4xl font-semibold tracking-[-0.07em] text-ink sm:text-6xl sm:leading-[0.98]"
         >
           One platform for the work that runs your school.
         </h1>
-        <p className="text-base leading-7 text-[#5b6b78] sm:text-lg">
+        <p className="text-base leading-7 text-copy sm:text-lg">
           Clear, practical tools for learner records, attendance, academics, finance, communication,
           and school administration — with intelligent assistance for teachers.
         </p>
-        <section className="border-y border-[#e9edef] bg-[#f8fafb] pt-8">
-          <div className="mx-auto max-w-[1180px] px-5 py-6">
+        <section className="border-y border-line-soft bg-surface pt-8">
+          <div className="container-page py-6">
             <p className="text-sm text-[#647585]">
               The first 20 schools receive 2 months free.
             </p>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <Link href="/get-started" className="button-primary w-full sm:w-auto">
+              <Link href="/get-started" className="btn-primary w-full sm:w-auto">
                 Get Started <ArrowRight className="ml-2 inline size-4" aria-hidden="true" />
               </Link>
-              <Link href="/contact" className="button-secondary w-full sm:w-auto">
+              <Link href="/contact" className="btn-secondary w-full sm:w-auto">
                 Talk to our team
               </Link>
             </div>
@@ -161,21 +161,21 @@ export function FeaturesPage() {
         </section>
       </section>
 
-      <section className="border-y border-[#e9edef]">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 sm:py-20">
-          <ol className="mt-8 space-y-6 divide-y divide-[#e9edef]">
+      <section className="border-y border-line-soft">
+        <div className="container-page py-16 sm:px-8 sm:py-20">
+          <ol className="mt-8 space-y-6 divide-y divide-line-soft">
             {features.map((f) => (
               <li
                 key={f.id}
-                className="border-b border-[#e9edef] pb-8"
+                className="border-b border-line-soft pb-8"
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
                   <div className="min-w-0 flex-1 sm:max-w-[55%]">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7891a1]">{f.number}</p>
-                    <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-[#152b3c]">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-copy">{f.number}</p>
+                    <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-ink">
                       {f.title}
                     </h2>
-                    <p className="mt-3 text-sm leading-6 text-[#617281]">
+                    <p className="mt-3 text-sm leading-6 text-copy">
                       {f.summary}
                     </p>
                   </div>
@@ -183,11 +183,11 @@ export function FeaturesPage() {
                     {f.highlights.map((h) => (
                       <div
                         key={h}
-                        className="flex items-start gap-3 text-sm leading-6 text-[#526676]"
+                        className="flex items-start gap-3 text-sm leading-6 text-copy"
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-2 size-1.5 shrink-0 rounded-full bg-[#2c61cc]"
+                          className="mt-2 size-1.5 shrink-0 rounded-full bg-brand"
                         />
                         {h}
                       </div>
