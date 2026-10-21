@@ -5,7 +5,7 @@ import { SITE_URL } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
-const TITLE = 'ACS — Modern School Management'
+const TITLE = 'ACS | Modern School Management'
 const DESCRIPTION =
   'Academic Cloud System. A simple, connected platform for managing your school, with intelligent tools that help teachers and administrators work more effectively.'
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: '/acs-share-wide.png',
         width: 1200,
         height: 630,
-        alt: 'ACS — Academic Cloud System. Your school. Better organized.',
+        alt: 'ACS | Modern School Management. Your school. Better organized.',
       },
     ],
   },
