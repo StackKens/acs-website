@@ -49,7 +49,7 @@ export function HowItWorksPage() {
 
       <Section>
         <Container>
-          <div className="grid gap-x-12 gap-y-10 step:grid-cols-2">
+          <div className="grid gap-x-12 gap-y-10 grid-cols-2 sm:grid-cols-1">
             {steps.map((step) => (
               <article key={step.n} className="border-t-2 border-brand pt-[18px]">
                 <p className="mb-3.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-brand">
