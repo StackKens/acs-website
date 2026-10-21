@@ -167,10 +167,21 @@ export function Column({
  * Split — a heading on the left and a short paragraph on the right, which
  * stacks below 768px.
  */
-export function Split({ title, children }: { title: string; children: ReactNode }) {
+export function Split({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow?: string
+  title: string
+  children: ReactNode
+}) {
   return (
     <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
-      <h2 className="max-w-[520px] text-ink">{title}</h2>
+      <div>
+        {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
+        <h2 className="t-title max-w-[520px] text-ink">{title}</h2>
+      </div>
       <p className="max-w-[420px] text-copy">{children}</p>
     </div>
   )
@@ -182,7 +193,7 @@ export function Split({ title, children }: { title: string; children: ReactNode 
 export function Cta({ title, href, label }: { title: string; href: string; label: string }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-6 rounded-panel bg-surface p-[clamp(28px,5vw,48px)]">
-      <h2 className="max-w-[560px] text-ink">{title}</h2>
+      <h2 className="t-title max-w-[560px] text-ink">{title}</h2>
       <Button href={href}>{label}</Button>
     </div>
   )

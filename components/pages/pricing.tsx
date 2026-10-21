@@ -43,7 +43,7 @@ export function PricingPage() {
         <Container>
           <div className="mb-[clamp(56px,8vw,96px)] grid items-center gap-[clamp(24px,4vw,40px)] rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)] md:grid-cols-2">
             <div>
-              <h2 id="price-card-title" className="mb-5 text-ink">
+              <h2 id="price-card-title" className="t-title mb-5 text-ink">
                 A plan shaped around your school.
               </h2>
               <p className="max-w-[420px] text-copy">

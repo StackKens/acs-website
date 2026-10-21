@@ -30,7 +30,6 @@
   /* ---- Semantic feedback (not brand decoration) ---- */
   --danger: #c0392b;
   --danger-soft: #fdf0ee;
-  --success: #1f7a5c;
 
   /* ---- Radii (from the reference) ---- */
   --radius-btn: 8px;
@@ -63,7 +62,6 @@
   /* Feedback */
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
-  --color-success: var(--success);
 
   /* Radius utilities: rounded-btn, rounded-input, rounded-result,
      rounded-hero, rounded-panel, rounded-device. */
@@ -80,6 +78,7 @@
   --breakpoint-nav: 900px;
   --breakpoint-wide: 1000px;
   --breakpoint-tight: 560px;
+  --breakpoint-step: 700px;
 }
 
 @layer base {
@@ -173,11 +172,8 @@
 
   /* ---- Controls ----
      Every control clears the 44px minimum touch target from the reference. */
-  .btn,
   .btn-primary,
-  .btn-ghost,
-  .btn-secondary,
-  .btn-on-dark {
+  .btn-ghost {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -206,42 +202,6 @@
     border-color: var(--color-brand);
     color: var(--color-brand);
   }
-  .btn {
-    min-height: 44px;
-    border-radius: var(--radius-btn);
-  }
-  /* The reference defines two button styles (primary, ghost). The remaining
-     two names are kept as aliases so pages outside the home refactor keep
-     rendering while sharing one visual language. */
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--color-ink);
-    border: 1px solid var(--color-line);
-  }
-  .btn-secondary:hover {
-    border-color: var(--color-brand);
-    color: var(--color-brand);
-  }
-  .btn-on-dark {
-    background-color: var(--white);
-    color: var(--color-ink);
-  }
-  .btn-on-dark:hover {
-    background-color: var(--color-surface);
-  }
-
-  .nav-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-copy);
-    transition: color 150ms;
-  }
-  .nav-link:hover {
-    color: var(--color-ink);
-  }
 
   /* ---- Surfaces ---- */
   .card {
@@ -251,11 +211,6 @@
   }
   .card-pad {
     padding: clamp(20px, 3vw, 32px);
-  }
-  .card-surface {
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-result);
-    background-color: var(--color-surface);
   }
 
   /* ---- Product previews ---- */
@@ -273,13 +228,6 @@
   }
 
   /* ---- Forms ---- */
-  .form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-ink);
-  }
   .form-input {
     width: 100%;
     min-height: 44px;
@@ -300,46 +248,7 @@
     border-color: var(--color-brand);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand) 25%, transparent);
   }
-  .form-hint {
-    margin-top: 6px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--color-copy);
-  }
-  .form-error {
-    margin-top: 6px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: var(--color-danger);
-  }
-  .form-alert {
-    border: 1px solid color-mix(in srgb, var(--color-danger) 25%, transparent);
-    border-radius: var(--radius-result);
-    background-color: var(--color-danger-soft);
-    padding: 12px 16px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--color-danger);
-  }
-  .form-success {
-    border: 1px solid color-mix(in srgb, var(--color-success) 25%, transparent);
-    border-radius: var(--radius-result);
-    background-color: color-mix(in srgb, var(--color-success) 5%, transparent);
-    padding: 12px 16px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--color-success);
-  }
-
   /* ---- Misc ---- */
-  .prose-acs p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-copy);
-  }
-  .prose-acs p + p {
-    margin-top: 16px;
-  }
   .link-brand {
     font-weight: 600;
     color: var(--color-brand);
