@@ -248,7 +248,10 @@
     border-color: var(--color-brand);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand) 25%, transparent);
   }
-  /* ---- Misc ---- */
+  /* ---- Reveal-on-scroll ---- */
+  .js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.js .rv.in{opacity:1;transform:none}
+
+/* ---- Misc ---- */
   .link-brand {
     font-weight: 600;
     color: var(--color-brand);

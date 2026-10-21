@@ -7,6 +7,9 @@ import { Container, Cta, Eyebrow, PageHero, Section, Split } from '@/components/
  * Follows the reference: a tinted page hero, a split statement ("Not a school
  * website builder."), then three top-rule columns (Records / Attendance /
  * Academics). Closing CTA links to contact.
+ *
+ * Elements carry the "rv" class for reveal-on-scroll animation (matching
+ * acs.md), and the CSS for .js .rv/.js .rv.in is already in globals.css.
  */
 
 type Cell = string | { text: string; on?: boolean }
@@ -58,47 +61,13 @@ function DataTable({ head, rows }: { head: string[]; rows: Cell[][] }) {
   )
 }
 
-function ResultCard({
-  title,
-  meta,
-  children,
-}: {
-  title: string
-  meta: string
-  children: React.ReactNode
-}) {
-  return (
-    <div className="rounded-result border border-line bg-white p-[clamp(18px,3vw,24px)]">
-      <h3 className="text-[20px] font-semibold leading-[1.3] tracking-[-0.01em] text-ink">{title}</h3>
-      <p className="mb-[22px] mt-2.5 text-[13px] text-copy">{meta}</p>
-      {children}
-    </div>
-  )
-}
-
-function Closer({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow: string
-  title: string
-  body: string
-}) {
-  return (
-    <div
-      className={cn(
-        'mb-6 grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)]',
-      )}
-    >
-      <div>
-        <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
-        <h2 className="text-ink">{title}</h2>
-        <p className="max-w-[520px] text-[16px] leading-[1.65] text-copy">{body}</p>
-      </div>
-    </div>
-  )
-}
+/**
+ * Features page.
+ *
+ * Uses the shared primitives (PageHero, Section, Container, Eyebrow, Cta).
+ * Feature columns have class "rv" for the reveal-on-scroll animation defined
+ * in globals.css ( .js .rv → faded/slide-up; .js .rv.in → visible ).
+ */
 
 export function FeaturesPage() {
   return (
@@ -120,7 +89,7 @@ export function FeaturesPage() {
           </Split>
 
           <div className="grid gap-6 md:grid-cols-3 md:gap-8">
-            <div>
+            <div className="rv">
               <Eyebrow>01 / Records</Eyebrow>
               <h2 className="text-ink mb-3">Know every pupil.</h2>
               <p className="text-[15px] text-copy">
@@ -137,7 +106,7 @@ export function FeaturesPage() {
               />
             </div>
 
-            <div>
+            <div className="rv">
               <Eyebrow>02 / Attendance</Eyebrow>
               <h2 className="text-ink mb-3">A clearer daily register.</h2>
               <p className="text-[15px] text-copy">
@@ -154,7 +123,7 @@ export function FeaturesPage() {
               />
             </div>
 
-            <div>
+            <div className="rv">
               <Eyebrow>03 / Academics</Eyebrow>
               <h2 className="text-ink mb-3">Make results easier to manage.</h2>
               <p className="text-[15px] text-copy">
