@@ -69,7 +69,7 @@ export default function HomePage() {
   return (
     <main id="home">
       {/* Hero — tinted band, text left, dashboard preview right. */}
-      <Section tone="tint" className="py-[clamp(48px,7vw,70px)]" aria-labelledby="hero-title">
+      <Section tone="tint" className="py-[clamp(48px,7vw,80px)]" aria-labelledby="hero-title">
         <Container className="grid items-center gap-[clamp(32px,5vw,64px)] nav:grid-cols-2">
           <div>
             <Eyebrow>Less paperwork. More clarity.</Eyebrow>
@@ -80,15 +80,21 @@ export default function HomePage() {
               Bring pupil records, attendance and academic results together with Academic Cloud System.
               A practical school management platform, built around primary schools in Uganda.
             </p>
-            <div className="mt-8 mb-7 flex flex-wrap gap-3">
-              <Button href="/get-started">Get Started</Button>
-              <Button href="/features" variant="ghost">
+            <div className="btns flex flex-wrap items-center gap-3 mb-6">
+              <a href="/contact" className="btn btn-primary">
+                Request a walkthrough
+              </a>
+              <a href="/features" className="btn btn-ghost">
                 Explore ACS
-              </Button>
+              </a>
             </div>
-            <p className="t-small max-w-[420px]">
-              For headteachers, administrators and the teachers who make every school day happen.
-            </p>
+            <div className="trust flex flex-wrap items-center gap-2 text-[13px] text-copy">
+              <span>Built for primary schools in Uganda</span>
+              <span>Designed with pupil privacy in mind</span>
+            </div>
+            <a className="wa" href="https://wa.me/256XXXXXXXXX?text=Hello%20ACS%2C%20I%27d%20like%20a%20walkthrough">
+              Or message us on WhatsApp →
+            </a>
           </div>
 
           {/* Dashboard preview */}
@@ -123,7 +129,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p className="mb-3 text-[13px] font-semibold text-ink">Today’s attendance by class</p>
+                <p className="mb-3 text-[13px] font-semibold text-ink">Today's attendance by class</p>
                 <div
                   className="grid h-[110px] grid-cols-7 items-end gap-[clamp(8px,1.4vw,14px)] border-b border-line"
                   aria-hidden="true"
