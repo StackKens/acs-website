@@ -1,5 +1,3 @@
-import type { Metadata } from 'next'
-import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import {
@@ -12,13 +10,7 @@ import {
   ReportCardPreview,
   ResultsPreview,
 } from '@/components/previews'
-
-export const metadata: Metadata = {
-  alternates: { canonical: canonical('/features') },
-  title: 'Features',
-  description:
-    'The full ACS capability catalogue — pupil records, class organisation, attendance, assessments and grading, report cards, school administration, finance, parent communication and AI assistance for teachers.',
-}
+import { Button, Container, Cta, PageHero, Section } from '@/components/ui/primitives'
 
 interface FeatureGroup {
   id: string
@@ -223,51 +215,43 @@ const previews = {
 export function FeaturesPage() {
   return (
     <main>
-      {/* Intro */}
-      <section className="container-page pb-12 pt-14 md:pt-20">
-        <p className="eyebrow">Product features</p>
-        <h1 className="t-display mt-4 max-w-[16ch] text-ink">
-          One platform for the work that runs your school.
-        </h1>
-        <p className="t-body mt-6 max-w-2xl text-copy">
-          Clear, practical tools for learner records, attendance, academics, finance, communication
-          and school administration — with intelligent assistance for teachers.
-        </p>
+      <PageHero
+        eyebrow="Product features"
+        title="One platform for the work that runs your school."
+        lead="Clear, practical tools for learner records, attendance, academics, finance, communication and school administration — with intelligent assistance for teachers."
+      >
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Link href="/get-started" className="btn-primary">
-            Get Started <ArrowRight className="ml-1 inline size-4" aria-hidden="true" />
-          </Link>
-          <Link href="/contact" className="btn-secondary">
+          <Button href="/get-started">
+            Get Started <ArrowRight className="size-4" aria-hidden="true" />
+          </Button>
+          <Button href="/contact" variant="ghost">
             Talk to our team
-          </Link>
+          </Button>
         </div>
-        <p className="mt-6 text-[13px] text-copy">
+        <p className="t-small mt-6">
           The first 20 schools receive 2 months free.{' '}
           <Link href="/pricing" className="link-brand">
             See pricing
           </Link>
         </p>
-      </section>
+      </PageHero>
 
       {/* Table of contents */}
-      <nav
-        aria-label="Feature groups"
-        className="border-y border-line bg-surface"
-      >
-        <div className="container-page py-4">
+      <nav aria-label="Feature groups" className="border-y border-line bg-surface">
+        <Container className="py-4">
           <ul className="flex flex-wrap gap-2">
             {groups.map((g) => (
               <li key={g.id}>
                 <a
                   href={`#${g.id}`}
-                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
+                  className="flex min-h-11 items-center rounded-btn border border-line bg-white px-3 text-[13px] font-medium text-copy transition-colors hover:border-brand hover:text-ink"
                 >
                   {g.title}
                 </a>
               </li>
             ))}
           </ul>
-        </div>
+        </Container>
       </nav>
 
       {/* Capability groups */}
@@ -275,17 +259,16 @@ export function FeaturesPage() {
         const Preview = previews[group.preview]
         const reversed = index % 2 === 1
         return (
-          <section
+          <Section
             key={group.id}
             id={group.id}
+            tone={index % 2 === 0 ? 'white' : 'tint'}
             aria-labelledby={`${group.id}-title`}
-            className={`scroll-mt-24 border-b border-line ${
-              index % 2 === 0 ? 'bg-white' : 'bg-surface'
-            }`}
+            className="scroll-mt-24"
           >
-            <div className="container-page py-14 md:py-16 lg:py-20">
-              <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-                <div className={reversed ? 'lg:order-2' : ''}>
+            <Container>
+              <div className="grid items-start gap-10 nav:grid-cols-2 nav:gap-16">
+                <div className={reversed ? 'nav:order-2' : ''}>
                   <p className="t-eyebrow text-brand">
                     {group.number} / {group.category}
                   </p>
@@ -323,43 +306,36 @@ export function FeaturesPage() {
                   </p>
                 </div>
 
-                <div className={reversed ? 'lg:order-1' : ''}>
+                <div className={reversed ? 'nav:order-1' : ''}>
                   <Preview />
                 </div>
               </div>
-            </div>
-          </section>
+            </Container>
+          </Section>
         )
       })}
 
       {/* Enquiry */}
-      <section aria-labelledby="features-cta-title" className="bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-center gap-8 rounded-[12px] border border-line bg-surface p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
-            <div>
-              <p className="eyebrow">Next step</p>
-              <h2 id="features-cta-title" className="t-title mt-3 text-ink">
-                Want to see this with your school’s data in mind?
-              </h2>
-              <p className="t-body mt-4 max-w-lg text-copy">
-                Tell us your school’s size and what you are trying to fix. We will walk you through
-                the platform and help you work out what to set up first.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <Link href="/contact" className="btn-primary w-full">
-                Request a demonstration
-              </Link>
-              <Link href="/how-it-works" className="btn-secondary w-full">
-                How onboarding works
-              </Link>
-              <Link href="/user-guide" className="text-center text-[14px] font-semibold text-brand hover:underline">
-                Read the user guide
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Section>
+        <Container>
+          <Cta
+            title="Want to see this with your school’s data in mind?"
+            href="/contact"
+            label="Request a demonstration"
+          />
+          <p className="t-small mt-6">
+            Prefer to read first?{' '}
+            <Link href="/how-it-works" className="link-brand">
+              See how onboarding works
+            </Link>{' '}
+            or{' '}
+            <Link href="/user-guide" className="link-brand">
+              read the user guide
+            </Link>
+            .
+          </p>
+        </Container>
+      </Section>
     </main>
   )
 }
