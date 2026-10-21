@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { DraftNotice } from './draft-notice'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/terms') },
   title: 'Terms',
   description: 'The terms on which ACS is provided to a school, as a draft for review.',
 }

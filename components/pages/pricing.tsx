@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import { ArrowRight, Check, Minus } from 'lucide-react'
@@ -12,6 +13,7 @@ import {
 } from '@/lib/pricing'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/pricing') },
   title: 'Pricing',
   description:
     'ACS pricing for Ugandan primary schools — Starter, Growth and Professional plans billed per academic term, by school size. The first 20 schools get 2 months free.',

@@ -29,7 +29,6 @@ const stateClass: Record<State, string> = {
 export function AttendancePreview() {
   return (
     <PreviewShell
-      active="Attendance"
       caption="Daily attendance register"
       note="morning session · four states kept apart"
     >

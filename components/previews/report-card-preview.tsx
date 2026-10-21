@@ -18,7 +18,6 @@ const subjects = [
 export function ReportCardPreview() {
   return (
     <PreviewShell
-      active="Reports"
       caption="Printable term report card"
       note="school-branded, batch compiled per class"
     >

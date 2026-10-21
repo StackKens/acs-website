@@ -3,3 +3,7 @@ pmOnFail: ignore
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
+
+allowBuilds:
+  # Native resolver used by the ESLint import resolver.
+  unrs-resolver: true

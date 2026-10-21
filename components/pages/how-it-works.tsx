@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import { DashboardPreview } from '@/components/previews'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/how-it-works') },
   title: 'How it works',
   description:
     'How a school gets started with ACS — the onboarding journey, what administrators can prepare in advance, and answers to the questions schools ask before signing up.',

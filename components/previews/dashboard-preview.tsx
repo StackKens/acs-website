@@ -12,7 +12,6 @@ const navItems = ['Dashboard', 'Pupils', 'Attendance', 'Performance', 'Finance',
 export function DashboardPreview() {
   return (
     <PreviewShell
-      active="Dashboard"
       caption="School overview dashboard"
       note="illustrative demo data"
     >

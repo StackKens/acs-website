@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { ACSMark } from '@/components/acs-mark'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/about') },
   title: 'About',
   description:
     'What ACS stands for, what the Academic Cloud System is for, and why it is being built around primary schools in Uganda.',

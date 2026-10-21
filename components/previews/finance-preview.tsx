@@ -13,7 +13,6 @@ const navItems = ['Dashboard', 'Pupils', 'Attendance', 'Performance', 'Finance',
 export function FinancePreview() {
   return (
     <PreviewShell
-      active="Finance"
       caption="Fee collection and pupil ledger"
       note="sequential receipts, live balances"
     >

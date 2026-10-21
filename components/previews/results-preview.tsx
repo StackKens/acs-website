@@ -20,7 +20,6 @@ const subjects = [
 export function ResultsPreview() {
   return (
     <PreviewShell
-      active="Performance"
       caption="End of Term assessment results"
       note="totals, averages and class position calculated automatically"
     >

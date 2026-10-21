@@ -12,8 +12,6 @@ import { ACSMark } from '@/components/acs-mark'
  */
 
 export interface PreviewProps {
-  /** Section highlighted in the preview's sidebar. */
-  active?: string
   /** Caption under the preview. */
   caption?: string
   /** Optional note describing what the preview illustrates. */
@@ -22,7 +20,6 @@ export interface PreviewProps {
 }
 
 export function PreviewShell({
-  active,
   caption,
   note,
   className = '',

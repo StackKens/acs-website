@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { DraftNotice } from './draft-notice'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/privacy') },
   title: 'Privacy',
   description:
     'How ACS handles the school, pupil, staff and parent information held in the platform, and the information this website collects.',

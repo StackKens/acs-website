@@ -20,7 +20,6 @@ const pupils = [
 export function PupilPreview() {
   return (
     <PreviewShell
-      active="Pupils"
       caption="Pupil registry"
       note="admission, class and linked guardian on every record"
     >

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import { canonical } from '@/lib/site'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import {
   AIPreview,
   AttendancePreview,
@@ -13,6 +14,7 @@ import {
 } from '@/components/previews'
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical('/features') },
   title: 'Features',
   description:
     'The full ACS capability catalogue — pupil records, class organisation, attendance, assessments and grading, report cards, school administration, finance, parent communication and AI assistance for teachers.',
