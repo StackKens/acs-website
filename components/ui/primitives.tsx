@@ -113,3 +113,52 @@ export function Card({
     </div>
   )
 }
+
+/**
+ * PageHero — the tinted band that opens every inner page: eyebrow, page
+ * heading and lead. Kept separate from Section so the band's tighter
+ * vertical rhythm stays consistent across pages.
+ */
+export function PageHero({
+  eyebrow,
+  title,
+  lead,
+  children,
+}: {
+  eyebrow: string
+  title: string
+  lead?: string
+  children?: ReactNode
+}) {
+  return (
+    <section className="bg-surface py-[clamp(48px,7vw,80px)]">
+      <Container>
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h1 className="t-display mb-6 max-w-[760px] text-ink">{title}</h1>
+        {lead && <p className="t-lead max-w-[520px] text-copy">{lead}</p>}
+        {children}
+      </Container>
+    </section>
+  )
+}
+
+/**
+ * Column — a three-up item with the reference's 2px primary top rule.
+ */
+export function Column({
+  label,
+  title,
+  children,
+}: {
+  label: string
+  title: string
+  children: ReactNode
+}) {
+  return (
+    <article className="border-t-2 border-brand pt-[18px]">
+      <p className="t-eyebrow mb-3.5 text-[10.5px]">{label}</p>
+      <h3 className="t-item mb-3 text-ink">{title}</h3>
+      <p className="text-[15.5px] text-copy">{children}</p>
+    </article>
+  )
+}
