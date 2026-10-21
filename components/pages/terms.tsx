@@ -1,13 +1,6 @@
-import type { Metadata } from 'next'
-import { canonical } from '@/lib/site'
 import Link from 'next/link'
+import { Container, PageHero, Section } from '@/components/ui/primitives'
 import { DraftNotice } from './draft-notice'
-
-export const metadata: Metadata = {
-  alternates: { canonical: canonical('/terms') },
-  title: 'Terms',
-  description: 'The terms on which ACS is provided to a school, as a draft for review.',
-}
 
 const sections = [
   {
@@ -72,36 +65,35 @@ const sections = [
 export function TermsPage() {
   return (
     <main>
-      <section className="container-page pb-10 pt-14 md:pt-20">
-        <p className="eyebrow">Terms of use</p>
-        <h1 className="t-display mt-4 max-w-[16ch] text-ink">The terms on which ACS is provided.</h1>
-        <p className="t-body mt-6 max-w-2xl text-copy">
-          A plain-language draft of the terms a school accepts when it uses ACS. It is published so it
-          can be read before anyone signs up.
-        </p>
+      <PageHero
+        eyebrow="Terms of use"
+        title="The terms on which ACS is provided."
+        lead="A plain-language draft of the terms a school accepts when it uses ACS. It is published so it can be read before anyone signs up."
+      >
         <div className="mt-8">
           <DraftNotice document="terms of use" />
         </div>
-      </section>
+      </PageHero>
 
-      <section aria-labelledby="terms-content-title" className="container-page max-w-[880px] pb-20">
-        <h2 id="terms-content-title" className="sr-only">
-          Terms of use draft
-        </h2>
-        <nav aria-label="Sections" className="border-y border-line py-4">
-          <ul className="flex flex-wrap gap-2">
-            {sections.map((s) => (
-              <li key={s.id}>
-                <a
-                  href={`#${s.id}`}
-                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
-                >
-                  {s.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <Section aria-labelledby="terms-content-title">
+        <Container className="max-w-[880px]">
+          <h2 id="terms-content-title" className="sr-only">
+            Terms of use draft
+          </h2>
+          <nav aria-label="Sections" className="border-y border-line py-4">
+            <ul className="flex flex-wrap gap-2">
+              {sections.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    className="flex min-h-11 items-center rounded-btn border border-line bg-white px-3 text-[13px] font-medium text-copy transition-colors hover:border-brand hover:text-ink"
+                  >
+                    {s.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
         <div className="mt-10 space-y-10">
           {sections.map((s) => (
@@ -127,7 +119,8 @@ export function TermsPage() {
             if a school needs this clarified before signing up.
           </p>
         </div>
-      </section>
+        </Container>
+      </Section>
     </main>
   )
 }

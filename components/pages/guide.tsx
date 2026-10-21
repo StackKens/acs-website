@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PageIntro, CTA } from './shared'
+import { Container, Cta, PageHero, Section } from '@/components/ui/primitives'
 import { appLoginUrl } from '@/lib/site'
 
 /**
@@ -360,56 +360,67 @@ const sections: GuideSection[] = [
 export function GuidePage() {
   return (
     <>
-      <PageIntro
+      <PageHero
         eyebrow="User guide"
         title="How ACS works, step by step."
-        description="The guide ACS shows inside the platform — written for schools, teachers, parents and administrators. Every section describes what the system actually does."
+        lead="The guide ACS shows inside the platform — written for schools, teachers, parents and administrators. Every section describes what the system actually does."
       />
-      <section className="container-page max-w-[880px] pb-16">
-        <nav
-          aria-label="Guide sections"
-          className="flex flex-wrap gap-2 border-y border-line py-4"
-        >
-          {sections.map((section) => (
-            <a
-              key={section.id}
-              href={`#${section.id}`}
-              className="rounded-[7px] border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
-            >
-              {section.title}
-            </a>
-          ))}
-        </nav>
-        <div className="mt-10 space-y-5">
-          {sections.map((section) => (
-            <article
-              key={section.id}
-              id={section.id}
-              className="scroll-mt-24 rounded-[10px] border border-line bg-white p-6 sm:p-8"
-            >
-              <h2 className="t-item text-ink">{section.title}</h2>
-              <p className="mt-3 text-[15px] leading-7 text-copy">{section.intro}</p>
-              <div className="mt-6 space-y-5 border-t border-line pt-5">
-                {section.points.map((point) => (
-                  <div key={point.heading}>
-                    <h3 className="text-[15px] font-semibold text-ink">{point.heading}</h3>
-                    <p className="mt-1.5 text-[15px] leading-7 text-copy">{point.body}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-        <p className="mt-8 text-[15px] leading-7 text-copy">
-          Already using ACS? The same guide lives inside the app under <strong>Guide</strong> in
-          your sidebar.{' '}
-          <Link href={appLoginUrl} className="link-brand">
-            Sign in
-          </Link>{' '}
-          to open it.
-        </p>
-      </section>
-      <CTA />
+      <Section>
+        <Container className="max-w-[880px]">
+          <nav
+            aria-label="Guide sections"
+            className="flex flex-wrap gap-2 border-y border-line py-4"
+          >
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className="flex min-h-11 items-center rounded-btn border border-line bg-white px-3.5 text-[13px] font-medium text-copy transition-colors hover:border-brand hover:text-ink"
+              >
+                {section.title}
+              </a>
+            ))}
+          </nav>
+          <div className="mt-10 space-y-5">
+            {sections.map((section) => (
+              <article
+                key={section.id}
+                id={section.id}
+                className="scroll-mt-24 rounded-hero border border-line bg-white p-6 sm:p-8"
+              >
+                <h2 className="t-item text-ink">{section.title}</h2>
+                <p className="mt-3 text-[15px] leading-7 text-copy">{section.intro}</p>
+                <div className="mt-6 space-y-5 border-t border-line pt-5">
+                  {section.points.map((point) => (
+                    <div key={point.heading}>
+                      <h3 className="text-[15px] font-semibold text-ink">{point.heading}</h3>
+                      <p className="mt-1.5 text-[15px] leading-7 text-copy">{point.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-[15px] leading-7 text-copy">
+            Already using ACS? The same guide lives inside the app under <strong>Guide</strong> in
+            your sidebar.{' '}
+            <Link href={appLoginUrl} className="link-brand">
+              Sign in
+            </Link>{' '}
+            to open it.
+          </p>
+        </Container>
+      </Section>
+      <Section>
+        <Container>
+          <Cta
+            title="Ready to simplify your school management?"
+            href="/get-started"
+            label="Get Started"
+          />
+          <p className="t-small mt-6">The first 20 schools receive 2 months free.</p>
+        </Container>
+      </Section>
     </>
   )
 }

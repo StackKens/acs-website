@@ -8,10 +8,10 @@ export default function Page() {
     window.location.replace(appLoginUrl)
   }, [])
   return (
-    <main className="mx-auto max-w-[480px] px-5 py-24 text-center sm:px-8">
-      <p className="text-sm text-[#617281]">
+    <main className="mx-auto flex min-h-screen max-w-[480px] flex-col justify-center px-5 py-24 text-center">
+      <p className="text-[13px] text-copy">
         Taking you to the login page…{' '}
-        <a className="underline underline-offset-4" href={appLoginUrl}>
+        <a className="link-brand" href={appLoginUrl}>
           Continue
         </a>
       </p>
