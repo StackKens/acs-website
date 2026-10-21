@@ -1,15 +1,7 @@
-import type { Metadata } from 'next'
-import { canonical } from '@/lib/site'
 import Link from 'next/link'
 import { ArrowRight, Check } from 'lucide-react'
 import { DashboardPreview } from '@/components/previews'
-
-export const metadata: Metadata = {
-  alternates: { canonical: canonical('/how-it-works') },
-  title: 'How it works',
-  description:
-    'How a school gets started with ACS — the onboarding journey, what administrators can prepare in advance, and answers to the questions schools ask before signing up.',
-}
+import { Button, Container, Cta, Eyebrow, PageHero, Section } from '@/components/ui/primitives'
 
 /**
  * The adoption journey.
@@ -86,61 +78,57 @@ const questions = [
 export function HowItWorksPage() {
   return (
     <main>
-      <section className="container-page pb-12 pt-14 md:pt-20">
-        <p className="eyebrow">How it works</p>
-        <h1 className="t-display mt-4 max-w-[18ch] text-ink">Getting your school onto ACS.</h1>
-        <p className="t-body mt-6 max-w-2xl text-copy">
-          Starting with a new system is real work, so here is honestly what it involves — the
-          conversation, the setup, and what your team will need to bring.
-        </p>
+      <PageHero
+        eyebrow="How it works"
+        title="Getting your school onto ACS."
+        lead="Starting with a new system is real work, so here is honestly what it involves — the conversation, the setup, and what your team will need to bring."
+      >
         <div className="mt-8 flex flex-wrap items-center gap-3">
-          <Link href="/contact" className="btn-primary">
-            Start a conversation <ArrowRight className="ml-1 inline size-4" aria-hidden="true" />
-          </Link>
-          <Link href="/get-started" className="btn-secondary">
+          <Button href="/contact">
+            Start a conversation <ArrowRight className="size-4" aria-hidden="true" />
+          </Button>
+          <Button href="/get-started" variant="ghost">
             Get started
-          </Link>
+          </Button>
         </div>
-      </section>
+      </PageHero>
 
       {/* Journey */}
-      <section aria-labelledby="journey-title" className="border-y border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-start gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+      <Section tone="tint" aria-labelledby="journey-title">
+        <Container>
+          <div className="grid items-start gap-10 nav:grid-cols-2 nav:gap-16">
             <div>
-              <h2 id="journey-title" className="t-title text-ink">
+              <h2 id="journey-title" className="text-ink">
                 Four steps from first contact to the school day.
               </h2>
               <ol className="mt-8 border-t border-line">
                 {journey.map((step) => (
                   <li key={step.n} className="border-b border-line py-6">
-                    <p className="text-[14px] font-semibold text-brand">{step.n}</p>
+                    <p className="text-[11px] font-semibold tracking-[0.13em] text-brand">{step.n}</p>
                     <h3 className="t-item mt-2 text-ink">{step.title}</h3>
-                    <p className="mt-2 text-[15px] leading-6 text-copy">{step.body}</p>
-                    <p className="mt-3 border-l-2 border-line pl-3 text-[13px] leading-6 text-copy">
-                      {step.detail}
-                    </p>
+                    <p className="mt-2 text-[15px] text-copy">{step.body}</p>
+                    <p className="mt-3 border-l-2 border-line pl-3 text-[13px] text-copy">{step.detail}</p>
                   </li>
                 ))}
               </ol>
             </div>
-            <div className="lg:sticky lg:top-24">
+            <div className="nav:sticky nav:top-24">
               <DashboardPreview />
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* Preparation */}
-      <section aria-labelledby="prepare-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <Section aria-labelledby="prepare-title">
+        <Container>
+          <div className="grid gap-10 nav:grid-cols-[0.9fr_1.1fr] nav:gap-16">
             <div>
-              <p className="eyebrow">Before you start</p>
-              <h2 id="prepare-title" className="t-title mt-3 text-ink">
+              <Eyebrow>Before you start</Eyebrow>
+              <h2 id="prepare-title" className="mt-3 text-ink">
                 What an administrator can prepare in advance.
               </h2>
-              <p className="t-body mt-4 max-w-md text-copy">
+              <p className="mt-4 max-w-md text-copy">
                 Having these ready makes setup much faster. None of them need to be perfect — they
                 just need to be good enough to start from.
               </p>
@@ -149,25 +137,25 @@ export function HowItWorksPage() {
               {prepare.map((item) => (
                 <li key={item} className="card card-pad flex gap-3">
                   <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
-                  <span className="text-[15px] leading-6 text-copy">{item}</span>
+                  <span className="text-[15px] text-copy">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* FAQ */}
-      <section aria-labelledby="onboarding-faq-title" className="border-b border-line bg-surface">
-        <div className="container-page max-w-[880px] py-14 md:py-16 lg:py-20">
-          <p className="eyebrow">Before you commit</p>
-          <h2 id="onboarding-faq-title" className="t-title mt-3 text-ink">
+      <Section tone="tint" aria-labelledby="onboarding-faq-title">
+        <Container className="max-w-[880px]">
+          <Eyebrow>Before you commit</Eyebrow>
+          <h2 id="onboarding-faq-title" className="mt-3 text-ink">
             Questions schools ask before signing up.
           </h2>
           <div className="mt-8 border-t border-line">
             {questions.map((item) => (
               <details key={item.q} className="group border-b border-line">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-ink transition-colors hover:text-brand [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-ink transition-colors hover:text-brand [&::-webkit-details-marker]:hidden">
                   {item.q}
                   <span aria-hidden="true" className="text-xl font-normal text-brand group-open:hidden">
                     +
@@ -188,30 +176,20 @@ export function HowItWorksPage() {
               Ask us something else
             </Link>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* CTA */}
-      <section aria-labelledby="how-cta-title" className="bg-ink text-white">
-        <div className="container-page flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-16">
-          <div>
-            <h2 id="how-cta-title" className="t-title text-white">
-              Ready when you are.
-            </h2>
-            <p className="t-body mt-3 max-w-md text-white/75">
-              Tell us about your school and we will walk you through the rest.
-            </p>
-          </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
-            <Link href="/contact" className="btn-on-dark">
-              Contact us
-            </Link>
-            <Link href="/pricing" className="btn border border-white/30 bg-transparent text-white hover:bg-white/10">
+      <Section>
+        <Container>
+          <Cta title="Ready when you are." href="/contact" label="Contact us" />
+          <p className="t-small mt-6">
+            <Link href="/pricing" className="link-brand">
               See pricing
             </Link>
-          </div>
-        </div>
-      </section>
+          </p>
+        </Container>
+      </Section>
     </main>
   )
 }
