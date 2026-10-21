@@ -29,7 +29,7 @@ export function PreviewShell({
   children,
 }: PreviewProps & { children: ReactNode }) {
   return (
-    <figure className={`preview-frame ${className}`}>
+    <figure className={`preview-frame @container ${className}`}>
       <div className="preview-panel">
         <div className="flex items-center gap-2.5 border-b border-line px-4 py-3">
           <ACSMark size={22} className="shrink-0" title={null} />
@@ -54,10 +54,13 @@ export function PreviewShell({
   )
 }
 
-/** Left navigation rail inside a preview. */
+/** Left navigation rail inside a preview. Hidden in narrow containers. */
 export function PreviewNav({ items, active }: { items: string[]; active: string }) {
   return (
-    <nav aria-hidden="true" className="hidden w-[136px] shrink-0 border-r border-line bg-surface-raised px-2.5 py-3 sm:block">
+    <nav
+      aria-hidden="true"
+      className="hidden w-[124px] shrink-0 border-r border-line bg-surface-raised px-2.5 py-3 @min-[440px]:block"
+    >
       <ul className="space-y-0.5">
         {items.map((item) => (
           <li
