@@ -15,7 +15,7 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
-export default function Header() {
+export function Header() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -87,6 +87,8 @@ export default function Header() {
     </header>
   )
 }
+
+export default Header
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
