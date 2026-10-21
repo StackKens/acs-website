@@ -1,12 +1,11 @@
-import { Container, Cta, PageHero, Section, Split } from '@/components/ui/primitives'
+import { cn } from '@/lib/utils'
+import { Container, Cta, PageHero, Section } from '@/components/ui/primitives'
 
 /**
  * How it works page.
  *
- * Follows the reference: a tinted page hero, the four onboarding steps on
- * a 2px rule grid, a tinted "before we talk" band with a short list, and
- * the closing call to action. Nothing here promises instant setup — the
- * first step is a conversation.
+ * Follows the reference: a tinted page hero, the four onboarding steps (conversation,
+ * explore, prepare, begin), and the closing call to action.
  */
 
 const steps = [
@@ -32,12 +31,6 @@ const steps = [
   },
 ]
 
-const prep = [
-  'How many classes and pupils your school has',
-  'Who would use the system: headteacher, administrators, teachers',
-  'Which of records, attendance and results matter most first',
-]
-
 export function HowItWorksPage() {
   return (
     <main>
@@ -60,29 +53,6 @@ export function HowItWorksPage() {
               </article>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      <Section tone="tint">
-        <Container>
-          <Split eyebrow="Before we talk" title="What is helpful to have in mind.">
-            You do not need anything formal. A rough picture of your school is enough to start.
-          </Split>
-
-          <ul className="mt-6 grid gap-3.5 text-copy">
-            {prep.map((item) => (
-              <li
-                key={item}
-                className="relative pl-[22px] before:absolute before:left-0 before:top-[0.65em] before:h-0.5 before:w-2 before:bg-brand before:content-['']"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-6 text-[13px] text-copy">
-            Please do not include sensitive pupil information in an initial enquiry.
-          </p>
         </Container>
       </Section>
 

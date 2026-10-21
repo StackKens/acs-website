@@ -1,13 +1,12 @@
 import { cn } from '@/lib/utils'
-import { Container, Cta, Eyebrow, PageHero, Section } from '@/components/ui/primitives'
+import { Container, Cta, Eyebrow, PageHero, Section, Split } from '@/components/ui/primitives'
 
 /**
  * Features page.
  *
- * Follows the reference: a tinted page hero, four "closer" panels that pair
- * a short claim with a sample of the screen it describes, then the closing
- * call to action. The sample tables and conversation use placeholder data
- * and say so, because nothing here is a live school.
+ * Follows the reference: a tinted page hero, a split statement ("Not a school
+ * website builder."), then three top-rule columns (Records / Attendance /
+ * Academics). Closing CTA links to contact.
  */
 
 type Cell = string | { text: string; on?: boolean }
@@ -43,7 +42,7 @@ function DataTable({ head, rows }: { head: string[]; rows: Cell[][] }) {
                     className={cn(
                       'p-[16px_12px] tabular-nums',
                       cellIndex === 0 ? 'text-left' : 'text-right',
-                      rowIndex === rows.length - 1 ? 'border-b-0' : 'border-b border-line',
+                      rowIndex === row.length - 1 ? 'border-b-0' : 'border-b border-line',
                       on ? 'font-semibold text-brand' : 'text-copy',
                     )}
                   >
@@ -81,28 +80,22 @@ function Closer({
   eyebrow,
   title,
   body,
-  flip = false,
-  children,
 }: {
   eyebrow: string
   title: string
   body: string
-  flip?: boolean
-  children: React.ReactNode
 }) {
   return (
     <div
       className={cn(
         'mb-6 grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)]',
-        flip ? 'nav:grid-cols-[7fr_5fr]' : 'nav:grid-cols-[5fr_7fr]',
       )}
     >
       <div>
         <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
-        <h2 className="t-title mb-5 text-ink">{title}</h2>
+        <h2 className="text-ink">{title}</h2>
         <p className="max-w-[520px] text-[16px] leading-[1.65] text-copy">{body}</p>
       </div>
-      <div className={cn(flip && 'nav:order-first')}>{children}</div>
     </div>
   )
 }
@@ -118,12 +111,22 @@ export function FeaturesPage() {
 
       <Section>
         <Container>
-          <Closer
-            eyebrow="01 / Records"
-            title="Know every pupil."
-            body="Keep pupil information structured and accessible, rather than spread across books and disconnected files."
+          <Split
+            eyebrow="The school day, connected"
+            title="Less scattered information. More room to focus."
           >
-            <ResultCard title="Pupil records" meta="Primary 5 · Sample data">
+            From the morning register to end-of-term reports, ACS is being built to bring
+            everyday academic work into one organized place.
+          </Split>
+
+          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+            <div>
+              <Eyebrow>01 / Records</Eyebrow>
+              <h2 className="text-ink mb-3">Know every pupil.</h2>
+              <p className="text-[15px] text-copy">
+                Keep pupil information structured and accessible, rather than spread across
+                books and disconnected files.
+              </p>
               <DataTable
                 head={['Pupil', 'Class', 'Stream']}
                 rows={[
@@ -132,16 +135,15 @@ export function FeaturesPage() {
                   ['Pupil 003', 'P5', 'B'],
                 ]}
               />
-            </ResultCard>
-          </Closer>
+            </div>
 
-          <Closer
-            flip
-            eyebrow="02 / Attendance"
-            title="A clearer daily register."
-            body="Bring recording and reviewing attendance into a consistent workflow for teachers and school administrators."
-          >
-            <ResultCard title="Morning register" meta="Primary 4 · Sample data">
+            <div>
+              <Eyebrow>02 / Attendance</Eyebrow>
+              <h2 className="text-ink mb-3">A clearer daily register.</h2>
+              <p className="text-[15px] text-copy">
+                Bring recording and reviewing attendance into a consistent workflow for
+                teachers and school administrators.
+              </p>
               <DataTable
                 head={['Pupil', 'Status']}
                 rows={[
@@ -150,18 +152,15 @@ export function FeaturesPage() {
                   ['Pupil 003', 'Absent'],
                 ]}
               />
-            </ResultCard>
-          </Closer>
+            </div>
 
-          <Closer
-            eyebrow="03 / Academics"
-            title="Make results easier to manage."
-            body="Organize assessment marks and examination results to support review and the preparation of pupil report cards."
-          >
-            <ResultCard
-              title="Academic results"
-              meta="Primary 5 · End of Term II · Sample data"
-            >
+            <div>
+              <Eyebrow>03 / Academics</Eyebrow>
+              <h2 className="text-ink mb-3">Make results easier to manage.</h2>
+              <p className="text-[15px] text-copy">
+                Organize assessment marks and examination results to support review and the
+                preparation of pupil report cards.
+              </p>
               <DataTable
                 head={['Pupil', 'ENG', 'MTC', 'SCI']}
                 rows={[
@@ -170,50 +169,14 @@ export function FeaturesPage() {
                   ['Pupil 003', '72', '80', '75'],
                 ]}
               />
-            </ResultCard>
-          </Closer>
-
-          <Closer
-            flip
-            eyebrow="04 / AI assistant"
-            title="An assistant for teachers."
-            body="Give teachers a helping hand with everyday writing, such as report card comments and lesson notes. Teachers stay in charge and review every draft before it is used."
-          >
-            <ResultCard title="AI assistant" meta="Sample conversation · Sample data">
-              <div className="grid gap-3 text-[14px] leading-[1.55]">
-                <div className="max-w-[92%] justify-self-end rounded-[10px] bg-surface p-[12px_14px] text-ink">
-                  <small className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-copy">
-                    Teacher
-                  </small>
-                  Suggest a report card comment for Pupil 001 based on this term’s marks.
-                </div>
-                <div className="max-w-[92%] rounded-[10px] border border-line-soft bg-white p-[12px_14px] text-copy">
-                  <small className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-brand">
-                    Assistant
-                  </small>
-                  Pupil 001 has made steady progress this term, with strong results in Mathematics
-                  (84) and Science (81). Continued reading practice will help lift English further.
-                </div>
-              </div>
-              <p className="mt-4 text-[12px] text-copy">
-                Drafts are suggestions for the teacher to review and edit.
-              </p>
-            </ResultCard>
-          </Closer>
-
-          <p className="t-small">
-            Design preview only. Confirm available modules and workflows with the ACS team.
-          </p>
+            </div>
+          </div>
         </Container>
       </Section>
 
       <Section>
         <Container>
-          <Cta
-            title="A more organized school starts with a conversation."
-            href="/contact"
-            label="Get Started"
-          />
+          <Cta title="A more organized school starts with a conversation." href="/contact" label="Get Started" />
         </Container>
       </Section>
     </main>
