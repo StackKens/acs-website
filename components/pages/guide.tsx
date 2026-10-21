@@ -374,7 +374,7 @@ export function GuidePage() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="rounded-[7px] border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-brand-ring hover:text-ink"
+              className="rounded-[7px] border border-line bg-white px-3.5 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
             >
               {section.title}
             </a>

@@ -11,7 +11,7 @@ export function DraftNotice({ document }: { document: string }) {
   return (
     <div
       role="note"
-      className="mb-10 rounded-[10px] border border-brand-ring bg-brand-soft p-5"
+      className="mb-10 rounded-[10px] border border-line bg-surface p-5"
     >
       <p className="t-eyebrow text-brand">Draft — not yet in force</p>
       <p className="mt-2 text-[14px] leading-6 text-ink">

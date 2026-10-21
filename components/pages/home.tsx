@@ -1,653 +1,369 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
-import {
-  AIPreview,
-  AttendancePreview,
-  DashboardPreview,
-  FinancePreview,
-  ParentPreview,
-  ReportCardPreview,
-  ResultsPreview,
-} from '@/components/previews'
+import { ACSMark } from '@/components/acs-mark'
+import { EnquiryForm } from '@/components/pages/enquiry-form'
+import { Button, Card, Container, Eyebrow, Section } from '@/components/ui/primitives'
 import { pricingPlans } from '@/lib/pricing'
 
 /**
  * Homepage.
  *
- * The narrative: what ACS is, what problem it solves, what it offers,
- * who it is for, how a school gets started, the real pricing, and how
- * to make contact. Every claim is taken from the platform's own
- * documentation — see components/pages/guide.tsx for the permission
- * model and lib/pricing.ts for prices. No invented statistics,
- * testimonials or customers appear here.
+ * Layout and copy follow the approved reference in acs.md section for
+ * section: tinted hero, three connected-work columns, a closer look with a
+ * real results table, four onboarding steps, one pricing card, the Uganda
+ * note, the enquiry form and a single-line footer.
+ *
+ * The only departure from the reference is the pricing panel, which shows
+ * the real per-term prices from lib/pricing.ts instead of a placeholder.
  */
 
-const problems = [
+const connected = [
   {
-    n: '01',
-    title: 'Records live in too many places',
-    body: 'Admission books, scattered spreadsheets and loose mark sheets make simple questions — “who owes fees?”, “who missed this week?” — slow to answer.',
+    label: '01 / Records',
+    title: 'Know every pupil.',
+    body: 'Keep pupil information structured and accessible, rather than spread across books and disconnected files.',
   },
   {
-    n: '02',
-    title: 'Routine work eats teaching time',
-    body: 'Taking registers, totalling marks by hand and writing out report cards term after term pulls teachers away from the classroom.',
+    label: '02 / Attendance',
+    title: 'A clearer daily register.',
+    body: 'Bring recording and reviewing attendance into a consistent workflow for teachers and school administrators.',
   },
   {
-    n: '03',
-    title: 'Parents hear things late',
-    body: 'Fee balances, results and announcements travel by word of mouth. When information is hard to reach, trust is hard to build.',
-  },
-]
-
-const capabilities = [
-  {
-    n: '01',
-    title: 'Academics & pupils',
-    body: 'The daily teaching record: who is enrolled, who is present, and how each learner is progressing.',
-    items: [
-      'Pupil registry with class, stream and guardian links',
-      'Morning and afternoon digital roll call',
-      'BOT, MOT and EOT assessments with automatic totals and ranks',
-      'Print-ready term report cards with school branding',
-      'AI help with exercises, quizzes and revision for Primary 1–7',
-    ],
-    who: 'Class teachers, head teachers and school leaders.',
-  },
-  {
-    n: '02',
-    title: 'Finance & administration',
-    body: 'Money in, recorded properly: clear fee structures, live balances and an audit trail on sensitive actions.',
-    items: [
-      'Fee structures per class and term',
-      'Partial payments with sequential, permanent receipts',
-      'Pupil statements and finance reports',
-      'Staff records with role-based access',
-      'An isolated, backed-up workspace per school',
-    ],
-    who: 'Administrators, bursars and finance officers.',
-  },
-  {
-    n: '03',
-    title: 'Communication & records',
-    body: 'Keep families in the loop and the school’s history intact, without retyping anything.',
-    items: [
-      'SMS announcements by class, stream or whole school',
-      'Personalised fee-balance reminders to guardians',
-      'Parent portal with attendance, released results and fees',
-      'School reports for enrolment, attendance and performance',
-      'Audit log of who changed what, and when',
-    ],
-    who: 'The school office, teachers and parents.',
-  },
-]
-
-const roles = [
-  {
-    title: 'For administrators',
-    body: 'School-wide enrolment, attendance, performance, structure and finance from one dashboard.',
-    items: [
-      'Academic years, terms, streams, subjects and classes',
-      'Fee structures and per-pupil collection',
-      'Result releases and printable report cards',
-      'Audit log behind every sensitive change',
-    ],
-  },
-  {
-    title: 'For teachers',
-    body: 'Scoped to your classes: your pupils, your registers, your marks.',
-    items: [
-      'Morning and afternoon attendance in seconds',
-      'Marks entry for assigned class and subject only',
-      'AI-drafted P1–P7 material — reviewed by you before use',
-      'Office announcements at a glance',
-    ],
-  },
-  {
-    title: 'For parents',
-    body: 'One portal per family, signed in with the phone number your school registered.',
-    items: [
-      'Daily attendance as the school recorded it',
-      'Results only once the school releases them',
-      'Fee balances recorded by the school office',
-      'Class and school announcements in one inbox',
-    ],
+    label: '03 / Academics',
+    title: 'Make results easier to manage.',
+    body: 'Organize assessment marks and examination results to support review and the preparation of pupil report cards.',
   },
 ]
 
 const steps = [
   {
     n: '01',
-    title: 'Request access',
-    body: 'Tell us about your school through the signup form. Every request is reviewed by the ACS team — the first 20 schools start with 2 months free.',
+    title: 'Let’s talk.',
+    body: 'Share how your school works and what you want to organize.',
   },
   {
     n: '02',
-    title: 'Set up your school',
-    body: 'With our help, an administrator creates the academic year and terms, then streams, subjects, classes and staff accounts.',
+    title: 'Explore the fit.',
+    body: 'Discuss available features, pricing and onboarding needs.',
   },
   {
     n: '03',
-    title: 'Bring everyone in',
-    body: 'Enrol pupils, link parents and guardians, and create fee structures so pupil accounts bill correctly from day one.',
+    title: 'Get prepared.',
+    body: 'Agree on the school information and users needed for setup.',
   },
   {
     n: '04',
-    title: 'Run the term in ACS',
-    body: 'Take attendance, enter marks, collect fees, publish reports and message parents — all from each person’s own portal.',
+    title: 'Bring work together.',
+    body: 'Begin using the agreed modules for your school’s daily work.',
   },
 ]
 
-const differences = [
-  {
-    title: 'Teachers stay in control',
-    body: 'AI drafts exercises and revision material; teachers review and edit everything before it reaches a classroom.',
-  },
-  {
-    title: 'Missing means missing',
-    body: 'A mark that was never entered is shown as missing — never counted as zero — so averages reflect real work.',
-  },
-  {
-    title: 'Released results are final',
-    body: 'Once results or report cards are released, they cannot be edited. Corrections happen through new records, which is what makes them trustworthy.',
-  },
-  {
-    title: 'Everyone sees their own job',
-    body: 'Administrators, head teachers, teachers, finance officers and parents each get the tools for their role — nothing more, nothing less.',
-  },
+const results = [
+  { pupil: 'Pupil 001', eng: '78', mtc: '84', sci: '81' },
+  { pupil: 'Pupil 002', eng: '85', mtc: '76', sci: '89' },
+  { pupil: 'Pupil 003', eng: '72', mtc: '80', sci: '75' },
 ]
 
-const faqs = [
-  {
-    q: 'What is ACS?',
-    a: 'ACS (Academic Cloud System) keeps a school’s pupils, attendance, results, fees and communication in one connected system. Staff work in the school portal, parents and guardians use the parent portal, and every school operates in its own private workspace.',
-  },
-  {
-    q: 'Who can use ACS?',
-    a: 'Administrators, head teachers, teachers and finance officers use the school portal; parents and guardians use the parent portal. Accounts are created by the school — public registration is closed, so staff and parents get access through their school.',
-  },
-  {
-    q: 'How does a school get started?',
-    a: 'Send a request through the signup form and the ACS team will review it and help set up your workspace. The first 20 schools receive 2 months free on their selected plan. Waiting on a request? Call +256 755 038 100 or +256 707 764 215, or email stackkens@gmail.com.',
-  },
-  {
-    q: 'Which school activities does ACS support?',
-    a: 'Pupil and class management, daily attendance, assessments (BOT, MOT, EOT) with totals and ranks, printable term report cards, fee structures with payments and receipts, SMS announcements, and AI assistance for creating primary-school exercises, quizzes and revision material.',
-  },
-  {
-    q: 'Can parents access ACS?',
-    a: 'Yes. Parents sign in with the school name, the phone number the school registered, and a password. They can follow each child’s attendance, released results, fee balance and school announcements. Results only appear once released by the school, and payments are made at the school office — ACS does not take online payments.',
-  },
-  {
-    q: 'How does ACS handle different user roles?',
-    a: 'Administrators set up the school and manage records. Head teachers share most tools but cannot create staff records or the academic structure. Teachers work within their assigned classes and subjects. Finance officers own fee collection. Sensitive actions — releases, reversals, deactivations — are recorded in an audit trail.',
-  },
-  {
-    q: 'How can a school request a demonstration or more information?',
-    a: 'Use the contact page to ask about the product, pricing, onboarding or support, and the team will respond using the contact details you provide.',
-  },
-]
-
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-}
-
-function SectionHead({ eyebrow, title, intro }: { eyebrow: string; title: string; intro?: string }) {
-  return (
-    <div className="max-w-2xl">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="t-title mt-3 text-ink">{title}</h2>
-      {intro && <p className="t-body mt-4 text-copy">{intro}</p>}
-    </div>
-  )
-}
+const formatUGX = (value: number) =>
+  `UGX ${new Intl.NumberFormat('en-UG', { maximumFractionDigits: 0 }).format(value)}`
 
 export default function HomePage() {
   return (
-    <main>
-      {/* Announcement */}
-      <div className="border-b border-line bg-brand-soft px-6 py-2.5 text-center text-[13px] leading-6 text-ink-soft md:px-8 lg:px-12">
-        Launching ACS — <strong className="font-semibold text-ink">first 20 schools get 2 months free.</strong>{' '}
-        <Link className="link-brand" href="/get-started">
-          Claim your free trial
-        </Link>
-      </div>
-
-      {/* Hero — split layout with a real ACS product preview */}
-      <section aria-labelledby="hero-title" className="container-page pb-16 pt-12 md:pt-16 lg:pb-20 lg:pt-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+    <main id="home">
+      {/* Hero — tinted band, text left, dashboard preview right. */}
+      <Section tone="tint" className="py-[clamp(48px,7vw,70px)]" aria-labelledby="hero-title">
+        <Container className="grid items-center gap-[clamp(32px,5vw,64px)] nav:grid-cols-2">
           <div>
-            <p className="eyebrow">Academic Cloud System</p>
-            <h1 id="hero-title" className="t-display mt-4 max-w-[13ch] text-ink">
+            <Eyebrow>Less paperwork. More clarity.</Eyebrow>
+            <h1 id="hero-title" className="t-display text-ink">
               Your school. Better organized.
             </h1>
-            <p className="t-body mt-6 max-w-[46ch] text-copy">
+            <p className="t-lead mt-6 max-w-[460px] text-copy">
               Bring pupil records, attendance and academic results together with Academic Cloud System.
               A practical school management platform, built around primary schools in Uganda.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link className="btn-primary" href="/get-started">
-                Get Started <ArrowRight className="ml-1 inline size-4" aria-hidden="true" />
-              </Link>
-              <Link className="btn-secondary" href="/features">
+            <div className="mt-8 mb-7 flex flex-wrap gap-3">
+              <Button href="/get-started">Get Started</Button>
+              <Button href="/features" variant="ghost">
                 Explore ACS
-              </Link>
+              </Button>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-5 text-[13px] text-copy">
-              {['Isolated school workspaces', 'Role-based access', 'Daily backups', 'Teacher-reviewed AI'].map((t) => (
-                <li key={t} className="flex items-center gap-2">
-                  <Check className="size-3.5 shrink-0 text-brand" aria-hidden="true" />
-                  {t}
-                </li>
-              ))}
-            </ul>
+            <p className="t-small max-w-[420px]">
+              For headteachers, administrators and the teachers who make every school day happen.
+            </p>
           </div>
 
-          <DashboardPreview />
-        </div>
-      </section>
-
-      {/* What ACS does */}
-      <section id="what-it-does" aria-labelledby="does-title" className="border-y border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-            <div className="lg:self-center">
-              <p className="eyebrow">What ACS does</p>
-              <h2 id="does-title" className="t-title mt-3 text-ink">
-                One connected record of your school.
-              </h2>
-              <p className="t-body mt-4 max-w-md text-copy">
-                ACS is built around the term. Pupils, staff, classes, attendance, assessments, fees,
-                reports and parent communication are all recorded against your own school, and read
-                back in the form your team actually needs.
-              </p>
-              <div className="mt-8 space-y-3">
-                {[
-                  'Each school works in its own isolated workspace',
-                  'Administrators, head teachers, teachers, finance officers and parents each get their own view',
-                  'Records that are released cannot be quietly edited afterwards',
-                ].map((item) => (
-                  <p key={item} className="flex items-start gap-2.5 text-[15px] leading-6 text-copy">
-                    <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
-                    {item}
-                  </p>
-                ))}
-              </div>
-            </div>
-            <div className="grid gap-6">
-              <AttendancePreview />
-              <ResultsPreview />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem */}
-      <section aria-labelledby="why-title" className="border-b border-line">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <SectionHead
-            eyebrow="Why ACS"
-            title="School paperwork was never the job."
-            intro="Most schools don’t struggle for lack of effort — they struggle because essential information is fragmented, routine processes take too long, and keeping everyone informed is genuinely hard."
-          />
-          <div className="mt-10 border-t border-line">
-            {problems.map((p) => (
-              <div
-                key={p.n}
-                className="grid gap-2 border-b border-line-soft py-6 sm:grid-cols-[56px_1fr] sm:gap-6"
-              >
-                <p className="text-[14px] font-semibold text-brand">{p.n}</p>
-                <div>
-                  <h3 className="t-item text-ink">{p.title}</h3>
-                  <p className="mt-2 max-w-2xl text-[15px] leading-6 text-copy">{p.body}</p>
+          {/* Dashboard preview */}
+          <div className="preview-frame">
+            <Card className="overflow-hidden rounded-hero">
+              <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3.5">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <ACSMark size={22} className="shrink-0" title={null} />
+                  <span className="truncate text-[13.5px] text-copy">Demo Primary School</span>
                 </div>
+                <em className="shrink-0 text-[10px] font-semibold not-italic tracking-[0.12em] text-brand">
+                  PREVIEW
+                </em>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Capabilities */}
-      <section id="capabilities" aria-labelledby="product-title" className="border-b border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHead
-              eyebrow="Core capabilities"
-              title="Everything your school needs. Designed to work together."
-              intro="Three groups of tools, each with a clear purpose. Nothing to assemble, nothing decorative."
-            />
-            <Link href="/features" className="link-brand shrink-0 text-[14px]">
-              View all features <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
-            </Link>
-          </div>
+              <div className="p-[clamp(16px,3vw,24px)]">
+                <h2 className="t-item text-ink">School overview</h2>
+                <p className="mt-3.5 mb-5 text-[13.5px] text-copy">Term II, 2026 / Academic overview</p>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {capabilities.map((g) => (
-              <article key={g.n} className="card card-pad flex flex-col">
-                <p className="t-eyebrow text-brand">{g.n}</p>
-                <h3 className="t-item mt-3 text-ink">{g.title}</h3>
-                <p className="mt-2 text-[15px] leading-6 text-copy">{g.body}</p>
-                <ul className="mt-5 space-y-2.5 border-t border-line pt-5">
-                  {g.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-[15px] leading-6 text-copy">
-                      <span aria-hidden="true" className="mt-[9px] size-1.5 shrink-0 rounded-full bg-brand" />
-                      {item}
-                    </li>
+                <div className="mb-6 grid grid-cols-3 gap-2.5">
+                  {[
+                    { label: 'Pupils', value: '428' },
+                    { label: 'Present today', value: '406' },
+                    { label: 'Classes', value: '14' },
+                  ].map((stat) => (
+                    <div key={stat.label} className="rounded-result bg-surface px-3 pb-3.5 pt-3">
+                      <small className="block text-[13px] text-copy">{stat.label}</small>
+                      <strong className="text-[clamp(22px,3vw,28px)] font-semibold leading-[1.3] tracking-[-0.02em] text-ink">
+                        {stat.value}
+                      </strong>
+                    </div>
                   ))}
-                </ul>
-                <p className="mt-auto pt-5 text-[13px] text-copy">
-                  <span className="font-semibold text-ink">Who benefits: </span>
-                  {g.who}
-                </p>
+                </div>
+
+                <p className="mb-3 text-[13px] font-semibold text-ink">Today’s attendance by class</p>
+                <div
+                  className="grid h-[110px] grid-cols-7 items-end gap-[clamp(8px,1.4vw,14px)] border-b border-line"
+                  aria-hidden="true"
+                >
+                  {[
+                    { h: 'h-[70%]' },
+                    { h: 'h-[90%]' },
+                    { h: 'h-[76%]' },
+                    { h: 'h-[100%]', on: true },
+                    { h: 'h-[88%]' },
+                    { h: 'h-[62%]' },
+                    { h: 'h-[80%]' },
+                  ].map((bar, index) => (
+                    <div
+                      key={index}
+                      className={`w-full rounded-t-[3px] ${bar.on ? 'bg-brand' : 'bg-bar'} ${bar.h}`}
+                    />
+                  ))}
+                </div>
+                <div
+                  className="mt-3 mb-[18px] grid grid-cols-7 gap-[clamp(8px,1.4vw,14px)] text-center text-[12.5px] text-copy"
+                  aria-hidden="true"
+                >
+                  {['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7'].map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </div>
+
+                <p className="text-[11px] text-copy">Illustrative interface · All figures are sample data</p>
+              </div>
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The school day, connected */}
+      <Section id="features" aria-labelledby="connected-title">
+        <Container>
+          <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
+            <div>
+              <Eyebrow>The school day, connected</Eyebrow>
+              <h2 id="connected-title" className="max-w-[480px] text-ink">
+                Less scattered information. More room to focus.
+              </h2>
+            </div>
+            <p className="max-w-[400px] text-copy">
+              From the morning register to end-of-term reports, ACS is being built to bring everyday
+              academic work into one organized place.
+            </p>
+          </div>
+
+          <div className="grid gap-9 md:grid-cols-3 md:gap-8">
+            {connected.map((item) => (
+              <article key={item.label} className="border-t-2 border-brand pt-[18px]">
+                <p className="t-eyebrow mb-3.5 text-[10.5px]">{item.label}</p>
+                <h3 className="t-item mb-3 text-ink">{item.title}</h3>
+                <p className="text-[15.5px] text-copy">{item.body}</p>
               </article>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* Academic results showcase */}
-      <section id="results" aria-labelledby="results-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <ResultsPreview />
+      {/* A closer look at ACS */}
+      <Section className="pt-0" aria-labelledby="closer-title">
+        <Container>
+          <div className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)] nav:grid-cols-[5fr_7fr]">
             <div>
-              <p className="eyebrow">Academic results</p>
-              <h2 id="results-title" className="t-title mt-3 text-ink">
-                Marks entered once. Results worked out for you.
+              <Eyebrow>A closer look at ACS</Eyebrow>
+              <h2 id="closer-title" className="mb-5 text-ink">
+                One class. A clearer picture.
               </h2>
-              <p className="t-body mt-4 max-w-lg text-copy">
-                ACS records Beginning of Term, Mid-Term and End of Term assessments across every
-                subject, then calculates totals, averages, class positions and division grades. Teachers
-                enter marks only for the class and subject they teach.
+              <p className="mb-[22px] max-w-[460px] text-[16px] text-copy">
+                Keep academic information together so your team can review results and prepare reports
+                with better context.
               </p>
-              <ul className="mt-6 space-y-2.5">
-                {[
-                  'A mark that was never entered stays missing — it is never counted as zero',
-                  'Results are held as a draft until an administrator or head teacher releases them',
-                  'Released results are immutable; corrections happen through new records',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-[15px] leading-6 text-copy">
-                    <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/features" className="btn-secondary mt-8">
-                How results work <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
-              </Link>
+              <p className="text-[12.5px] text-copy">
+                Design preview only. Confirm available modules and workflows with the ACS team.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Reports and finance */}
-      <section id="reports" aria-labelledby="records-title" className="border-b border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <SectionHead
-            eyebrow="Reports and records"
-            title="Report cards and fee records that hold up."
-            intro="The outputs a school is asked for every term — produced from the same record the school already keeps."
-          />
-          <div className="mt-10 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
-            <ReportCardPreview />
-            <FinancePreview />
-          </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <p className="text-[15px] leading-6 text-copy">
-              Report cards are compiled for a whole class at once, carrying the school&apos;s details,
-              marks, attendance, remarks and fees balance, and are published once for the term.
-            </p>
-            <p className="text-[15px] leading-6 text-copy">
-              Fee structures are set per class and term. Payments are recorded against each pupil
-              account, and every payment issues the next sequential receipt number.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* AI */}
-      <section id="ai-assistance" aria-labelledby="ai-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <div>
-              <p className="eyebrow">AI assistance</p>
-              <h2 id="ai-title" className="t-title mt-3 text-ink">
-                Practical AI support, under the teacher’s control.
-              </h2>
-              <p className="t-body mt-4 max-w-lg text-copy">
-                ACS helps teachers create exercises, quizzes, revision questions, lesson-support
-                materials, explanations and marking guides — designed around primary education from
-                Primary 1 to Primary 7.
+            <Card className="p-[clamp(18px,3vw,24px)]">
+              <h3 className="t-item text-ink">Academic results</h3>
+              <p className="mt-2.5 mb-[22px] text-[13px] text-copy">
+                Primary 5 · End of Term II · Sample data
               </p>
-              <p className="mt-4 max-w-lg text-[15px] leading-7 text-copy">
-                The assistant drafts material for preparation. Teachers review and edit it before it is
-                used in the classroom, and remain responsible for what is taught.
-              </p>
-              <Link href="/features#ai-assistance" className="btn-secondary mt-8">
-                About AI assistance <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
-              </Link>
-            </div>
-            <AIPreview />
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[300px] border-collapse text-[13.5px] [&_td:first-child]:text-left [&_th:first-child]:text-left [&_tr:last-child_td]:border-b-0">
+                  <caption className="sr-only">
+                    End of Term II results for Primary 5, sample data
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" className="bg-surface px-3 py-3.5 text-right font-normal text-copy">
+                        Pupil
+                      </th>
+                      <th scope="col" className="bg-surface px-3 py-3.5 text-right font-normal text-copy">
+                        ENG
+                      </th>
+                      <th scope="col" className="bg-surface px-3 py-3.5 text-right font-normal text-copy">
+                        MTC
+                      </th>
+                      <th scope="col" className="bg-surface px-3 py-3.5 text-right font-normal text-copy">
+                        SCI
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {results.map((row) => (
+                      <tr key={row.pupil}>
+                        <td className="border-b border-line px-3 py-[18px] text-copy">{row.pupil}</td>
+                        <td className="border-b border-line px-3 py-[18px] text-right text-copy tabular-nums">
+                          {row.eng}
+                        </td>
+                        <td className="border-b border-line px-3 py-[18px] text-right text-copy tabular-nums">
+                          {row.mtc}
+                        </td>
+                        <td className="border-b border-line px-3 py-[18px] text-right text-copy tabular-nums">
+                          {row.sci}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Roles */}
-      <section id="roles" aria-labelledby="roles-title" className="border-b border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <SectionHead
-            eyebrow="Built for your team"
-            title="Clearer work for every role."
-            intro="Each role sees its own job — nothing more, nothing less."
-          />
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {roles.map((r) => (
-              <article key={r.title} className="card-surface p-6 md:p-8">
-                <h3 className="t-item text-ink">{r.title}</h3>
-                <p className="mt-2 text-[15px] leading-6 text-copy">{r.body}</p>
-                <ul className="mt-5 space-y-2.5 border-t border-line pt-5 text-[15px] leading-6 text-copy">
-                  {r.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5">
-                      <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden="true" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
-            <ParentPreview />
-            <figure className="overflow-hidden rounded-[10px] border border-line">
-              <Image
-                src="/images/classroom-hero.jpg"
-                alt="A teacher leading a lesson in front of pupils seated at desks"
-                width={1280}
-                height={848}
-                loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 540px"
-                className="aspect-[16/10] w-full object-cover"
-              />
-            </figure>
-          </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
       {/* How it works */}
-      <section id="how-it-works" aria-labelledby="how-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHead
-              eyebrow="How it works"
-              title="From signup to school day, in four steps."
-              intro="Onboarding follows the real order schools use — and our team helps at each stage."
-            />
-            <Link href="/how-it-works" className="link-brand shrink-0 text-[14px]">
-              How onboarding works <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
-            </Link>
-          </div>
-          <ol className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <li key={s.n}>
-                <p className="text-[14px] font-semibold text-brand">{s.n}</p>
-                <h3 className="mt-3 t-item text-ink">{s.title}</h3>
-                <p className="mt-2 text-[15px] leading-6 text-copy">{s.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Pricing summary */}
-      <section id="pricing" aria-labelledby="pricing-title" className="border-b border-line bg-surface">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionHead
-              eyebrow="Pricing"
-              title="Priced per term, by school size."
-              intro="The first 20 schools to join ACS get 2 months free on their selected plan."
-            />
-            <Link href="/pricing" className="link-brand shrink-0 text-[14px]">
-              See full pricing <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
-            </Link>
-          </div>
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {pricingPlans.map((plan) => (
-              <article key={plan.id} className="card card-pad flex flex-col">
-                <p className="t-item text-ink">{plan.name}</p>
-                <p className="mt-3 text-[15px] leading-6 text-copy">{plan.description}</p>
-                <div className="mt-6 border-t border-line pt-5">
-                  <p className="text-[28px] font-semibold leading-none tracking-[-0.03em] text-ink">
-                    UGX{' '}
-                    {new Intl.NumberFormat('en-UG', { maximumFractionDigits: 0 }).format(plan.price ?? 0)}
-                  </p>
-                  <p className="mt-2 text-[13px] text-copy">{plan.billing}</p>
-                  <p className="mt-3 text-[15px] font-medium text-ink-soft">{plan.pupilLimit}</p>
-                </div>
-                <Link href="/pricing" className="btn-secondary mt-6 w-full">
-                  {plan.cta}
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Difference */}
-      <section aria-labelledby="diff-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <SectionHead
-            eyebrow="The ACS difference"
-            title="Careful where it matters."
-            intro="Small design decisions that protect trust in school records."
-          />
-          <div className="mt-10 grid gap-px overflow-hidden rounded-[10px] border border-line bg-line sm:grid-cols-2">
-            {differences.map((d) => (
-              <div key={d.title} className="bg-white p-6 md:p-8">
-                <h3 className="t-item text-ink">{d.title}</h3>
-                <p className="mt-2 text-[15px] leading-6 text-copy">{d.body}</p>
+      <Section tone="tint" id="how" aria-labelledby="how-title">
+        <Container>
+          <Eyebrow>How it works</Eyebrow>
+          <h2 id="how-title" className="mb-12 text-ink">
+            A thoughtful start for your school.
+          </h2>
+          <div className="grid gap-7 tight:grid-cols-2 wide:grid-cols-4">
+            {steps.map((step) => (
+              <div key={step.n}>
+                <small className="mb-4 block text-[10.5px] font-semibold tracking-[0.13em] text-brand">
+                  {step.n}
+                </small>
+                <h3 className="t-item mb-2.5 text-ink">{step.title}</h3>
+                <p className="text-[15px] text-copy">{step.body}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
 
-      {/* FAQ */}
-      <section id="faq" aria-labelledby="faq-title" className="border-b border-line bg-surface">
-        <div className="container-page max-w-[880px] py-14 md:py-16 lg:py-20">
-          <SectionHead eyebrow="FAQ" title="Questions schools ask." intro="Answered from how the product actually works." />
-          <div className="mt-10 border-t border-line">
-            {faqs.map((item) => (
-              <details key={item.q} className="group border-b border-line">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[15px] font-medium text-ink transition-colors hover:text-brand [&::-webkit-details-marker]:hidden">
-                  {item.q}
-                  <span aria-hidden="true" className="text-xl font-normal text-brand group-open:hidden">
-                    +
-                  </span>
-                  <span aria-hidden="true" className="hidden text-xl font-normal text-brand group-open:inline">
-                    −
-                  </span>
-                </summary>
-                <p className="max-w-2xl pb-6 pr-8 text-[15px] leading-7 text-copy">{item.a}</p>
-              </details>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-wrap gap-6 text-[14px]">
-            <Link href="/pricing" className="link-brand">
-              See pricing
-            </Link>
-            <Link href="/contact" className="link-brand">
-              Talk to our team
-            </Link>
-          </div>
-        </div>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      </section>
-
-      {/* Enquiry */}
-      <section id="demo" aria-labelledby="enquiry-title" className="border-b border-line bg-white">
-        <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-center gap-8 rounded-[12px] border border-line bg-surface-raised p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
+      {/* Pricing — one card, real per-term prices. */}
+      <Section id="pricing" aria-labelledby="pricing-title">
+        <Container>
+          <Eyebrow>Pricing for your school</Eyebrow>
+          <div className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)] md:grid-cols-2">
             <div>
-              <p className="eyebrow">Request a demonstration</p>
-              <h2 id="enquiry-title" className="t-title mt-3 text-ink">
-                See ACS with your own school in mind.
+              <h2 id="pricing-title" className="mb-5 text-ink">
+                A clear conversation. No guesswork.
               </h2>
-              <p className="t-body mt-4 max-w-lg text-copy">
-                Tell us your school&apos;s size and what you are trying to fix. We will walk you through
-                the platform, answer your questions and help you set up your workspace.
+              <p className="max-w-[420px] text-copy">
+                Ask about the modules your school needs, onboarding and the total cost before making a
+                decision.
               </p>
             </div>
-            <div className="flex flex-col gap-3">
-              <Link href="/contact" className="btn-primary w-full">
-                Request a demonstration
-              </Link>
-              <Link href="/get-started" className="btn-secondary w-full">
-                Get started
-              </Link>
-              <p className="mt-1 text-center text-[13px] text-copy">
-                Or call <a href="tel:+256755038100" className="link-brand">+256 755 038 100</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Final CTA */}
-      <section aria-labelledby="cta-title" className="bg-ink text-white">
-        <div className="container-page flex flex-col gap-6 py-14 md:flex-row md:items-center md:justify-between md:py-16">
+            <div className="rounded-hero bg-surface p-[clamp(20px,3vw,26px)]">
+              <p className="t-eyebrow mb-3.5 text-[10px]">School plan · Per term</p>
+              <dl className="mb-5 divide-y divide-line border-y border-line">
+                {pricingPlans.map((plan) => (
+                  <div key={plan.id} className="flex items-baseline justify-between gap-4 py-3">
+                    <dt>
+                      <span className="block text-[15px] font-semibold text-ink">{plan.name}</span>
+                      <span className="block text-[12px] text-copy">{plan.pupilLimit}</span>
+                    </dt>
+                    <dd className="shrink-0 text-right">
+                      <strong className="block text-[18px] font-semibold tracking-[-0.02em] text-ink tabular-nums">
+                        {formatUGX(plan.price ?? 0)}
+                      </strong>
+                      <span className="block text-[11px] text-copy">{plan.billing}</span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="t-small mb-5 text-[12px]">
+                Billed per academic term. The first 20 schools receive 2 months free on their selected
+                plan.
+              </p>
+              <Button href="/contact" className="w-full">
+                Discuss school pricing
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Starting with Uganda */}
+      <Section tone="tint" id="about" aria-labelledby="uganda-title">
+        <Container className="grid gap-5 md:grid-cols-2 md:gap-10">
           <div>
-            <p className="t-eyebrow text-white/70">Get started</p>
-            <h2 id="cta-title" className="t-title mt-3 max-w-md text-white">
-              Make school work feel simpler.
+            <Eyebrow>Starting with Uganda</Eyebrow>
+            <h2 id="uganda-title" className="text-ink">
+              Built around the work behind learning.
             </h2>
-            <p className="t-body mt-3 max-w-md text-white/75">
-              Join with your school’s records, attendance, results and fees in one connected workspace
-              — with help from our team along the way.
+          </div>
+          <div>
+            <p className="mb-5 text-copy">
+              A well-run school depends on a great deal of work beyond the classroom. ACS is being
+              developed to make that work more organized, starting with the practical needs of primary
+              schools in Uganda.
             </p>
-            <p className="mt-4 text-[13px] text-white/70">
-              First 20 schools receive 2 months free · Call +256 755 038 100
+            <p className="text-copy">
+              Not a school website builder. A working environment for the records, routines and academic
+              information your team manages every day.
             </p>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
-            <Link href="/get-started" className="btn-on-dark">
-              Get Started <ArrowRight className="ml-1 inline size-4" aria-hidden="true" />
-            </Link>
-            <Link href="/contact" className="btn border border-white/30 bg-transparent text-white hover:bg-white/10">
-              Talk to our team
-            </Link>
-          </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
+
+      {/* Contact */}
+      <Section id="contact" aria-labelledby="contact-title">
+        <Container>
+          <Eyebrow>Let’s talk about your school</Eyebrow>
+          <h2 id="contact-title" className="mb-6 max-w-[760px] text-ink">
+            A more organized school starts with a conversation.
+          </h2>
+          <p className="mb-8 max-w-[760px] text-copy">
+            Request a walkthrough, ask about pricing or discuss onboarding. Prepare an enquiry below, or
+            email stackkens@gmail.com directly. Your enquiry opens in your email app for you to review
+            and send.
+          </p>
+
+          <EnquiryForm />
+
+          <p className="t-small">Email ACS directly: stackkens@gmail.com</p>
+          <p className="t-small mt-4">
+            Please do not include sensitive pupil information in an initial enquiry.
+          </p>
+        </Container>
+      </Section>
     </main>
   )
 }

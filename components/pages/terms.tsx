@@ -94,7 +94,7 @@ export function TermsPage() {
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-brand-ring hover:text-ink"
+                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
                 >
                   {s.title}
                 </a>

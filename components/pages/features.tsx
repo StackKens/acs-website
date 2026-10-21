@@ -260,7 +260,7 @@ export function FeaturesPage() {
               <li key={g.id}>
                 <a
                   href={`#${g.id}`}
-                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-brand-ring hover:text-ink"
+                  className="rounded-[7px] border border-line bg-white px-3 py-1.5 text-[13px] font-medium text-copy transition-colors hover:border-line hover:text-ink"
                 >
                   {g.title}
                 </a>
@@ -335,7 +335,7 @@ export function FeaturesPage() {
       {/* Enquiry */}
       <section aria-labelledby="features-cta-title" className="bg-white">
         <div className="container-page py-14 md:py-16 lg:py-20">
-          <div className="grid items-center gap-8 rounded-[12px] border border-line bg-surface-raised p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
+          <div className="grid items-center gap-8 rounded-[12px] border border-line bg-surface p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
             <div>
               <p className="eyebrow">Next step</p>
               <h2 id="features-cta-title" className="t-title mt-3 text-ink">

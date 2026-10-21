@@ -49,7 +49,7 @@ export function PricingPage() {
       </section>
 
       {/* Launch offer */}
-      <section aria-labelledby="offer-title" className="border-y border-line bg-brand-soft">
+      <section aria-labelledby="offer-title" className="border-y border-line bg-surface">
         <div className="container-page flex flex-col gap-4 py-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="t-eyebrow text-brand">Launch offer</p>
@@ -92,7 +92,7 @@ export function PricingPage() {
                     {formatPrice(plan.price)}
                   </p>
                   <p className="mt-2 text-[13px] text-copy">{plan.billing}</p>
-                  <p className="mt-4 text-[15px] font-medium text-ink-soft">{plan.pupilLimit}</p>
+                  <p className="mt-4 text-[15px] font-medium text-ink">{plan.pupilLimit}</p>
                 </div>
 
                 <ul className="mt-6 space-y-3 border-t border-line pt-5 text-[14px] leading-6 text-copy">
@@ -111,7 +111,7 @@ export function PricingPage() {
             ))}
           </div>
 
-          <article className="mt-5 flex flex-col gap-6 rounded-[10px] border border-dashed border-brand-ring bg-surface-raised p-6 md:flex-row md:items-center md:justify-between md:p-8">
+          <article className="mt-5 flex flex-col gap-6 rounded-[10px] border border-dashed border-line bg-surface p-6 md:flex-row md:items-center md:justify-between md:p-8">
             <div>
               <p className="t-item text-ink">{largeSchoolsPlan.pupilLimit}</p>
               <p className="mt-2 max-w-2xl text-[15px] leading-6 text-copy">{largeSchoolsPlan.description}</p>
@@ -160,7 +160,7 @@ export function PricingPage() {
               <tbody>
                 {comparisonTable.map((group) => (
                   <Fragment key={group.category}>
-                    <tr className="border-b border-line bg-surface-raised">
+                    <tr className="border-b border-line bg-surface">
                       <th
                         scope="colgroup"
                         colSpan={pricingPlans.length + 1}

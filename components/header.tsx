@@ -1,89 +1,84 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
-import { appLoginUrl } from '@/lib/site'
+import { useEffect, useState } from 'react'
 import { ACSMark } from '@/components/acs-mark'
 
 const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/features', label: 'Features' },
+  { href: '/how-it-works', label: 'How It Works' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '/how-it-works', label: 'How it works' },
-  { href: '/user-guide', label: 'Guide' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]
 
 export function Header() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
+  // Escape closes the menu and returns focus to the trigger.
+  useEffect(() => {
+    if (!open) return
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open])
+
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
-      <div className="container-page flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
+    <header className="sticky top-0 z-20 border-b border-line bg-white">
+      <div className="container-page flex h-20 items-center justify-between">
+        <Link href="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
           <ACSMark size={32} className="shrink-0" title={null} />
-          <span className="flex flex-col leading-none">
-            <span className="text-[16px] font-semibold tracking-[-0.03em] text-ink">ACS</span>
-            <span className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.1em] text-copy">
-              Academic Cloud System
-            </span>
-          </span>
+          <span className="text-[26px] font-bold lowercase tracking-[-0.02em] text-ink">acs</span>
         </Link>
-
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => (
-            <Link key={link.href} className="nav-link" href={link.href}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-5 lg:flex">
-          <a className="nav-link" href={appLoginUrl}>
-            Login
-          </a>
-          <Link className="btn-primary btn-sm" href="/get-started">
-            Get started
-          </Link>
-        </div>
 
         <button
           type="button"
-          className="rounded-[7px] p-2 text-ink transition-colors hover:bg-surface lg:hidden"
+          className="flex size-11 items-center justify-center rounded-btn border border-line bg-white nav:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
-          aria-controls="mobile-nav"
+          aria-controls="primary-nav"
           onClick={() => setOpen(!open)}
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={18} /> : <Menu size={18} />}
         </button>
-      </div>
 
-      {open && (
-        <nav id="mobile-nav" aria-label="Primary" className="border-t border-line bg-white lg:hidden">
-          <div className="container-page flex flex-col gap-1 py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-[7px] px-3 py-2.5 text-[15px] font-medium text-copy transition-colors hover:bg-surface hover:text-ink"
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="mt-3 flex items-center gap-5 border-t border-line pt-4">
-              <a className="nav-link" href={appLoginUrl}>
-                Login
-              </a>
-              <Link className="btn-primary btn-sm" href="/get-started" onClick={() => setOpen(false)}>
-                Get started
-              </Link>
-            </div>
-          </div>
+        <nav
+          id="primary-nav"
+          aria-label="Main"
+          className={`${
+            open ? 'flex' : 'hidden'
+          } absolute inset-x-0 top-20 flex-col border-b border-line bg-white px-[clamp(20px,4vw,48px)] pb-5 pt-2 nav:static nav:flex nav:flex-row nav:items-center nav:gap-7 nav:border-0 nav:p-0`}
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+              className={`flex min-h-11 items-center border-b border-line py-3.5 text-[14.5px] font-medium transition-colors nav:border-0 nav:py-0 ${
+                isActive(link.href) ? 'text-brand' : 'text-copy hover:text-brand'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/get-started"
+            onClick={() => setOpen(false)}
+            className="btn-primary mt-4 self-stretch nav:mt-0 nav:self-auto"
+          >
+            Get Started
+          </Link>
         </nav>
-      )}
+      </div>
     </header>
   )
 }

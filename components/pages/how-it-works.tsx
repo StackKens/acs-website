@@ -117,7 +117,7 @@ export function HowItWorksPage() {
                     <p className="text-[14px] font-semibold text-brand">{step.n}</p>
                     <h3 className="t-item mt-2 text-ink">{step.title}</h3>
                     <p className="mt-2 text-[15px] leading-6 text-copy">{step.body}</p>
-                    <p className="mt-3 border-l-2 border-brand-ring pl-3 text-[13px] leading-6 text-copy">
+                    <p className="mt-3 border-l-2 border-line pl-3 text-[13px] leading-6 text-copy">
                       {step.detail}
                     </p>
                   </li>

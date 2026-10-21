@@ -28,7 +28,7 @@ export function ParentPreview() {
               <div
                 key={child}
                 className={`flex-1 rounded-[7px] border px-3 py-2 ${
-                  i === 0 ? 'border-brand bg-brand-soft' : 'border-line bg-white'
+                  i === 0 ? 'border-brand bg-surface' : 'border-line bg-white'
                 }`}
               >
                 <p className="truncate text-[12px] font-semibold text-ink">{child}</p>

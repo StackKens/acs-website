@@ -1,172 +1,107 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
-
-@custom-variant dark (&:is(.dark *));
 
 /**
  * ACS design system.
  *
- * The palette, type scale and spacing scale below are the approved ACS
- * visual system. Every colour used by the marketing site resolves to one
- * of these tokens — no hard-coded hex values in page components.
+ * Single source of truth. Every colour, radius, type size and spacing value
+ * below comes from the approved ACS reference (acs.md). Page components must
+ * use these tokens — no hex values and no magic pixel values in components.
  *
- * The site is intentionally light-only: a dark palette is not part of the
- * approved system, and the earlier `prefers-color-scheme` overrides left
- * hard-coded light panels sitting on a dark body.
+ * The palette is deliberately small: one blue (--primary), one navy (--navy)
+ * and the neutral/tint tints derived from them. The only other colours are
+ * the semantic feedback colours, which are not part of the brand palette.
+ *
+ * The site is light-only by design.
  */
 
-@theme inline {
-  /* Brand */
-  --color-brand: #245cde;
-  --color-brand-hover: #1c4ab4;
-  --color-brand-soft: #eef3fe;
-  --color-brand-ring: #b9cbfa;
+:root {
+  /* ---- Palette (exact values from the reference) ---- */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --navy: #14284b;
+  --muted: #5f6f89;
+  --tint: #f0f4fc;
+  --white: #ffffff;
+  --frame: #e4ecf9;
+  --bar: #a0b8f2;
+  --border: #e2e8f0;
+  --line: #dce5f5;
 
-  /* Ink */
-  --color-ink: #142d4e;
-  --color-ink-soft: #1f3d63;
-  --color-copy: #617188;
-  --color-copy-soft: #4a5871;
+  /* ---- Semantic feedback (not brand decoration) ---- */
+  --danger: #c0392b;
+  --danger-soft: #fdf0ee;
+  --success: #1f7a5c;
 
-  /* Surfaces */
-  --color-page: #ffffff;
-  --color-surface: #f2f6fc;
-  --color-surface-raised: #f8fafd;
-  --color-line: #dee6f0;
-  --color-line-soft: #e9eff7;
+  /* ---- Radii (from the reference) ---- */
+  --radius-btn: 8px;
+  --radius-input: 6px;
+  --radius-result: 8px;
+  --radius-hero: 12px;
+  --radius-panel: 16px;
+  --radius-device: 20px;
 
-  /* Product previews */
-  --color-preview-surface: #e5edfa;
-  --color-preview-border: #d5e1f3;
-  --color-preview-bar: #9eb9f4;
-
-  /* Feedback */
-  --color-danger: #c0392b;
-  --color-danger-soft: #fdf0ee;
-  --color-success: #1f7a5c;
-
-  --color-sidebar-ring: var(--ring);
-  --color-sidebar-border: var(--border);
-  --color-sidebar-accent-foreground: var(--accent-foreground);
-  --color-sidebar-accent: var(--accent);
-  --color-sidebar-primary-foreground: var(--primary-foreground);
-  --color-sidebar-primary: var(--primary);
-  --color-sidebar-foreground: var(--foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.7);
-  --radius-md: calc(var(--radius) * 0.85);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.3);
-  --radius-2xl: calc(var(--radius) * 1.6);
-  --radius-3xl: calc(var(--radius) * 2);
-  --radius-4xl: calc(var(--radius) * 2.4);
-
-  /* Type scale — desktop values from the ACS system.
-     Responsive overrides live in @layer components below. */
-  --text-display: 54px;
-  --text-display--line-height: 1.12;
-  --text-display--letter-spacing: -2px;
-
-  --text-title: 36px;
-  --text-title--line-height: 1.2;
-  --text-title--letter-spacing: -1.2px;
-
-  --text-item: 20px;
-  --text-item--line-height: 1.35;
-  --text-item--letter-spacing: -0.3px;
-
-  --text-body: 16px;
-  --text-body--line-height: 1.65;
-
-  --text-support: 13px;
-  --text-support--line-height: 1.55;
-
-  --text-eyebrow: 11px;
-  --text-eyebrow--line-height: 1.4;
-  --text-eyebrow--letter-spacing: 1.5px;
-
-  --text-button: 14px;
-  --text-button--line-height: 1.2;
+  color-scheme: light;
 }
 
-:root {
-  color-scheme: light;
-  --background: #ffffff;
-  --foreground: #142d4e;
-  --card: #ffffff;
-  --card-foreground: #142d4e;
-  --popover: #ffffff;
-  --popover-foreground: #142d4e;
-  --primary: #245cde;
-  --primary-foreground: #ffffff;
-  --secondary: #f2f6fc;
-  --secondary-foreground: #142d4e;
-  --muted: #f2f6fc;
-  --muted-foreground: #617188;
-  --accent: #f2f6fc;
-  --accent-foreground: #142d4e;
-  --destructive: #c0392b;
-  --border: #dee6f0;
-  --input: #dee6f0;
-  --ring: #245cde;
-  --chart-1: #245cde;
-  --chart-2: #9eb9f4;
-  --chart-3: #6b8fd8;
-  --chart-4: #4a5871;
-  --chart-5: #142d4e;
-  --radius: 0.5rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #142d4e;
-  --sidebar-primary: #245cde;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f2f6fc;
-  --sidebar-accent-foreground: #142d4e;
-  --sidebar-border: #dee6f0;
-  --sidebar-ring: #245cde;
+@theme inline {
+  /* Brand — one blue, one navy. */
+  --color-brand: var(--primary);
+  --color-brand-hover: var(--primary-dark);
+  --color-ink: var(--navy);
+  --color-copy: var(--muted);
+
+  /* Surfaces */
+  --color-page: var(--white);
+  --color-surface: var(--tint);
+  --color-frame: var(--frame);
+  --color-bar: var(--bar);
+
+  /* Borders — --border is the default rule, --line the lighter divider. */
+  --color-line: var(--border);
+  --color-line-soft: var(--line);
+
+  /* Feedback */
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+
+  /* Radius utilities: rounded-btn, rounded-input, rounded-result,
+     rounded-hero, rounded-panel, rounded-device. */
+  --radius-btn: 8px;
+  --radius-input: 6px;
+  --radius-result: 8px;
+  --radius-hero: 12px;
+  --radius-panel: 16px;
+  --radius-device: 20px;
+
+  /* Breakpoints named for the reference's own stack points, so layouts
+     collapse exactly where the design says rather than on Tailwind's
+     default 1024px step. */
+  --breakpoint-nav: 900px;
+  --breakpoint-wide: 1000px;
+  --breakpoint-tight: 560px;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-line;
   }
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-page text-ink;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--color-page);
+    color: var(--color-copy);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', sans-serif;
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
   ::selection {
-    background: #d8e3fa;
-    color: #142d4e;
+    background: var(--frame);
+    color: var(--navy);
   }
   h1,
   h2,
@@ -185,193 +120,239 @@
 @layer components {
   /* ---- Layout ---- */
   .container-page {
-    @apply mx-auto w-full max-w-[1104px] px-6 md:px-8 lg:px-12;
+    width: 100%;
+    max-width: 1152px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 48px);
   }
   .section-y {
-    @apply py-12 md:py-16 lg:py-20;
-  }
-  .section-y-lg {
-    @apply py-14 md:py-20 lg:py-20;
+    padding-block: clamp(56px, 8vw, 96px);
   }
 
   /* ---- Typography ---- */
   .t-display {
-    font-size: 38px;
-    line-height: 1.14;
-    letter-spacing: -1.4px;
+    font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
     font-weight: 600;
   }
   .t-title {
-    font-size: 28px;
-    line-height: 1.22;
-    letter-spacing: -0.9px;
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     font-weight: 600;
   }
   .t-item {
     font-size: 20px;
     line-height: 1.35;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.01em;
     font-weight: 600;
   }
   .t-body {
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.6;
   }
-  .t-support {
+  .t-lead {
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .t-small {
     font-size: 13px;
-    line-height: 1.55;
+    line-height: 1.6;
+    color: var(--color-copy);
   }
   .t-eyebrow {
     font-size: 11px;
     line-height: 1.4;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.13em;
     font-weight: 600;
     text-transform: uppercase;
-  }
-
-  @media (min-width: 768px) {
-    .t-display {
-      font-size: 44px;
-      letter-spacing: -1.7px;
-    }
-    .t-title {
-      font-size: 32px;
-      letter-spacing: -1px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .t-display {
-      font-size: 54px;
-      line-height: 1.12;
-      letter-spacing: -2px;
-    }
-    .t-title {
-      font-size: 36px;
-      line-height: 1.2;
-      letter-spacing: -1.2px;
-    }
+    color: var(--color-brand);
   }
 
   /* ---- Controls ----
-     The base rules are shared through a selector list rather than
-     `@apply`ing a custom class — Tailwind v4 cannot apply a
-     hand-written class as a utility. */
+     Every control clears the 44px minimum touch target from the reference. */
   .btn,
   .btn-primary,
+  .btn-ghost,
   .btn-secondary,
   .btn-on-dark {
-    @apply inline-flex items-center justify-center gap-2 rounded-[7px] px-[22px] py-[14px] text-[14px] font-semibold transition-colors duration-150 disabled:pointer-events-none disabled:opacity-60;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    border-radius: var(--radius-btn);
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: background-color 150ms, border-color 150ms, color 150ms;
   }
   .btn-primary {
-    @apply bg-brand text-white hover:bg-brand-hover;
+    background-color: var(--color-brand);
+    color: var(--white);
   }
-  .btn-secondary {
-    @apply border border-line bg-white text-ink hover:border-brand-ring hover:bg-surface;
-  }
-  .btn-on-dark {
-    @apply bg-white text-ink hover:bg-surface;
+  .btn-primary:hover {
+    background-color: var(--color-brand-hover);
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-[7px] px-[22px] py-[14px] text-[14px] font-semibold text-ink underline decoration-brand-ring underline-offset-4 transition-colors duration-150 hover:decoration-brand;
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
   }
-  .btn-sm {
-    @apply px-4 py-2.5 text-[13px];
+  .btn-ghost:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+  .btn {
+    min-height: 44px;
+    border-radius: var(--radius-btn);
+  }
+  /* The reference defines two button styles (primary, ghost). The remaining
+     two names are kept as aliases so pages outside the home refactor keep
+     rendering while sharing one visual language. */
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+  .btn-on-dark {
+    background-color: var(--white);
+    color: var(--color-ink);
+  }
+  .btn-on-dark:hover {
+    background-color: var(--color-surface);
   }
 
   .nav-link {
-    @apply text-[14px] font-medium text-copy transition-colors hover:text-ink;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-copy);
+    transition: color 150ms;
   }
-
-  .eyebrow {
-    @apply text-brand;
-    font-size: 11px;
-    line-height: 1.4;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-    text-transform: uppercase;
+  .nav-link:hover {
+    color: var(--color-ink);
   }
 
   /* ---- Surfaces ---- */
   .card {
-    @apply rounded-[10px] border border-line bg-white;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-result);
+    background-color: var(--white);
   }
   .card-pad {
-    @apply p-6 md:p-8;
+    padding: clamp(20px, 3vw, 32px);
   }
   .card-surface {
-    @apply rounded-[10px] border border-line bg-surface-raised;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-result);
+    background-color: var(--color-surface);
   }
 
-  /* Product preview frame — 14px radius, pale blue surface. */
+  /* ---- Product previews ---- */
   .preview-frame {
-    @apply rounded-[14px] border border-preview-border bg-preview-surface p-3;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-device);
+    background-color: var(--color-frame);
+    padding: 12px;
   }
   .preview-panel {
-    @apply overflow-hidden rounded-[10px] border border-line bg-white;
-  }
-
-  /* Product frame — a preview sitting on the pale blue surface. */
-  .product-frame {
-    @apply relative;
-  }
-  .product-frame::before {
-    content: '';
-    position: absolute;
-    inset: 12px -10px -12px;
-    z-index: 0;
-    border: 1px solid var(--color-preview-border);
-    background: var(--color-preview-surface);
-    border-radius: 14px;
-  }
-  .product-frame > * {
-    position: relative;
-    z-index: 1;
-  }
-  .ui-snippet {
-    @apply rounded-[10px] border border-line bg-white p-5 sm:p-7;
-  }
-
-  .hairline {
-    @apply border-t border-line;
-  }
-  .rule {
-    @apply border-line;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-hero);
+    background-color: var(--white);
   }
 
   /* ---- Forms ---- */
   .form-label {
-    @apply mb-2 block text-[13px] font-semibold text-ink;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-ink);
   }
   .form-input {
-    @apply w-full rounded-[7px] border border-line bg-white px-3 py-2.5 text-[15px] leading-6 text-ink outline-none transition-colors placeholder:text-copy-soft/70 focus:border-brand focus:ring-2 focus:ring-brand-ring/50;
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-input);
+    background-color: var(--white);
+    padding: 10px 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-ink);
+    outline: none;
+    transition: border-color 150ms, box-shadow 150ms;
+  }
+  .form-input::placeholder {
+    color: color-mix(in srgb, var(--color-copy) 70%, transparent);
+  }
+  .form-input:focus {
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand) 25%, transparent);
   }
   .form-hint {
-    @apply mt-1.5 text-[12px] leading-5 text-copy;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-copy);
   }
   .form-error {
-    @apply mt-1.5 text-[12px] leading-5 text-danger;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-danger);
   }
   .form-alert {
-    @apply rounded-[8px] border border-danger/25 bg-danger-soft px-4 py-3 text-[13px] leading-5 text-danger;
+    border: 1px solid color-mix(in srgb, var(--color-danger) 25%, transparent);
+    border-radius: var(--radius-result);
+    background-color: var(--color-danger-soft);
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-danger);
   }
   .form-success {
-    @apply rounded-[8px] border border-success/25 bg-success/5 px-4 py-3 text-[13px] leading-5 text-success;
+    border: 1px solid color-mix(in srgb, var(--color-success) 25%, transparent);
+    border-radius: var(--radius-result);
+    background-color: color-mix(in srgb, var(--color-success) 5%, transparent);
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-success);
   }
 
   /* ---- Misc ---- */
   .prose-acs p {
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.6;
     color: var(--color-copy);
   }
   .prose-acs p + p {
     margin-top: 16px;
   }
   .link-brand {
-    @apply font-semibold text-brand underline decoration-brand-ring underline-offset-4 transition-colors hover:decoration-brand;
+    font-weight: 600;
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-decoration-color: var(--color-line);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 150ms;
+  }
+  .link-brand:hover {
+    text-decoration-color: var(--color-brand);
   }
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-[7px] focus:bg-ink focus:px-4 focus:py-2 focus:text-[14px] focus:font-semibold focus:text-white;
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-btn focus:bg-ink focus:px-4 focus:py-2 focus:text-[14px] focus:font-semibold focus:text-white;
   }
 }
 

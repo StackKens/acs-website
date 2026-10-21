@@ -34,7 +34,7 @@ export function PreviewShell({
             <p className="truncate text-[13px] font-semibold leading-tight text-ink">ACS</p>
             <p className="truncate text-[11px] leading-tight text-copy">Sunrise Primary School</p>
           </div>
-          <span className="ml-auto shrink-0 rounded-[5px] bg-brand-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-brand">
+          <span className="ml-auto shrink-0 rounded-[5px] bg-surface px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-brand">
             Demo
           </span>
         </div>
@@ -56,7 +56,7 @@ export function PreviewNav({ items, active }: { items: string[]; active: string 
   return (
     <nav
       aria-hidden="true"
-      className="hidden w-[124px] shrink-0 border-r border-line bg-surface-raised px-2.5 py-3 @min-[440px]:block"
+      className="hidden w-[124px] shrink-0 border-r border-line bg-surface px-2.5 py-3 @min-[440px]:block"
     >
       <ul className="space-y-0.5">
         {items.map((item) => (

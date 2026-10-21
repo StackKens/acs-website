@@ -13,7 +13,7 @@ const rows: { name: string; state: State }[] = [
 ]
 
 const stateClass: Record<State, string> = {
-  Present: 'bg-brand-soft text-brand',
+  Present: 'bg-surface text-brand',
   Absent: 'bg-danger-soft text-danger',
   Late: 'bg-surface text-copy',
   Excused: 'bg-surface text-copy',
