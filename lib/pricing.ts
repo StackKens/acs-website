@@ -9,6 +9,8 @@ export interface PricingPlan {
   features: string[]
   emphasis?: boolean
   cta: string
+  /** Plan whose features this plan also includes. */
+  inherits?: string
 }
 
 export const pricingPlans: PricingPlan[] = [
@@ -49,6 +51,7 @@ export const pricingPlans: PricingPlan[] = [
       'AI-powered academic assistance'
     ],
     emphasis: true,
+    inherits: 'starter',
     cta: 'Get Started'
   },
   {
@@ -68,43 +71,111 @@ export const pricingPlans: PricingPlan[] = [
       'Higher operational limits',
       'AI-powered academic assistance'
     ],
+    inherits: 'growth',
     cta: 'Get Started'
   }
 ]
+
+/**
+ * Resolve a plan's complete feature list.
+ *
+ * A plan lists "Everything in <lower plan>" as a single bullet. Expand that
+ * so a plan's real inclusions are known. The comparison table is built
+ * from this, which means the table can never contradict the plan cards.
+ */
+function resolveFeatures(plan: PricingPlan, seen = new Set<string>()): string[] {
+  if (seen.has(plan.id)) return []
+  seen.add(plan.id)
+  const inherited = plan.inherits
+    ? resolveFeatures(pricingPlans.find((p) => p.id === plan.inherits)!, seen)
+    : []
+  const own = plan.features.filter((f) => !/^Everything in /.test(f))
+  return [...inherited, ...own]
+}
+
+export interface ComparisonRow {
+  feature: string
+  /** Whether each plan in `pricingPlans` order includes the feature. */
+  included: boolean[]
+}
+
+export interface ComparisonGroup {
+  category: string
+  rows: ComparisonRow[]
+}
+
+/**
+ * The comparison table, derived from the plan definitions above.
+ *
+ * Rows are grouped for reading, but availability is computed from the
+ * plans themselves — a feature appears against a plan only if that plan
+ * actually includes it.
+ */
+const comparisonGroups: { category: string; features: string[] }[] = [
+  {
+    category: 'School management',
+    features: [
+      'Pupil management & records',
+      'Class & stream management',
+      'Daily attendance roll call',
+      'Exams & performance tracking',
+    ],
+  },
+  {
+    category: 'Academics & reporting',
+    features: [
+      'Basic report summaries',
+      'Official printable report cards',
+      'Expanded term analytics',
+    ],
+  },
+  {
+    category: 'Finance',
+    features: ['Fees & payment tracking'],
+  },
+  {
+    category: 'Staff & permissions',
+    features: [
+      'Teacher & staff allocations',
+      'Role-based permissions & audit trails',
+    ],
+  },
+  {
+    category: 'Parents & communication',
+    features: [
+      'Parent contacts & records',
+      'Automated SMS notifications to parents',
+    ],
+  },
+  {
+    category: 'Platform',
+    features: [
+      'Dedicated school workspace',
+      'Advanced finance & ledger reporting',
+      'Higher operational limits',
+      'AI-powered academic assistance',
+    ],
+  },
+  {
+    category: 'Support',
+    features: ['Priority onboarding & technical support'],
+  },
+]
+
+const resolvedPlans = pricingPlans.map((plan) => resolveFeatures(plan))
+
+export const comparisonTable: ComparisonGroup[] = comparisonGroups.map((group) => ({
+  category: group.category,
+  rows: group.features.map((feature) => ({
+    feature,
+    included: resolvedPlans.map((features) => features.includes(feature)),
+  })),
+}))
 
 export const largeSchoolsPlan = {
   pupilLimit: '1,001+ pupils',
   description: 'Need ACS for a larger school? Contact our team to discuss a plan that fits your school\'s size and requirements.',
   cta: 'Talk to Us'
-}
-
-export const comparisonCategories = {
-  'School Management': [
-    'Pupil management',
-    'Class management',
-    'Attendance',
-    'Academic performance',
-    'Basic reports',
-    'School administration'
-  ],
-  'Staff & Administration': [
-    'Teacher and staff management',
-    'Advanced administration',
-    'Additional administration tools'
-  ],
-  'Parents & Communication': [
-    'Parent features',
-    'Communication features'
-  ],
-  'Reporting & Analytics': [
-    'Basic reports',
-    'Advanced reports',
-    'Improved reporting and analytics',
-    'Advanced analytics'
-  ],
-  'Finance': [
-    'Finance features where available'
-  ]
 }
 
 export const billingSteps = [
@@ -128,6 +199,29 @@ export const billingSteps = [
     title: 'Continue after the free period',
     description: 'After the 2-month introductory offer, your school continues according to the selected plan\'s normal pricing.'
   }
+]
+
+export const pricingConsiderations = [
+  {
+    title: 'What is included',
+    text: 'Every plan includes the school workspace, pupil records, class and stream management, daily attendance, exams and performance tracking, report summaries and AI assistance for teachers. Higher plans add fee tracking, teaching allocations, printable report cards, parent records and communication.',
+  },
+  {
+    title: 'Onboarding',
+    text: 'Our team helps you set up your school workspace and get started with ACS. Priority onboarding and technical support is included on the Professional plan.',
+  },
+  {
+    title: 'Billing period',
+    text: 'Pricing is per academic term — one of the three main periods in the school year. The plan and your term invoices are visible in Settings ▸ Plan & Billing, and the ACS team handles payment and plan changes.',
+  },
+  {
+    title: 'Total cost',
+    text: 'The price covers the school workspace for the term, for all the users and pupils within the plan’s range. There is no separate charge per pupil beyond the plan, and no separate charge for the parent portal.',
+  },
+  {
+    title: 'Moving between plans',
+    text: 'Move to a higher plan as your school grows or as you need additional capabilities. We can discuss the best time to upgrade when your pupil count increases.',
+  },
 ]
 
 export const faqs = [
