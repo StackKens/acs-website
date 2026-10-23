@@ -1,7 +1,7 @@
 import { ACSMark } from '@/components/acs-mark'
 import { EnquiryForm } from '@/components/pages/enquiry-form'
 import { Button, Card, Container, Eyebrow, Section } from '@/components/ui/primitives'
-import { pricingPlans } from '@/lib/pricing'
+import { formatUGX, pricingPlans } from '@/lib/pricing'
 
 /**
  * Homepage.
@@ -61,9 +61,6 @@ const results = [
   { pupil: 'Pupil 002', eng: '85', mtc: '76', sci: '89' },
   { pupil: 'Pupil 003', eng: '72', mtc: '80', sci: '75' },
 ]
-
-const formatUGX = (value: number) =>
-  `UGX ${new Intl.NumberFormat('en-UG', { maximumFractionDigits: 0 }).format(value)}`
 
 export default function HomePage() {
   return (
@@ -129,7 +126,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p className="mb-3 text-[13px] font-semibold text-ink">Today's attendance by class</p>
+                <p className="mb-3 text-[13px] font-semibold text-ink">Today&apos;s attendance by class</p>
                 <div
                   className="grid h-[110px] grid-cols-7 items-end gap-[clamp(8px,1.4vw,14px)] border-b border-line"
                   aria-hidden="true"

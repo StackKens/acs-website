@@ -13,6 +13,11 @@ export interface PricingPlan {
   inherits?: string
 }
 
+/** Format a UGX amount for display, for example `UGX 150,000`. */
+export function formatUGX(value: number): string {
+  return `UGX ${new Intl.NumberFormat('en-UG', { maximumFractionDigits: 0 }).format(value)}`
+}
+
 export const pricingPlans: PricingPlan[] = [
   {
     id: 'starter',
