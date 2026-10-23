@@ -3,18 +3,14 @@ import { HomeHero } from '@/components/pages/home-hero'
 import { Button, Card, Container, Eyebrow, Section } from '@/components/ui/primitives'
 import { Reveal } from '@/components/ui/reveal'
 import { Stagger, StaggerItem } from '@/components/ui/stagger'
-import { formatUGX, pricingPlans } from '@/lib/pricing'
 
 /**
  * Homepage.
  *
  * Layout and copy follow the approved reference in acs.md section for
  * section: tinted hero, three connected-work columns, a closer look with a
- * real results table, four onboarding steps, one pricing card, the Uganda
- * note, the enquiry form and a single-line footer.
- *
- * The only departure from the reference is the pricing panel, which shows
- * the real per-term prices from lib/pricing.ts instead of a placeholder.
+ * real results table, four onboarding steps, a short pricing hand-off, the
+ * Uganda note, the enquiry form and a single-line footer.
  */
 
 const connected = [
@@ -187,46 +183,27 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Pricing — one card, real per-term prices. */}
+      {/* Pricing — a short hand-off to the full pricing page. */}
       <Section id="pricing" aria-labelledby="pricing-title">
         <Container>
-          <Eyebrow>Pricing for your school</Eyebrow>
-          <Reveal className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)] md:grid-cols-2">
-            <div>
-              <h2 id="pricing-title" className="t-title mb-5 text-ink">
-                A clear conversation. No guesswork.
-              </h2>
-              <p className="max-w-[420px] text-copy">
-                Ask about the modules your school needs, onboarding and the total cost before making a
-                decision.
-              </p>
-            </div>
+          <Reveal className="rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)]">
+            <div className="grid gap-[clamp(24px,4vw,40px)] lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <Eyebrow>Pricing for your school</Eyebrow>
+                <h2 id="pricing-title" className="t-title mb-5 max-w-[540px] text-ink">
+                  Every school is different.
+                </h2>
+                <p className="max-w-[520px] text-copy">
+                  Plans are based on your pupil numbers and the modules you need, billed per term.
+                </p>
+              </div>
 
-            <div className="rounded-hero bg-surface p-[clamp(20px,3vw,26px)]">
-              <p className="t-eyebrow mb-3.5 text-[10px]">School plan · Per term</p>
-              <dl className="mb-5 divide-y divide-line border-y border-line">
-                {pricingPlans.map((plan) => (
-                  <div key={plan.id} className="flex items-baseline justify-between gap-4 py-3">
-                    <dt>
-                      <span className="block text-[15px] font-semibold text-ink">{plan.name}</span>
-                      <span className="block text-[12px] text-copy">{plan.pupilLimit}</span>
-                    </dt>
-                    <dd className="shrink-0 text-right">
-                      <strong className="block text-[18px] font-semibold tracking-[-0.02em] text-ink tabular-nums">
-                        {formatUGX(plan.price ?? 0)}
-                      </strong>
-                      <span className="block text-[11px] text-copy">{plan.billing}</span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="t-small mb-5 text-[12px]">
-                Billed per academic term. The first 20 schools receive 2 months free on their selected
-                plan.
-              </p>
-              <Button href="/contact" className="w-full">
-                Discuss school pricing
-              </Button>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button href="/pricing">See full pricing</Button>
+                <Button href="/contact" variant="ghost">
+                  Ask about your school
+                </Button>
+              </div>
             </div>
           </Reveal>
         </Container>
