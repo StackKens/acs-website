@@ -123,15 +123,17 @@ export function PageHero({
   eyebrow,
   title,
   lead,
+  className,
   children,
 }: {
   eyebrow: string
   title: string
   lead?: string
+  className?: string
   children?: ReactNode
 }) {
   return (
-    <section className="bg-surface py-[clamp(48px,7vw,80px)]">
+    <section className={cn('bg-surface py-[clamp(48px,7vw,80px)]', className)}>
       <Container>
         <Eyebrow>{eyebrow}</Eyebrow>
         <h1 className="t-display mb-6 max-w-[760px] text-ink">{title}</h1>

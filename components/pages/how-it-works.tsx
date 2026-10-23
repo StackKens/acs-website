@@ -1,34 +1,192 @@
-import { Container, Cta, PageHero, Section } from '@/components/ui/primitives'
+import type { ReactNode } from 'react'
+import { Container, Cta, Eyebrow, PageHero, Section, Split } from '@/components/ui/primitives'
+import { Reveal } from '@/components/ui/reveal'
 
 /**
  * How it works page.
  *
- * Follows the reference: a tinted page hero, the four onboarding steps (conversation,
- * explore, prepare, begin), and the closing call to action.
+ * Mirrors the reference implementation in features.md: the four-step timeline
+ * with "What happens" / "What you bring" panels, a typical term, roles, what to
+ * have in mind, the onboarding FAQ and the closing CTA.
  */
 
-const steps = [
+const STEPS = [
   {
-    n: '01',
     title: 'Let’s talk.',
-    body: 'Share how your school works and what you want to organize. A walkthrough is the easiest way to see whether ACS fits.',
+    text: 'Share how your school works and what you want to organize. A walkthrough is the easiest way to see whether ACS fits.',
+    happens: [
+      'A friendly introductory conversation',
+      'We listen to how your school runs today',
+      'You see ACS in action with sample data',
+    ],
+    bring: ['A rough idea of your school’s size', 'Who would use the system', 'Which part matters most first'],
   },
   {
-    n: '02',
     title: 'Explore the fit.',
-    body: 'Discuss available features, pricing and onboarding needs, so you know the total cost before deciding.',
+    text: 'Discuss available features, pricing and onboarding needs, so you know the total cost before you decide.',
+    happens: [
+      'We match modules to your needs',
+      'Pricing, billing period and inclusions are explained',
+      'Your questions get direct answers',
+    ],
+    bring: ['Questions and concerns', 'A description of the books and files you use today'],
   },
   {
-    n: '03',
     title: 'Get prepared.',
-    body: 'Agree on the school information and users needed for setup.',
+    text: 'Agree on the school information and users needed for setup.',
+    happens: [
+      'We agree the classes, streams and terms to set up',
+      'We agree who needs access, and what each person can see',
+      'We plan how to bring in pupil information',
+    ],
+    bring: ['Your class and staff lists', 'The people who will use ACS day to day'],
   },
   {
-    n: '04',
     title: 'Bring work together.',
-    body: 'Begin using the agreed modules for your school’s daily work.',
+    text: 'Begin using the agreed modules for your school’s daily work.',
+    happens: [
+      'Teachers begin with the register and marks',
+      'Administrators keep records organized',
+      'We check in on how it is going',
+    ],
+    bring: ['Teachers ready to start', 'Honest feedback so ACS keeps improving'],
   },
 ]
+
+const TERM = [
+  [
+    'Start of term',
+    'Set the term',
+    'Confirm the term dates and class lists so everything is ready before pupils arrive.',
+  ],
+  [
+    'Every day',
+    'Take the register',
+    'Teachers record attendance, and headteachers can see how the day is going across classes.',
+  ],
+  [
+    'During the term',
+    'Enter marks',
+    'Assessment marks and exam results go into one organized place as they come in.',
+  ],
+  [
+    'End of term',
+    'Prepare reports',
+    'Review results and prepare pupil report cards with better context and less copying.',
+  ],
+]
+
+const ROLES = [
+  [
+    'Headteacher',
+    'Agrees the setup with us, decides who gets access, and reviews attendance and results.',
+  ],
+  ['Administrator', 'Keeps pupil records and class lists organized and up to date.'],
+  ['Teachers', 'Take the register, enter marks and prepare comments for their own classes.'],
+]
+
+const PREP = [
+  'How many classes and pupils your school has',
+  'Who would use the system: headteacher, administrators, teachers',
+  'Which of records, attendance and results matter most first',
+  'How you keep registers and marks today',
+]
+
+const FAQ = [
+  [
+    'How long does setup take?',
+    'It depends on your school’s size and which modules you choose. We agree a plan with you during the preparation step.',
+  ],
+  [
+    'Can we start with just one module?',
+    'Ask us about starting with the part that matters most to your school, such as attendance or results, and adding more later.',
+  ],
+  [
+    'Who needs to be involved?',
+    'Usually the headteacher or an administrator agrees the setup, then the teachers who will use ACS each day.',
+  ],
+  [
+    'What about our existing records?',
+    'Tell us what you keep today. We plan how to bring in pupil information with you during the preparation step.',
+  ],
+  [
+    'Will teachers need training?',
+    'Onboarding is part of getting started. Tell us about your team and we will discuss the support that fits.',
+  ],
+]
+
+function CheckList({ items, small }: { items: string[]; small?: boolean }) {
+  return (
+    <ul className={small ? 'grid gap-2 text-[14.5px] text-copy' : 'grid gap-3.5 text-copy'}>
+      {items.map((item) => (
+        <li
+          key={item}
+          className="relative pl-[22px] before:absolute before:left-0 before:top-[0.65em] before:h-0.5 before:w-2 before:bg-brand before:content-['']"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Panel({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-[10px] border border-line bg-white px-[18px] py-4">
+      <h4 className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand">
+        {title}
+      </h4>
+      <CheckList items={items} small />
+    </div>
+  )
+}
+
+function TimelineItem({
+  n,
+  title,
+  text,
+  children,
+}: {
+  n: number
+  title: string
+  text: string
+  children?: ReactNode
+}) {
+  return (
+    <Reveal className="relative">
+      <span className="absolute -left-14 top-0 grid h-10 w-10 place-items-center rounded-full bg-brand text-sm font-semibold text-white ring-[6px] ring-white">
+        {n}
+      </span>
+      <h3 className="t-item text-ink">{title}</h3>
+      <p className="mt-2 max-w-[560px] text-copy">{text}</p>
+      {children}
+    </Reveal>
+  )
+}
+
+function Faq({ items }: { items: string[][] }) {
+  return (
+    <Reveal className="max-w-[760px]">
+      {items.map(([question, answer]) => (
+        <details key={question} className="group border-t border-line py-[18px] last:border-b">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[17px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
+            {question}
+            <span aria-hidden="true" className="text-2xl leading-none text-brand group-open:hidden">
+              +
+            </span>
+            <span
+              aria-hidden="true"
+              className="hidden text-2xl leading-none text-brand group-open:inline"
+            >
+              –
+            </span>
+          </summary>
+          <p className="mt-2.5 max-w-[640px] text-copy">{answer}</p>
+        </details>
+      ))}
+    </Reveal>
+  )
+}
 
 export function HowItWorksPage() {
   return (
@@ -36,32 +194,102 @@ export function HowItWorksPage() {
       <PageHero
         eyebrow="How it works"
         title="A thoughtful start for your school."
-        lead="Getting started is a conversation first. Nothing is set up until we have agreed what your school needs."
+        lead="Getting started is a conversation first. Nothing is set up until we have agreed what your school needs. Here is what to expect at each step."
+        className="py-12 md:py-16 lg:py-20"
       />
 
-      <Section>
-        <Container>
-          <div className="grid gap-x-12 gap-y-10 grid-cols-2 sm:grid-cols-1">
-            {steps.map((step) => (
-              <article key={step.n} className="border-t-2 border-brand pt-[18px]">
+      <Section className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <div className="relative grid max-w-[760px] gap-9 pl-14 before:absolute before:bottom-2 before:left-[19px] before:top-2 before:w-0.5 before:bg-line-soft">
+            {STEPS.map((step, index) => (
+              <TimelineItem key={step.title} n={index + 1} title={step.title} text={step.text}>
+                <div className="mt-[18px] grid gap-5 md:grid-cols-2">
+                  <Panel title="What happens" items={step.happens} />
+                  <Panel title="What you bring" items={step.bring} />
+                </div>
+              </TimelineItem>
+            ))}
+          </div>
+          <p className="mt-7 max-w-[760px] rounded-r-lg border-l-[3px] border-brand bg-surface px-5 py-[18px] text-[15px] text-copy">
+            How long each step takes depends on your school’s size and which modules you choose. We
+            agree a plan with you, so there are no surprises.
+          </p>
+        </Container>
+      </Section>
+
+      <Section tone="tint" className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Eyebrow className="mb-5">Day to day</Eyebrow>
+          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+            A typical term with ACS.
+          </h2>
+          <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {TERM.map(([label, title, text]) => (
+              <Reveal key={title} className="border-t-2 border-brand pt-[18px]">
                 <p className="mb-3.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-brand">
-                  {step.n}
+                  {label}
                 </p>
-                <h3 className="t-item mb-2.5 text-ink">{step.title}</h3>
-                <p className="max-w-[460px] text-[15.5px] text-copy">{step.body}</p>
-              </article>
+                <h3 className="t-item text-ink">{title}</h3>
+                <p className="mt-2.5 max-w-[460px] text-[15.5px] text-copy">{text}</p>
+              </Reveal>
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section>
-        <Container>
-          <Cta
-            title="A more organized school starts with a conversation."
-            href="/contact"
-            label="Get Started"
-          />
+      <Section className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Eyebrow className="mb-5">Who does what</Eyebrow>
+          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+            Everyone has a clear part.
+          </h2>
+          <div className="grid gap-5 md:grid-cols-3">
+            {ROLES.map(([title, text]) => (
+              <Reveal key={title} className="rounded-hero border border-line bg-white p-6">
+                <h3 className="t-item text-ink">{title}</h3>
+                <p className="mt-2 text-[15px] text-copy">{text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="tint" className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Reveal>
+            <Split
+              eyebrow="Before we talk"
+              title="What is helpful to have in mind."
+            >
+              You do not need anything formal. A rough picture of your school is enough to start.
+            </Split>
+          </Reveal>
+          <CheckList items={PREP} />
+          <p className="mt-6 text-[13px] text-copy">
+            Please do not include sensitive pupil information in an initial enquiry.
+          </p>
+        </Container>
+      </Section>
+
+      <Section className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Eyebrow className="mb-5">Questions</Eyebrow>
+          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+            Getting started, answered.
+          </h2>
+          <Faq items={FAQ} />
+        </Container>
+      </Section>
+
+      <Section className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Reveal>
+            <Cta
+              title="A more organized school starts with a conversation."
+              href="/contact"
+              label="Request a walkthrough"
+            />
+          </Reveal>
         </Container>
       </Section>
     </main>
