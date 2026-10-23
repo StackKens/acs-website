@@ -1,4 +1,3 @@
-import { EnquiryForm } from '@/components/pages/enquiry-form'
 import { HomeHero } from '@/components/pages/home-hero'
 import { Button, Card, Container, Eyebrow, Section } from '@/components/ui/primitives'
 import { Reveal } from '@/components/ui/reveal'
@@ -10,7 +9,7 @@ import { Stagger, StaggerItem } from '@/components/ui/stagger'
  * Layout and copy follow the approved reference in acs.md section for
  * section: tinted hero, three connected-work columns, a closer look with a
  * real results table, four onboarding steps, a short pricing hand-off, the
- * Uganda note, the enquiry form and a single-line footer.
+ * Uganda note, a contact hand-off and a single-line footer.
  */
 
 const connected = [
@@ -234,28 +233,40 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* Contact */}
+      {/* Contact — a compact hand-off to the contact page. */}
       <Section id="contact" aria-labelledby="contact-title">
         <Container>
-          <Reveal>
-            <Eyebrow>Let’s talk about your school</Eyebrow>
-            <h2 id="contact-title" className="t-title mb-6 max-w-[760px] text-ink">
-              A more organized school starts with a conversation.
-            </h2>
-            <p className="mb-8 max-w-[760px] text-copy">
-              Request a walkthrough, ask about pricing or discuss onboarding. Prepare an enquiry below,
-              or email stackkens@gmail.com directly. Your enquiry opens in your email app for you to
-              review and send.
-            </p>
+          <Reveal className="rounded-hero bg-surface p-[clamp(24px,5vw,48px)]">
+            <div className="grid gap-[clamp(24px,4vw,40px)] lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <Eyebrow>Let’s talk about your school</Eyebrow>
+                <h2 id="contact-title" className="t-title mb-5 max-w-[680px] text-ink">
+                  A more organized school starts with a conversation.
+                </h2>
+                <p className="max-w-[560px] text-copy">
+                  Request a walkthrough, ask about pricing or discuss onboarding. We’ll reply using
+                  the details you share.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button href="/contact">Request a walkthrough</Button>
+                <Button
+                  href="https://wa.me/256775506426?text=Hello%20ACS%2C%20I%27d%20like%20a%20walkthrough"
+                  variant="ghost"
+                >
+                  Message on WhatsApp
+                </Button>
+              </div>
+            </div>
           </Reveal>
 
-          <Reveal>
-            <EnquiryForm />
-          </Reveal>
-
-          <p className="t-small">Email ACS directly: stackkens@gmail.com</p>
-          <p className="t-small mt-4">
-            Please do not include sensitive pupil information in an initial enquiry.
+          <p className="t-small mt-5">
+            Prefer email?{' '}
+            <a href="mailto:stackkens@gmail.com" className="link-brand">
+              stackkens@gmail.com
+            </a>
+            . Please do not include sensitive pupil information in an initial enquiry.
           </p>
         </Container>
       </Section>
