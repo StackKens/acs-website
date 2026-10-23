@@ -10,6 +10,8 @@ import {
   Section,
 } from '@/components/ui/primitives'
 import { Reveal } from '@/components/ui/reveal'
+import { Faq } from '@/components/ui/faq'
+import { Stagger, StaggerItem } from '@/components/ui/stagger'
 import {
   billingSteps,
   comparisonTable,
@@ -40,22 +42,26 @@ export function PricingPage() {
       {/* Plans */}
       <Section aria-labelledby="plans-title">
         <Container>
-          <Eyebrow className="mb-5">Plans</Eyebrow>
-          <h2 id="plans-title" className="t-title mb-4 text-ink">
-            A plan shaped around your school.
-          </h2>
-          <p className="mb-10 max-w-[560px] text-copy">
-            Three plans, priced by school size and billed per academic term. Tell us your pupil
-            count and we will confirm the plan that fits.
-          </p>
+          <Reveal>
+            <Eyebrow className="mb-5">Plans</Eyebrow>
+            <h2 id="plans-title" className="t-title mb-4 text-ink">
+              A plan shaped around your school.
+            </h2>
+            <p className="mb-10 max-w-[560px] text-copy">
+              Three plans, priced by school size and billed per academic term. Tell us your pupil
+              count and we will confirm the plan that fits.
+            </p>
+          </Reveal>
 
-          <div className="grid gap-5 pt-3 md:grid-cols-3">
+          <Stagger className="grid gap-5 pt-3 md:grid-cols-3">
             {pricingPlans.map((plan) => (
-              <Reveal key={plan.id} className="h-full">
+              <StaggerItem key={plan.id} className="h-full">
                 <article
                   className={cn(
-                    'flex h-full flex-col rounded-hero border p-6',
-                    plan.emphasis ? 'border-2 border-brand bg-surface' : 'border-line bg-white',
+                    'flex h-full flex-col rounded-hero border p-6 transition-colors',
+                    plan.emphasis
+                      ? 'border-2 border-brand bg-surface md:-translate-y-3'
+                      : 'border-line bg-white',
                   )}
                 >
                   {plan.emphasis && (
@@ -96,9 +102,9 @@ export function PricingPage() {
                     {plan.cta}
                   </Button>
                 </article>
-              </Reveal>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
 
           <Reveal className="mt-6 flex flex-col items-start gap-5 rounded-hero border border-line-soft bg-white p-[clamp(22px,3vw,32px)] md:flex-row md:items-center md:justify-between">
             <div>
@@ -120,10 +126,12 @@ export function PricingPage() {
       {/* Comparison */}
       <Section tone="tint" aria-labelledby="compare-title">
         <Container>
-          <Eyebrow className="mb-5">Compare plans</Eyebrow>
-          <h2 id="compare-title" className="t-title mb-8 text-ink">
-            The same details, side by side.
-          </h2>
+          <Reveal>
+            <Eyebrow className="mb-5">Compare plans</Eyebrow>
+            <h2 id="compare-title" className="t-title mb-8 text-ink">
+              The same details, side by side.
+            </h2>
+          </Reveal>
 
           <Reveal>
             <div className="overflow-x-auto">
@@ -202,74 +210,57 @@ export function PricingPage() {
       {/* Considerations */}
       <Section aria-labelledby="considerations-title">
         <Container>
-          <Eyebrow className="mb-5">Good to know</Eyebrow>
-          <h2 id="considerations-title" className="t-title mb-8 text-ink">
-            What shapes the cost.
-          </h2>
-          <Reveal className="grid gap-9 md:grid-cols-2 md:gap-8">
-            {pricingConsiderations.map((item, index) => (
-              <Column
-                key={item.title}
-                label={String(index + 1).padStart(2, '0')}
-                title={item.title}
-              >
-                {item.text}
-              </Column>
-            ))}
+          <Reveal>
+            <Eyebrow className="mb-5">Good to know</Eyebrow>
+            <h2 id="considerations-title" className="t-title mb-8 text-ink">
+              What shapes the cost.
+            </h2>
           </Reveal>
+          <Stagger className="grid gap-9 md:grid-cols-2 md:gap-8">
+            {pricingConsiderations.map((item, index) => (
+              <StaggerItem key={item.title}>
+                <Column label={String(index + 1).padStart(2, '0')} title={item.title}>
+                  {item.text}
+                </Column>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </Container>
       </Section>
 
       {/* Billing steps */}
       <Section tone="tint" aria-labelledby="billing-title">
         <Container>
-          <Eyebrow className="mb-5">How billing works</Eyebrow>
-          <h2 id="billing-title" className="t-title mb-10 text-ink">
-            From choosing a plan to your first term.
-          </h2>
-          <Reveal className="grid gap-8 step:grid-cols-2 wide:grid-cols-4">
+          <Reveal>
+            <Eyebrow className="mb-5">How billing works</Eyebrow>
+            <h2 id="billing-title" className="t-title mb-10 text-ink">
+              From choosing a plan to your first term.
+            </h2>
+          </Reveal>
+          <Stagger className="grid gap-8 step:grid-cols-2 wide:grid-cols-4">
             {billingSteps.map((step) => (
-              <div key={step.number}>
+              <StaggerItem key={step.number}>
                 <small className="mb-4 block text-[10.5px] font-semibold tracking-[0.13em] text-brand">
                   {String(step.number).padStart(2, '0')}
                 </small>
                 <h3 className="t-item mb-2.5 text-ink">{step.title}</h3>
                 <p className="text-[15px] text-copy">{step.description}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </Reveal>
+          </Stagger>
         </Container>
       </Section>
 
       {/* FAQ */}
       <Section aria-labelledby="pricing-faq-title">
         <Container>
-          <Eyebrow className="mb-5">Questions</Eyebrow>
-          <h2 id="pricing-faq-title" className="t-title mb-7 text-ink">
-            Pricing questions, answered.
-          </h2>
-          <Reveal className="max-w-[840px]">
-            {faqs.map((item) => (
-              <details key={item.question} className="group border-t border-line py-[18px] last:border-b">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[17px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
-                  {item.question}
-                  <span
-                    aria-hidden="true"
-                    className="text-[22px] leading-none text-brand group-open:hidden"
-                  >
-                    +
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="hidden text-[22px] leading-none text-brand group-open:inline"
-                  >
-                    –
-                  </span>
-                </summary>
-                <p className="mt-2.5 max-w-[720px] text-copy">{item.answer}</p>
-              </details>
-            ))}
+          <Reveal>
+            <Eyebrow className="mb-5">Questions</Eyebrow>
+            <h2 id="pricing-faq-title" className="t-title mb-7 text-ink">
+              Pricing questions, answered.
+            </h2>
           </Reveal>
+          <Faq items={faqs} />
         </Container>
       </Section>
 

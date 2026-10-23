@@ -1,4 +1,6 @@
 import { Column, Container, Cta, PageHero, Section, Split } from '@/components/ui/primitives'
+import { Reveal } from '@/components/ui/reveal'
+import { Stagger, StaggerItem } from '@/components/ui/stagger'
 
 /**
  * About page.
@@ -43,23 +45,27 @@ export function AboutPage() {
             every day.
           </Split>
 
-          <div className="grid gap-9 md:grid-cols-3 md:gap-8">
+          <Stagger className="grid gap-9 md:grid-cols-3 md:gap-8">
             {columns.map((item) => (
-              <Column key={item.label} label={item.label} title={item.title}>
-                {item.body}
-              </Column>
+              <StaggerItem key={item.label}>
+                <Column label={item.label} title={item.title}>
+                  {item.body}
+                </Column>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       <Section>
         <Container>
-          <Cta
-            title="A more organized school starts with a conversation."
-            href="/contact"
-            label="Get Started"
-          />
+          <Reveal>
+            <Cta
+              title="A more organized school starts with a conversation."
+              href="/contact"
+              label="Get Started"
+            />
+          </Reveal>
         </Container>
       </Section>
     </main>

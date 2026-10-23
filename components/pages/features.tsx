@@ -1,5 +1,7 @@
 import { Card, Container, Cta, Eyebrow, PageHero, Section } from '@/components/ui/primitives'
+import { Faq } from '@/components/ui/faq'
 import { Reveal } from '@/components/ui/reveal'
+import { Stagger, StaggerItem } from '@/components/ui/stagger'
 import { FeatureTabs } from '@/components/pages/feature-tabs'
 
 /**
@@ -46,16 +48,19 @@ const AFTER = [
 
 const FAQ = [
   {
-    q: 'Does ACS work on phones?',
-    a: 'ACS is being designed to work well on phones as well as computers. Ask the team what is available for your school today.',
+    question: 'Does ACS work on phones?',
+    answer:
+      'ACS is being designed to work well on phones as well as computers. Ask the team what is available for your school today.',
   },
   {
-    q: 'How is pupil information handled?',
-    a: 'We ask that sensitive pupil information is not sent in first enquiries. How data is stored and who can see it is agreed with you during setup.',
+    question: 'How is pupil information handled?',
+    answer:
+      'We ask that sensitive pupil information is not sent in first enquiries. How data is stored and who can see it is agreed with you during setup.',
   },
   {
-    q: 'Do teachers need training?',
-    a: 'Onboarding is part of getting started. Tell us about your team and we will discuss the support that fits.',
+    question: 'Do teachers need training?',
+    answer:
+      'Onboarding is part of getting started. Tell us about your team and we will discuss the support that fits.',
   },
 ]
 
@@ -162,29 +167,33 @@ export function FeaturesPage() {
 
       <Section aria-labelledby="who-title">
         <Container>
-          <Eyebrow className="mb-5">Who it’s for</Eyebrow>
-          <h2 id="who-title" className="t-title mb-8 text-ink">
-            Made for the whole school team.
-          </h2>
-          <div className="grid gap-5 md:grid-cols-3">
+          <Reveal>
+            <Eyebrow className="mb-5">Who it’s for</Eyebrow>
+            <h2 id="who-title" className="t-title mb-8 text-ink">
+              Made for the whole school team.
+            </h2>
+          </Reveal>
+          <Stagger className="grid gap-5 md:grid-cols-3">
             {WHO.map((item) => (
-              <Reveal key={item.title} className="rounded-hero border border-line bg-white p-6">
+              <StaggerItem key={item.title} className="rounded-hero border border-line bg-white p-6">
                 <h3 className="t-item mb-2 text-ink">{item.title}</h3>
                 <p className="text-[15px] text-copy">{item.body}</p>
-              </Reveal>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       <Section tone="tint" aria-labelledby="difference-title">
         <Container>
-          <Eyebrow className="mb-5">The difference</Eyebrow>
-          <h2 id="difference-title" className="t-title mb-8 text-ink">
-            From scattered to organized.
-          </h2>
-          <div className="grid gap-5 step:grid-cols-2">
-            <Reveal className="rounded-hero border border-line bg-white p-[clamp(22px,3vw,32px)]">
+          <Reveal>
+            <Eyebrow className="mb-5">The difference</Eyebrow>
+            <h2 id="difference-title" className="t-title mb-8 text-ink">
+              From scattered to organized.
+            </h2>
+          </Reveal>
+          <Stagger className="grid gap-5 step:grid-cols-2">
+            <StaggerItem className="rounded-hero border border-line bg-white p-[clamp(22px,3vw,32px)]">
               <h3 className="t-item mb-3.5 text-ink">Without ACS</h3>
               <ul className="grid list-none gap-3.5 pl-0 text-copy">
                 {BEFORE.map((item) => (
@@ -196,9 +205,9 @@ export function FeaturesPage() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </StaggerItem>
 
-            <Reveal className="rounded-hero border border-line-soft bg-surface p-[clamp(22px,3vw,32px)]">
+            <StaggerItem className="rounded-hero border border-line-soft bg-surface p-[clamp(22px,3vw,32px)]">
               <h3 className="t-item mb-3.5 text-ink">With ACS</h3>
               <ul className="grid list-none gap-3.5 pl-0 text-copy">
                 {AFTER.map((item) => (
@@ -210,39 +219,20 @@ export function FeaturesPage() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
-          </div>
+            </StaggerItem>
+          </Stagger>
         </Container>
       </Section>
 
       <Section aria-labelledby="faq-title">
         <Container>
-          <Eyebrow className="mb-5">Questions</Eyebrow>
-          <h2 id="faq-title" className="t-title mb-7 text-ink">
-            Good things to ask.
-          </h2>
-          <Reveal className="max-w-[760px]">
-            {FAQ.map((item) => (
-              <details key={item.q} className="group border-t border-line py-[18px] last:border-b">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[17px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
-                  {item.q}
-                  <span
-                    aria-hidden="true"
-                    className="text-[22px] leading-none text-brand group-open:hidden"
-                  >
-                    +
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="hidden text-[22px] leading-none text-brand group-open:inline"
-                  >
-                    –
-                  </span>
-                </summary>
-                <p className="mt-2.5 max-w-[640px] text-copy">{item.a}</p>
-              </details>
-            ))}
+          <Reveal>
+            <Eyebrow className="mb-5">Questions</Eyebrow>
+            <h2 id="faq-title" className="t-title mb-7 text-ink">
+              Good things to ask.
+            </h2>
           </Reveal>
+          <Faq items={FAQ} />
         </Container>
       </Section>
 

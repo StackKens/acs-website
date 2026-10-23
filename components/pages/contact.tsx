@@ -1,5 +1,6 @@
 import { EnquiryForm } from '@/components/pages/enquiry-form'
 import { Container, PageHero, Section } from '@/components/ui/primitives'
+import { Reveal } from '@/components/ui/reveal'
 
 /**
  * Contact page.
@@ -20,11 +21,15 @@ export function ContactPage() {
 
       <Section className="contact">
         <Container>
-          <EnquiryForm />
-          <p className="t-small">Email ACS directly: stackkens@gmail.com</p>
-          <p className="t-small mt-3">
-            Please do not include sensitive pupil information in an initial enquiry.
-          </p>
+          <Reveal>
+            <EnquiryForm />
+          </Reveal>
+          <Reveal>
+            <p className="t-small">Email ACS directly: stackkens@gmail.com</p>
+            <p className="t-small mt-3">
+              Please do not include sensitive pupil information in an initial enquiry.
+            </p>
+          </Reveal>
         </Container>
       </Section>
     </main>

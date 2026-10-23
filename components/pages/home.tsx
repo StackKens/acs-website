@@ -1,6 +1,8 @@
-import { ACSMark } from '@/components/acs-mark'
 import { EnquiryForm } from '@/components/pages/enquiry-form'
+import { HomeHero } from '@/components/pages/home-hero'
 import { Button, Card, Container, Eyebrow, Section } from '@/components/ui/primitives'
+import { Reveal } from '@/components/ui/reveal'
+import { Stagger, StaggerItem } from '@/components/ui/stagger'
 import { formatUGX, pricingPlans } from '@/lib/pricing'
 
 /**
@@ -65,110 +67,15 @@ const results = [
 export default function HomePage() {
   return (
     <main id="home">
-      {/* Hero — tinted band, text left, dashboard preview right. */}
-      <Section tone="tint" className="py-[clamp(48px,7vw,80px)]" aria-labelledby="hero-title">
-        <Container className="grid items-center gap-[clamp(32px,5vw,64px)] nav:grid-cols-2">
-          <div>
-            <Eyebrow>Less paperwork. More clarity.</Eyebrow>
-            <h1 id="hero-title" className="t-display text-ink">
-              Your school. Better organized.
-            </h1>
-            <p className="t-lead mt-6 max-w-[460px] text-copy">
-              Bring pupil records, attendance and academic results together with Academic Cloud System.
-              A practical school management platform, built around primary schools in Uganda.
-            </p>
-            <div className="btns flex flex-wrap items-center gap-3 mb-6">
-              <a href="/contact" className="btn btn-primary">
-                Request a walkthrough
-              </a>
-              <a href="/features" className="btn btn-ghost">
-                Explore ACS
-              </a>
-            </div>
-            <div className="trust flex flex-wrap items-center gap-2 text-[13px] text-copy">
-              <span>Built for primary schools in Uganda</span>
-              <span>Designed with pupil privacy in mind</span>
-            </div>
-            <a className="wa" href="https://wa.me/256XXXXXXXXX?text=Hello%20ACS%2C%20I%27d%20like%20a%20walkthrough">
-              Or message us on WhatsApp →
-            </a>
-          </div>
-
-          {/* Dashboard preview */}
-          <div className="preview-frame">
-            <Card className="overflow-hidden rounded-hero">
-              <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3.5">
-                <div className="flex min-w-0 items-center gap-2.5">
-                  <ACSMark size={22} className="shrink-0" title={null} />
-                  <span className="truncate text-[13.5px] text-copy">Demo Primary School</span>
-                </div>
-                <em className="shrink-0 text-[10px] font-semibold not-italic tracking-[0.12em] text-brand">
-                  PREVIEW
-                </em>
-              </div>
-
-              <div className="p-[clamp(16px,3vw,24px)]">
-                <h2 className="t-item text-ink">School overview</h2>
-                <p className="mt-3.5 mb-5 text-[13.5px] text-copy">Term II, 2026 / Academic overview</p>
-
-                <div className="mb-6 grid grid-cols-3 gap-2.5">
-                  {[
-                    { label: 'Pupils', value: '428' },
-                    { label: 'Present today', value: '406' },
-                    { label: 'Classes', value: '14' },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-result bg-surface px-3 pb-3.5 pt-3">
-                      <small className="block text-[13px] text-copy">{stat.label}</small>
-                      <strong className="text-[clamp(22px,3vw,28px)] font-semibold leading-[1.3] tracking-[-0.02em] text-ink">
-                        {stat.value}
-                      </strong>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="mb-3 text-[13px] font-semibold text-ink">Today&apos;s attendance by class</p>
-                <div
-                  className="grid h-[110px] grid-cols-7 items-end gap-[clamp(8px,1.4vw,14px)] border-b border-line"
-                  aria-hidden="true"
-                >
-                  {[
-                    { h: 'h-[70%]' },
-                    { h: 'h-[90%]' },
-                    { h: 'h-[76%]' },
-                    { h: 'h-[100%]', on: true },
-                    { h: 'h-[88%]' },
-                    { h: 'h-[62%]' },
-                    { h: 'h-[80%]' },
-                  ].map((bar, index) => (
-                    <div
-                      key={index}
-                      className={`w-full rounded-t-[3px] ${bar.on ? 'bg-brand' : 'bg-bar'} ${bar.h}`}
-                    />
-                  ))}
-                </div>
-                <div
-                  className="mt-3 mb-[18px] grid grid-cols-7 gap-[clamp(8px,1.4vw,14px)] text-center text-[12.5px] text-copy"
-                  aria-hidden="true"
-                >
-                  {['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7'].map((label) => (
-                    <span key={label}>{label}</span>
-                  ))}
-                </div>
-
-                <p className="text-[11px] text-copy">Illustrative interface · All figures are sample data</p>
-              </div>
-            </Card>
-          </div>
-        </Container>
-      </Section>
+      <HomeHero />
 
       {/* The school day, connected */}
       <Section id="features" aria-labelledby="connected-title">
         <Container>
-          <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
+          <Reveal className="mb-14 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
             <div>
               <Eyebrow>The school day, connected</Eyebrow>
-              <h2 id="connected-title" className="max-w-[480px] text-ink">
+              <h2 id="connected-title" className="t-title max-w-[480px] text-ink">
                 Less scattered information. More room to focus.
               </h2>
             </div>
@@ -176,27 +83,27 @@ export default function HomePage() {
               From the morning register to end-of-term reports, ACS is being built to bring everyday
               academic work into one organized place.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-9 md:grid-cols-3 md:gap-8">
+          <Stagger className="grid gap-9 md:grid-cols-3 md:gap-8">
             {connected.map((item) => (
-              <article key={item.label} className="border-t-2 border-brand pt-[18px]">
+              <StaggerItem key={item.label} className="border-t-2 border-brand pt-[18px]">
                 <p className="t-eyebrow mb-3.5 text-[10.5px]">{item.label}</p>
                 <h3 className="t-item mb-3 text-ink">{item.title}</h3>
                 <p className="text-[15.5px] text-copy">{item.body}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
       {/* A closer look at ACS */}
       <Section className="pt-0" aria-labelledby="closer-title">
         <Container>
-          <div className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)] nav:grid-cols-[5fr_7fr]">
+          <Reveal className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)] nav:grid-cols-[5fr_7fr]">
             <div>
               <Eyebrow>A closer look at ACS</Eyebrow>
-              <h2 id="closer-title" className="mb-5 text-ink">
+              <h2 id="closer-title" className="t-title mb-5 text-ink">
                 One class. A clearer picture.
               </h2>
               <p className="mb-[22px] max-w-[460px] text-[16px] text-copy">
@@ -253,28 +160,30 @@ export default function HomePage() {
                 </table>
               </div>
             </Card>
-          </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* How it works */}
       <Section tone="tint" id="how" aria-labelledby="how-title">
         <Container>
-          <Eyebrow>How it works</Eyebrow>
-          <h2 id="how-title" className="mb-12 text-ink">
-            A thoughtful start for your school.
-          </h2>
-          <div className="grid gap-7 tight:grid-cols-2 wide:grid-cols-4">
+          <Reveal>
+            <Eyebrow>How it works</Eyebrow>
+            <h2 id="how-title" className="t-title mb-12 text-ink">
+              A thoughtful start for your school.
+            </h2>
+          </Reveal>
+          <Stagger className="grid gap-7 tight:grid-cols-2 wide:grid-cols-4">
             {steps.map((step) => (
-              <div key={step.n}>
+              <StaggerItem key={step.n}>
                 <small className="mb-4 block text-[10.5px] font-semibold tracking-[0.13em] text-brand">
                   {step.n}
                 </small>
                 <h3 className="t-item mb-2.5 text-ink">{step.title}</h3>
                 <p className="text-[15px] text-copy">{step.body}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </Container>
       </Section>
 
@@ -282,9 +191,9 @@ export default function HomePage() {
       <Section id="pricing" aria-labelledby="pricing-title">
         <Container>
           <Eyebrow>Pricing for your school</Eyebrow>
-          <div className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)] md:grid-cols-2">
+          <Reveal className="grid items-center gap-[clamp(24px,4vw,40px)] rounded-hero border-2 border-line-soft p-[clamp(20px,4vw,40px)] md:grid-cols-2">
             <div>
-              <h2 id="pricing-title" className="mb-5 text-ink">
+              <h2 id="pricing-title" className="t-title mb-5 text-ink">
                 A clear conversation. No guesswork.
               </h2>
               <p className="max-w-[420px] text-copy">
@@ -319,47 +228,53 @@ export default function HomePage() {
                 Discuss school pricing
               </Button>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* Starting with Uganda */}
       <Section tone="tint" id="about" aria-labelledby="uganda-title">
-        <Container className="grid gap-5 md:grid-cols-2 md:gap-10">
-          <div>
-            <Eyebrow>Starting with Uganda</Eyebrow>
-            <h2 id="uganda-title" className="text-ink">
-              Built around the work behind learning.
-            </h2>
-          </div>
-          <div>
-            <p className="mb-5 text-copy">
-              A well-run school depends on a great deal of work beyond the classroom. ACS is being
-              developed to make that work more organized, starting with the practical needs of primary
-              schools in Uganda.
-            </p>
-            <p className="text-copy">
-              Not a school website builder. A working environment for the records, routines and academic
-              information your team manages every day.
-            </p>
-          </div>
+        <Container>
+          <Reveal className="grid gap-5 md:grid-cols-2 md:gap-10">
+            <div>
+              <Eyebrow>Starting with Uganda</Eyebrow>
+              <h2 id="uganda-title" className="t-title text-ink">
+                Built around the work behind learning.
+              </h2>
+            </div>
+            <div>
+              <p className="mb-5 text-copy">
+                A well-run school depends on a great deal of work beyond the classroom. ACS is being
+                developed to make that work more organized, starting with the practical needs of primary
+                schools in Uganda.
+              </p>
+              <p className="text-copy">
+                Not a school website builder. A working environment for the records, routines and academic
+                information your team manages every day.
+              </p>
+            </div>
+          </Reveal>
         </Container>
       </Section>
 
       {/* Contact */}
       <Section id="contact" aria-labelledby="contact-title">
         <Container>
-          <Eyebrow>Let’s talk about your school</Eyebrow>
-          <h2 id="contact-title" className="mb-6 max-w-[760px] text-ink">
-            A more organized school starts with a conversation.
-          </h2>
-          <p className="mb-8 max-w-[760px] text-copy">
-            Request a walkthrough, ask about pricing or discuss onboarding. Prepare an enquiry below, or
-            email stackkens@gmail.com directly. Your enquiry opens in your email app for you to review
-            and send.
-          </p>
+          <Reveal>
+            <Eyebrow>Let’s talk about your school</Eyebrow>
+            <h2 id="contact-title" className="t-title mb-6 max-w-[760px] text-ink">
+              A more organized school starts with a conversation.
+            </h2>
+            <p className="mb-8 max-w-[760px] text-copy">
+              Request a walkthrough, ask about pricing or discuss onboarding. Prepare an enquiry below,
+              or email stackkens@gmail.com directly. Your enquiry opens in your email app for you to
+              review and send.
+            </p>
+          </Reveal>
 
-          <EnquiryForm />
+          <Reveal>
+            <EnquiryForm />
+          </Reveal>
 
           <p className="t-small">Email ACS directly: stackkens@gmail.com</p>
           <p className="t-small mt-4">

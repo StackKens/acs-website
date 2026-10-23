@@ -1,7 +1,9 @@
 'use client'
 
 import { useRef, useState, type KeyboardEvent } from 'react'
+import { AnimatePresence, m } from 'motion/react'
 import { Card, Eyebrow } from '@/components/ui/primitives'
+import { motionTokens } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 
 /**
@@ -174,6 +176,9 @@ function Chat() {
 export function FeatureTabs() {
   const [active, setActive] = useState(0)
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const tab = TABS[active]
+  const flipped = active % 2 === 1
+  const { card } = tab
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const last = TABS.length - 1
@@ -217,62 +222,66 @@ export function FeatureTabs() {
             onClick={() => setActive(index)}
             onKeyDown={(event) => onKeyDown(event, index)}
             className={cn(
-              'min-h-11 rounded-full border px-[18px] py-2.5 text-sm font-semibold transition-colors',
+              'relative min-h-11 overflow-hidden rounded-full border px-[18px] py-2.5 text-sm font-semibold transition-colors',
               index === active
-                ? 'border-brand bg-brand text-white'
+                ? 'border-brand text-white'
                 : 'border-line bg-white text-copy hover:border-brand hover:text-brand',
             )}
           >
-            {item.label}
+            {index === active && (
+              <m.span
+                layoutId="feature-tab-pill"
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-brand"
+                transition={{
+                  duration: motionTokens.duration.interaction,
+                  ease: motionTokens.ease,
+                }}
+              />
+            )}
+            <span className="relative z-10">{item.label}</span>
           </button>
         ))}
       </div>
 
-      {TABS.map((tab, index) => {
-        const isActive = index === active
-        const { card } = tab
-        const flipped = index % 2 === 1
-
-        return (
-          <div
-            key={tab.id}
-            id={`panel-${tab.id}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${tab.id}`}
-            hidden={!isActive}
-            tabIndex={0}
-            className={
-              isActive
-                ? cn(
-                    'grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)]',
-                    flipped ? 'nav:grid-cols-[7fr_5fr]' : 'nav:grid-cols-[5fr_7fr]',
-                  )
-                : 'hidden'
-            }
-          >
-            <div>
-              <Eyebrow className="mb-5">{tab.eyebrow}</Eyebrow>
-              <h2 className="t-title mb-5 text-ink">{tab.title}</h2>
-              <p className="max-w-[460px] text-[16px] text-copy">{tab.text}</p>
-            </div>
-
-            <Card className={cn('p-[clamp(18px,3vw,24px)]', flipped && 'nav:order-first')}>
-              <h3 className="t-item text-ink">{card.heading}</h3>
-              <p className="mt-2.5 mb-[22px] text-[13px] text-copy">{card.meta}</p>
-              {card.chat ? (
-                <Chat />
-              ) : (
-                <DataTable
-                  head={card.head!}
-                  rows={card.rows!}
-                  highlight={card.highlight}
-                  caption={`${card.heading}, sample data`}
-                />
-              )}
-            </Card>
+      <AnimatePresence mode="wait" initial={false}>
+        <m.div
+          key={tab.id}
+          id={`panel-${tab.id}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${tab.id}`}
+          tabIndex={0}
+          initial={{ opacity: 0.001, x: 12 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -12 }}
+          transition={{ duration: motionTokens.duration.interaction, ease: motionTokens.ease }}
+          className={cn(
+            'grid items-center gap-[clamp(24px,4vw,40px)] rounded-panel bg-surface p-[clamp(24px,4vw,30px)]',
+            flipped ? 'nav:grid-cols-[7fr_5fr]' : 'nav:grid-cols-[5fr_7fr]',
+          )}
+        >
+          <div>
+            <Eyebrow className="mb-5">{tab.eyebrow}</Eyebrow>
+            <h2 className="t-title mb-5 text-ink">{tab.title}</h2>
+            <p className="max-w-[460px] text-[16px] text-copy">{tab.text}</p>
           </div>
-        )
-      })}
+
+          <Card className={cn('p-[clamp(18px,3vw,24px)]', flipped && 'nav:order-first')}>
+            <h3 className="t-item text-ink">{card.heading}</h3>
+            <p className="mt-2.5 mb-[22px] text-[13px] text-copy">{card.meta}</p>
+            {card.chat ? (
+              <Chat />
+            ) : (
+              <DataTable
+                head={card.head!}
+                rows={card.rows!}
+                highlight={card.highlight}
+                caption={`${card.heading}, sample data`}
+              />
+            )}
+          </Card>
+        </m.div>
+      </AnimatePresence>
 
       <p className="mt-5 text-[13px] text-copy">
         Design preview only. Confirm available modules and workflows with the ACS team.

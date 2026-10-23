@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import Link from 'next/link'
+import { Reveal } from '@/components/ui/reveal'
 import { cn } from '@/lib/utils'
 
 /**
@@ -179,13 +180,13 @@ export function Split({
   children: ReactNode
 }) {
   return (
-    <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
+    <Reveal className="mb-12 flex flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-10">
       <div>
         {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
         <h2 className="t-title max-w-[520px] text-ink">{title}</h2>
       </div>
       <p className="max-w-[420px] text-copy">{children}</p>
-    </div>
+    </Reveal>
   )
 }
 

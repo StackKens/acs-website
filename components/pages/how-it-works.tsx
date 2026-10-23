@@ -1,6 +1,8 @@
-import type { ReactNode } from 'react'
 import { Container, Cta, Eyebrow, PageHero, Section, Split } from '@/components/ui/primitives'
+import { Faq, type FaqItem } from '@/components/ui/faq'
 import { Reveal } from '@/components/ui/reveal'
+import { Stagger, StaggerItem } from '@/components/ui/stagger'
+import { Timeline, TimelineItem } from '@/components/ui/timeline'
 
 /**
  * How it works page.
@@ -92,27 +94,32 @@ const PREP = [
   'How you keep registers and marks today',
 ]
 
-const FAQ = [
-  [
-    'How long does setup take?',
-    'It depends on your school’s size and which modules you choose. We agree a plan with you during the preparation step.',
-  ],
-  [
-    'Can we start with just one module?',
-    'Ask us about starting with the part that matters most to your school, such as attendance or results, and adding more later.',
-  ],
-  [
-    'Who needs to be involved?',
-    'Usually the headteacher or an administrator agrees the setup, then the teachers who will use ACS each day.',
-  ],
-  [
-    'What about our existing records?',
-    'Tell us what you keep today. We plan how to bring in pupil information with you during the preparation step.',
-  ],
-  [
-    'Will teachers need training?',
-    'Onboarding is part of getting started. Tell us about your team and we will discuss the support that fits.',
-  ],
+const FAQ: FaqItem[] = [
+  {
+    question: 'How long does setup take?',
+    answer:
+      'It depends on your school’s size and which modules you choose. We agree a plan with you during the preparation step.',
+  },
+  {
+    question: 'Can we start with just one module?',
+    answer:
+      'Ask us about starting with the part that matters most to your school, such as attendance or results, and adding more later.',
+  },
+  {
+    question: 'Who needs to be involved?',
+    answer:
+      'Usually the headteacher or an administrator agrees the setup, then the teachers who will use ACS each day.',
+  },
+  {
+    question: 'What about our existing records?',
+    answer:
+      'Tell us what you keep today. We plan how to bring in pupil information with you during the preparation step.',
+  },
+  {
+    question: 'Will teachers need training?',
+    answer:
+      'Onboarding is part of getting started. Tell us about your team and we will discuss the support that fits.',
+  },
 ]
 
 function CheckList({ items, small }: { items: string[]; small?: boolean }) {
@@ -141,53 +148,6 @@ function Panel({ title, items }: { title: string; items: string[] }) {
   )
 }
 
-function TimelineItem({
-  n,
-  title,
-  text,
-  children,
-}: {
-  n: number
-  title: string
-  text: string
-  children?: ReactNode
-}) {
-  return (
-    <Reveal className="relative">
-      <span className="absolute -left-14 top-0 grid h-10 w-10 place-items-center rounded-full bg-brand text-sm font-semibold text-white ring-[6px] ring-white">
-        {n}
-      </span>
-      <h3 className="t-item text-ink">{title}</h3>
-      <p className="mt-2 max-w-[560px] text-copy">{text}</p>
-      {children}
-    </Reveal>
-  )
-}
-
-function Faq({ items }: { items: string[][] }) {
-  return (
-    <Reveal className="max-w-[760px]">
-      {items.map(([question, answer]) => (
-        <details key={question} className="group border-t border-line py-[18px] last:border-b">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[17px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
-            {question}
-            <span aria-hidden="true" className="text-2xl leading-none text-brand group-open:hidden">
-              +
-            </span>
-            <span
-              aria-hidden="true"
-              className="hidden text-2xl leading-none text-brand group-open:inline"
-            >
-              –
-            </span>
-          </summary>
-          <p className="mt-2.5 max-w-[640px] text-copy">{answer}</p>
-        </details>
-      ))}
-    </Reveal>
-  )
-}
-
 export function HowItWorksPage() {
   return (
     <main>
@@ -200,7 +160,7 @@ export function HowItWorksPage() {
 
       <Section className="py-14 md:py-20 lg:py-24">
         <Container className="px-5 sm:px-8 lg:px-12">
-          <div className="relative grid max-w-[760px] gap-9 pl-14 before:absolute before:bottom-2 before:left-[19px] before:top-2 before:w-0.5 before:bg-line-soft">
+          <Timeline>
             {STEPS.map((step, index) => (
               <TimelineItem key={step.title} n={index + 1} title={step.title} text={step.text}>
                 <div className="mt-[18px] grid gap-5 md:grid-cols-2">
@@ -209,74 +169,79 @@ export function HowItWorksPage() {
                 </div>
               </TimelineItem>
             ))}
-          </div>
-          <p className="mt-7 max-w-[760px] rounded-r-lg border-l-[3px] border-brand bg-surface px-5 py-[18px] text-[15px] text-copy">
-            How long each step takes depends on your school’s size and which modules you choose. We
-            agree a plan with you, so there are no surprises.
-          </p>
-        </Container>
-      </Section>
-
-      <Section tone="tint" className="py-14 md:py-20 lg:py-24">
-        <Container className="px-5 sm:px-8 lg:px-12">
-          <Eyebrow className="mb-5">Day to day</Eyebrow>
-          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
-            A typical term with ACS.
-          </h2>
-          <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
-            {TERM.map(([label, title, text]) => (
-              <Reveal key={title} className="border-t-2 border-brand pt-[18px]">
-                <p className="mb-3.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-brand">
-                  {label}
-                </p>
-                <h3 className="t-item text-ink">{title}</h3>
-                <p className="mt-2.5 max-w-[460px] text-[15.5px] text-copy">{text}</p>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="py-14 md:py-20 lg:py-24">
-        <Container className="px-5 sm:px-8 lg:px-12">
-          <Eyebrow className="mb-5">Who does what</Eyebrow>
-          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
-            Everyone has a clear part.
-          </h2>
-          <div className="grid gap-5 md:grid-cols-3">
-            {ROLES.map(([title, text]) => (
-              <Reveal key={title} className="rounded-hero border border-line bg-white p-6">
-                <h3 className="t-item text-ink">{title}</h3>
-                <p className="mt-2 text-[15px] text-copy">{text}</p>
-              </Reveal>
-            ))}
-          </div>
+          </Timeline>
+          <Reveal>
+            <p className="mt-7 max-w-[760px] rounded-r-lg border-l-[3px] border-brand bg-surface px-5 py-[18px] text-[15px] text-copy">
+              How long each step takes depends on your school’s size and which modules you choose. We
+              agree a plan with you, so there are no surprises.
+            </p>
+          </Reveal>
         </Container>
       </Section>
 
       <Section tone="tint" className="py-14 md:py-20 lg:py-24">
         <Container className="px-5 sm:px-8 lg:px-12">
           <Reveal>
-            <Split
-              eyebrow="Before we talk"
-              title="What is helpful to have in mind."
-            >
-              You do not need anything formal. A rough picture of your school is enough to start.
-            </Split>
+            <Eyebrow className="mb-5">Day to day</Eyebrow>
+            <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+              A typical term with ACS.
+            </h2>
           </Reveal>
-          <CheckList items={PREP} />
-          <p className="mt-6 text-[13px] text-copy">
-            Please do not include sensitive pupil information in an initial enquiry.
-          </p>
+          <Stagger className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {TERM.map(([label, title, text]) => (
+              <StaggerItem key={title} className="border-t-2 border-brand pt-[18px]">
+                <p className="mb-3.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-brand">
+                  {label}
+                </p>
+                <h3 className="t-item text-ink">{title}</h3>
+                <p className="mt-2.5 max-w-[460px] text-[15.5px] text-copy">{text}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </Container>
       </Section>
 
       <Section className="py-14 md:py-20 lg:py-24">
         <Container className="px-5 sm:px-8 lg:px-12">
-          <Eyebrow className="mb-5">Questions</Eyebrow>
-          <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
-            Getting started, answered.
-          </h2>
+          <Reveal>
+            <Eyebrow className="mb-5">Who does what</Eyebrow>
+            <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+              Everyone has a clear part.
+            </h2>
+          </Reveal>
+          <Stagger className="grid gap-5 md:grid-cols-3">
+            {ROLES.map(([title, text]) => (
+              <StaggerItem key={title} className="rounded-hero border border-line bg-white p-6">
+                <h3 className="t-item text-ink">{title}</h3>
+                <p className="mt-2 text-[15px] text-copy">{text}</p>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Container>
+      </Section>
+
+      <Section tone="tint" className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Split eyebrow="Before we talk" title="What is helpful to have in mind.">
+            You do not need anything formal. A rough picture of your school is enough to start.
+          </Split>
+          <Reveal>
+            <CheckList items={PREP} />
+            <p className="mt-6 text-[13px] text-copy">
+              Please do not include sensitive pupil information in an initial enquiry.
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      <Section className="py-14 md:py-20 lg:py-24">
+        <Container className="px-5 sm:px-8 lg:px-12">
+          <Reveal>
+            <Eyebrow className="mb-5">Questions</Eyebrow>
+            <h2 className="t-title mb-8 text-ink md:text-4xl lg:text-[2.5rem]">
+              Getting started, answered.
+            </h2>
+          </Reveal>
           <Faq items={FAQ} />
         </Container>
       </Section>

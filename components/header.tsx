@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useMotionValueEvent, useScroll } from 'motion/react'
 import { ACSMark } from '@/components/acs-mark'
 
 const navLinks = [
@@ -18,6 +19,12 @@ const navLinks = [
 export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const [elevated, setElevated] = useState(false)
+  const { scrollY } = useScroll()
+
+  // A soft shadow once the page has moved, so the sticky bar separates from
+  // content without animating a large box-shadow.
+  useMotionValueEvent(scrollY, 'change', (latest) => setElevated(latest > 8))
 
   // Escape closes the menu and returns focus to the trigger.
   useEffect(() => {
@@ -32,7 +39,11 @@ export function Header() {
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-white">
+    <header
+      className={`sticky top-0 z-20 border-b border-line bg-white ${
+        elevated ? 'shadow-[0_2px_12px_rgba(20,40,75,0.08)]' : ''
+      }`}
+    >
       <div className="container-page flex h-20 items-center justify-between">
         <Link href="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
           <ACSMark size={32} className="shrink-0" title={null} />
