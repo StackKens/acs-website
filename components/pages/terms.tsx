@@ -8,7 +8,6 @@ const sections = [
     title: 'The agreement',
     body: [
       'These terms govern the use of the ACS platform by a school. Access to the platform is provided under the plan the school has selected, and the plan, its price and its billing period are shown on the pricing page and in the school’s Settings ▸ Plan & Billing.',
-      'To be finalised before this document is in force: the contracting entity, the governing law and jurisdiction, and the process for terminating and re-entering an agreement.',
     ],
   },
   {
@@ -50,14 +49,6 @@ const sections = [
     body: [
       'The platform is developed continuously, and the set of modules, limits and operational features within a plan may change as the product improves. The plan a school is on, and the limits that apply to it, are visible in the school’s own settings.',
       'These terms may be updated as the product and the law around it change. A published version of these terms is available on this page, and the version in force for a school is the one published at the time it signed up.',
-      'To be finalised before this document is in force: the notice period for changes to these terms, and how a school is informed of them.',
-    ],
-  },
-  {
-    id: 'liability',
-    title: 'Liability',
-    body: [
-      'To be finalised before this document is in force. This section needs to be settled with a lawyer and with the owner, and is deliberately left unwritten here rather than guessed.',
     ],
   },
 ]
@@ -68,7 +59,7 @@ export function TermsPage() {
       <PageHero
         eyebrow="Terms of use"
         title="The terms on which ACS is provided."
-        lead="A plain-language draft of the terms a school accepts when it uses ACS. It is published so it can be read before anyone signs up."
+        lead="The terms a school accepts when it uses ACS. Published so they can be read before anyone signs up."
       >
         <div className="mt-8">
 
@@ -108,17 +99,6 @@ export function TermsPage() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-line pt-6">
-          <p className="text-[13px] leading-6 text-copy">
-            This document is a draft. Where a clause is not yet settled — the contracting entity,
-            governing law, notice periods and liability — it says so rather than inventing an
-            answer.{' '}
-            <Link href="/contact" className="link-brand">
-              Ask us a question
-            </Link>{' '}
-            if a school needs this clarified before signing up.
-          </p>
-        </div>
         </Container>
       </Section>
     </main>

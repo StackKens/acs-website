@@ -122,16 +122,6 @@ export function PrivacyPage() {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-line pt-6">
-          <p className="text-[13px] leading-6 text-copy">
-            This document is a draft. Where something is not yet decided — retention periods in
-            particular — it says so rather than guessing.{' '}
-            <Link href="/contact" className="link-brand">
-              Raise a question
-            </Link>{' '}
-            if something here is unclear.
-          </p>
-        </div>
         </Container>
       </Section>
     </main>
