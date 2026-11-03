@@ -52,7 +52,7 @@ export function Header() {
 
         <button
           type="button"
-          className="flex size-11 items-center justify-center rounded-btn border border-line bg-white nav:hidden"
+          className="flex size-11 items-center justify-center rounded-btn bg-white nav:hidden"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="primary-nav"
