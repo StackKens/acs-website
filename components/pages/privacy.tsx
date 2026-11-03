@@ -47,8 +47,7 @@ const sections = [
     id: 'retention',
     title: 'How long information is kept',
     body: [
-      'To be confirmed by the owner before this document is finalised.',
-      'The platform does hold records that a school may later need — for example, an attendance record from a previous term, or a receipt from a closed financial year — and deleting them early would leave the school with a partial history. The specific retention periods, and what happens to a school’s data when its subscription ends, have not yet been set and are not stated here.',
+      'The school’s data is preserved. When a trial expires, the school is marked Suspended, its subscription becomes Expired, and school users are blocked from accessing the app; existing records remain intact. For other expired, suspended or cancelled subscriptions, feature access is denied while the data stays in the database, and access is restored if the subscription is reactivated.',
     ],
   },
   {
