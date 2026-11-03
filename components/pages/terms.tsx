@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Container, PageHero, Section } from '@/components/ui/primitives'
-import { DraftNotice } from './draft-notice'
+
 
 const sections = [
   {
@@ -71,7 +71,7 @@ export function TermsPage() {
         lead="A plain-language draft of the terms a school accepts when it uses ACS. It is published so it can be read before anyone signs up."
       >
         <div className="mt-8">
-          <DraftNotice document="terms of use" />
+
         </div>
       </PageHero>
 

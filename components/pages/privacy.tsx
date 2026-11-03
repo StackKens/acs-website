@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Container, PageHero, Section } from '@/components/ui/primitives'
-import { DraftNotice } from './draft-notice'
+
 
 const sections = [
   {
@@ -85,7 +85,7 @@ export function PrivacyPage() {
         lead="This page describes how the information a school records in ACS is held, who can see it, and what happens to an enquiry sent through this website."
       >
         <div className="mt-8">
-          <DraftNotice document="privacy policy" />
+
         </div>
       </PageHero>
 
