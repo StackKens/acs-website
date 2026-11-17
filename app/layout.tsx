@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Geist, Manrope } from 'next/font/google'
+import { Geist, Manrope, Inter } from 'next/font/google'
 import './globals.css'
 import { MotionProvider } from '@/components/motion-provider'
 import { SITE_URL } from '@/lib/site'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' })
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
 const TITLE = 'ACS | Modern School Management'
 const DESCRIPTION =
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${geist.variable} ${manrope.variable}`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${geist.variable} ${manrope.variable} ${inter.variable}`}>
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
