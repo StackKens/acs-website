@@ -74,7 +74,7 @@ export function Header() {
               href={link.href}
               onClick={() => setOpen(false)}
               aria-current={isActive(link.href) ? 'page' : undefined}
-              className={`flex min-h-11 items-center border-b border-line py-3.5 text-[14.5px] font-medium transition-colors nav:border-0 nav:py-0 ${
+              className={`flex min-h-11 items-center border-b border-line py-3.5 text-[14.5px] font-semibold transition-colors nav:border-0 nav:py-0 ${
                 isActive(link.href) ? 'text-brand' : 'text-copy hover:text-brand'
               }`}
             >

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/footer'
 import { PageShell } from '@/components/header'
-import { HowItWorksPage } from '@/components/pages/how-it-works'
+import AcsHowItWorks from '@/components/pages/ACSHowItWorks'
 import { canonical } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageShell>
-      <HowItWorksPage />
+      <AcsHowItWorks />
       <Footer />
     </PageShell>
   )

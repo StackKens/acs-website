@@ -206,7 +206,7 @@ export default function AcsHome() {
   const mounted = useMounted();
 
   return (
-    <div className={`min-h-screen bg-[#F7F8FA] pt-[env(safe-area-inset-top)] font-[family-name:var(--font-inter),system-ui,-apple-system,'Segoe_UI',sans-serif] text-[17px] leading-relaxed antialiased dark:bg-[#101C35] ${C.body}`}>
+    <div className={`min-h-screen bg-[#F7F8FA] pt-[env(safe-area-inset-top)] font-[family-name:var(--font-inter),system-ui,-apple-system,'Segoe_UI',sans-serif] text-[17px] font-medium leading-relaxed antialiased dark:bg-[#101C35] ${C.body}`}>
       <div id="top">
         {/* Hero */}
         <section className="relative overflow-hidden pb-24 pt-12 md:pb-28 md:pt-20">

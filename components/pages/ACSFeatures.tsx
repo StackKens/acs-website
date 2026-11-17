@@ -1,5 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+function useMounted() {
+  const [m, setM] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setM(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return m;
+}
+
+function Reveal({ show, delay = 0, className = "", children }: { show: boolean; delay?: number; className?: string; children: React.ReactNode }) {
+  return (
+    <div
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${show ? "translate-y-0 opacity-100" : "translate-y-3.5 opacity-0"} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
 
 /* ---------- Brand tokens (same as AcsHome.tsx; move to a shared file if you like) ---------- */
 const C = {
@@ -25,7 +45,7 @@ const SITE = "https://acs-website.onrender.com";
 /* ---------- Content (edit here) ----------
    Set soon: true on any module that isn't live yet. It shows a "Coming soon" badge.
    CONFIRM each module below matches what ACS ships today before publishing. */
-type Mod = { id: "records" | "attendance" | "results" | "fees"; title: string; blurb: string; points: string[]; soon?: boolean };
+type Mod = { id: "records" | "attendance" | "results" | "fees" | "ai"; title: string; blurb: string; points: string[]; soon?: boolean };
 const MODULES: Mod[] = [
   {
     id: "records",
@@ -44,6 +64,12 @@ const MODULES: Mod[] = [
     title: "Marks and report cards",
     blurb: "Enter marks once and let the system do the arithmetic when reports are due.",
     points: ["Marks entered per class and subject", "Totals and averages worked out for you", "Report cards prepared from the same marks", "Less copying, fewer mistakes at term end"],
+  },
+  {
+    id: "ai",
+    title: "AI assistant",
+    blurb: "Support everyday writing such as report card comments and lesson notes. Teachers stay in charge and review every draft before it is used.",
+    points: ["Drafts report card comments", "Drafts lesson notes", "Teachers review and edit every draft before it is used"],
   },
   {
     id: "fees",
@@ -113,6 +139,19 @@ function Visual({ id }: { id: Mod["id"] }) {
           </tbody>
         </table>
       )}
+      {id === "ai" && (
+        <div className="grid gap-3">
+          <div className={`rounded-2xl border px-4 py-3 text-[15px] ${C.line} ${C.text}`}>
+            <small className={`mb-1 block text-[12px] font-semibold ${C.blue}`}>Teacher</small>
+            Suggest a report card comment for Aisha based on this term’s marks.
+          </div>
+          <div className={`rounded-2xl px-4 py-3 text-[15px] ${C.text} ${C.tint}`}>
+            <small className={`mb-1 block text-[12px] font-semibold ${C.blue}`}>Assistant</small>
+            Aisha has made steady progress this term, with strong results in Mathematics (84) and Science (81). Continued reading practice will help lift English further.
+          </div>
+          <p className="text-[12px]">Sample conversation. Drafts are suggestions for the teacher to review and edit.</p>
+        </div>
+      )}
       {id === "fees" && (
         <div>
           <div className="text-sm">Collected this term</div>
@@ -166,8 +205,9 @@ function RoleExplorer() {
 
 /* ---------- Page ---------- */
 export default function AcsFeatures() {
+  const mounted = useMounted();
   return (
-    <div className={`min-h-screen bg-[#F7F8FA] pt-[env(safe-area-inset-top)] font-[family-name:var(--font-inter),system-ui,-apple-system,'Segoe_UI',sans-serif] text-[17px] leading-relaxed antialiased dark:bg-[#101C35] ${C.body}`}>
+    <div className={`min-h-screen bg-[#F7F8FA] pt-[env(safe-area-inset-top)] font-[family-name:var(--font-inter),system-ui,-apple-system,'Segoe_UI',sans-serif] text-[17px] font-medium leading-relaxed antialiased dark:bg-[#101C35] ${C.body}`}>
       <div>
         {/* Hero */}
         <section className="relative overflow-hidden pb-16 pt-14 md:pb-20 md:pt-24">
@@ -176,23 +216,31 @@ export default function AcsFeatures() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(#C9D5F5_1.2px,transparent_1.3px)] bg-[length:26px_26px] [mask-image:radial-gradient(70%_90%_at_80%_20%,#000,transparent)] dark:bg-[radial-gradient(#24386B_1.2px,transparent_1.3px)]"
           />
           <div className={`${wrap} relative`}>
-            <h1 className={`${C.text} max-w-[16ch] text-[length:clamp(42px,6.2vw,80px)] font-bold leading-[.98] tracking-[-0.05em]`}>
-              Everything the school office runs on.
-            </h1>
-            <p className="mt-7 max-w-[56ch] text-xl">
-              ACS covers the daily work of a primary school: who is enrolled, who came in, how they performed and what is owed. Start with what you need and add the rest when you’re ready.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a href={WA("Hello ACS, I'd like a walkthrough")} className={primary}>Chat on WhatsApp</a>
-              <a href={`${SITE}/contact`} className={ghost}>Request a walkthrough</a>
-            </div>
-            <nav aria-label="Jump to a module" className="mt-12 flex flex-wrap gap-2">
-              {MODULES.map((m) => (
-                <a key={m.id} href={`#${m.id}`} className={`rounded-full border px-4 py-2 text-sm font-medium transition hover:border-[#3867F5] ${C.line} ${C.surf} ${C.text}`}>
-                  {m.title}
-                </a>
-              ))}
-            </nav>
+            <Reveal show={mounted}>
+              <h1 className={`${C.text} max-w-[16ch] text-[length:clamp(42px,6.2vw,80px)] font-bold leading-[.98] tracking-[-0.05em]`}>
+                Everything the school office runs on.
+              </h1>
+            </Reveal>
+            <Reveal show={mounted} delay={120}>
+              <p className="mt-7 max-w-[56ch] text-xl">
+                ACS covers the daily work of a primary school: who is enrolled, who came in, how they performed and what is owed. Start with what you need and add the rest when you’re ready.
+              </p>
+            </Reveal>
+            <Reveal show={mounted} delay={240}>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a href={WA("Hello ACS, I'd like a walkthrough")} className={primary}>Chat on WhatsApp</a>
+                <a href={`${SITE}/contact`} className={ghost}>Request a walkthrough</a>
+              </div>
+            </Reveal>
+            <Reveal show={mounted} delay={320}>
+              <nav aria-label="Jump to a module" className="mt-12 flex flex-wrap gap-2">
+                {MODULES.map((m) => (
+                  <a key={m.id} href={`#${m.id}`} className={`rounded-full border px-4 py-2 text-sm font-medium transition hover:border-[#3867F5] ${C.line} ${C.surf} ${C.text}`}>
+                    {m.title}
+                  </a>
+                ))}
+              </nav>
+            </Reveal>
           </div>
         </section>
 
